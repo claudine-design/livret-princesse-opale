@@ -124,9 +124,10 @@
     margin-top:2px;margin-bottom:4px;
   }
   .hero-tagline{
-    font-family:'Cormorant Garamond',serif;font-style:italic;
-    color:var(--gold-light);font-size:15px;letter-spacing:.08em;
-    margin-bottom:10px;opacity:.95;
+    font-family:'Allura',cursive;
+    color:var(--gold-light);font-size:28px;letter-spacing:.01em;
+    margin:2px 0 10px;line-height:1;
+    text-shadow:0 0 8px rgba(212,175,94,.2);
   }
   .hero-divider{height:16px;color:var(--gold);margin-bottom:10px}
   .hero-divider svg{width:140px;height:16px;display:block;margin:0 auto}
@@ -1291,8 +1292,8 @@ async function loadMeteo(){
   // Catalogue unifié : chaque activité appartient à 1 ou plusieurs catégories
   // Catégories : 'sport' · 'enfants' · 'decouverte'
   const ACTIVITES = [
-    { cats:['sport','decouverte'], titre:'🪁 Kitesurf · Opale Kite',
-      meta:["École officielle de Berck depuis 2011 — cours et initiations sur la Grande Plage."],
+    { cats:['sport','decouverte'], titre:'🪁 Opale Kite — Jérôme Buselin ⭐',
+      meta:["<strong>Coup de cœur de Claudine</strong> 💛 — <em>« Jérôme est un ami avec lequel j'ai beaucoup navigué. C'est un super moniteur, je le recommande les yeux fermés. »</em>","École officielle de kitesurf de Berck depuis 2011 — cours et initiations sur la Grande Plage."],
       actions:[['🔗 opale-kite.fr','https://www.opale-kite.fr/'],['📍 Y aller','https://maps.google.com/?q=Opale+Kite+Berck']]},
     { cats:['sport','decouverte'], titre:'🏖️ Char à voile',
       meta:["Berck est le <strong>berceau du char à voile</strong> — sensations garanties sur la grande plage."],
