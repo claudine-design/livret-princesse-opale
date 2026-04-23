@@ -665,15 +665,14 @@ const ZONES = {
     nom: "Maréchal Juin",
     commerces: {
       urgence: [
-        { nom: "CITIS (Coccimarket)", type: "Mini-market", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "Parfait pour les urgences" }
+        { nom: "Carrefour City", type: "Mini-market urgences", adresse: "Rue de l'Impératrice, Berck-sur-Mer", tel: "", horaires: "", note: "Parfait pour les achats de dernière minute" }
       ],
       supermarche: [
         { nom: "Carrefour", type: "Supermarché", adresse: "Berck-sur-Mer", tel: "", horaires: "" },
         { nom: "Aldi", type: "Discount", adresse: "Berck-sur-Mer", tel: "", horaires: "" }
       ],
       boulangerie: [
-        { nom: "Boulangerie Tumé", adresse: "Berck-sur-Mer", tel: "", horaires: "" },
-        { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "" }
+        { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
       ],
       restaurants: [
         { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
@@ -684,35 +683,52 @@ const ZONES = {
     nom: "Rue Jeanne",
     commerces: {
       urgence: [
-        { nom: "Au panier de la ménagère", type: "Mini-market", adresse: "À compléter — Rue Jeanne / Berck centre", tel: "", horaires: "À compléter", note: "Très bien pour les urgences" }
+        { nom: "Au Panier de la Ménagère", type: "Mini-market", adresse: "À deux pas du logement, Berck centre", tel: "", horaires: "", note: "Les deux garçons qui tiennent l'épicerie sont vraiment sympas — parfait pour les urgences" }
       ],
       supermarche: [
-        { nom: "Carrefour Market", type: "Supermarché", adresse: "À compléter", tel: "", horaires: "À compléter", livraison: true }
+        { nom: "Carrefour Market", type: "Supermarché", adresse: "Berck-sur-Mer", tel: "", horaires: "", livraison: true }
       ],
       boulangerie: [
-        { nom: "À compléter", adresse: "", tel: "", horaires: "" }
+        { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
       ],
       restaurants: [
-        { nom: "À compléter", adresse: "", tel: "", horaires: "" }
+        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
       ]
     }
   },
   esplanade: {
     nom: "Esplanade / Apollo",
     commerces: {
-      urgence: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
-      supermarche: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
-      boulangerie: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
-      restaurants: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ]
+      urgence: [
+        { nom: "Carrefour City", type: "Mini-market urgences", adresse: "Rue de l'Impératrice, Berck-sur-Mer", tel: "", horaires: "", note: "Parfait pour les achats de dernière minute (Apolove, Apollo, Kingston, Albatros)" },
+        { nom: "Au Panier de la Ménagère", type: "Mini-market alternatif", adresse: "Berck centre", tel: "", horaires: "", note: "Également accessible à pied depuis Grand Large et Mini/Grande Love Room — deux garçons très sympas" }
+      ],
+      supermarche: [
+        { nom: "Carrefour Market", type: "Supermarché", adresse: "Berck-sur-Mer", tel: "", horaires: "", livraison: true }
+      ],
+      boulangerie: [
+        { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
+      ],
+      restaurants: [
+        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
+      ]
     }
   },
   terrasse: {
     nom: "Terrasse / rue des Sables",
     commerces: {
-      urgence: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
-      supermarche: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
-      boulangerie: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
-      restaurants: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ]
+      urgence: [
+        { nom: "Carrefour City", type: "Mini-market urgences", adresse: "Rue de l'Impératrice, Berck-sur-Mer", tel: "", horaires: "" }
+      ],
+      supermarche: [
+        { nom: "Carrefour Market", type: "Supermarché", adresse: "Berck-sur-Mer", tel: "", horaires: "", livraison: true }
+      ],
+      boulangerie: [
+        { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
+      ],
+      restaurants: [
+        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
+      ]
     }
   }
 };
@@ -1299,9 +1315,9 @@ async function loadMeteo(){
     { cats:['sport','decouverte'], titre:'🏖️ Char à voile',
       meta:["Berck est le <strong>berceau du char à voile</strong> — sensations garanties sur la grande plage."],
       actions:[['🔗 Office de tourisme','https://www.berck-tourisme.com/fr/sortir-et-se-divertir']]},
-    { cats:['sport','enfants'], titre:'🏊 Piscine intercommunale Agora',
-      meta:["Esplanade Parmentier — Front de mer, 62600 Berck","8 lignes d'eau, bassin à vagues, toboggan — toute l'année"],
-      actions:[['📞 03 21 89 87 08','tel:0321898708'],['📍 Y aller','https://maps.google.com/?q=Piscine+Agora+Berck'],['🔗 Site','https://www.ca2bm.fr/loisirs-culture/piscine-intercommunale-de-berck-sur-mer/']]},
+    { cats:['sport','enfants'], titre:'🏊 Piscine Agora — Espace bien-être',
+      meta:["Esplanade Parmentier — Front de mer, 62600 Berck","<strong>Espace bien-être complet</strong> : 8 lignes d'eau, bassin à vagues, <strong>toboggan</strong>, <strong>jacuzzi</strong>, <strong>sauna</strong>","Ouvert toute l'année"],
+      actions:[['📞 03 21 89 87 08','tel:0321898708'],['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Piscine+Agora+Berck&travelmode=walking'],['🔗 Site','https://www.ca2bm.fr/loisirs-culture/piscine-intercommunale-de-berck-sur-mer/']]},
     { cats:['enfants','decouverte'], titre:'🎳 Bowling Agora',
       meta:["1 Esplanade Parmentier, 62600 Berck — même complexe que la piscine","8 pistes · restaurant vue panoramique · beach bar"],
       actions:[['📞 03 21 89 87 08','tel:0321898708'],['📍 Y aller','https://maps.google.com/?q=Bowling+Berck+Esplanade+Parmentier']]},
@@ -1314,6 +1330,12 @@ async function loadMeteo(){
     { cats:['sport','enfants'], titre:'🤸 Parc de jeux &amp; crossfit gratuit',
       meta:["Parc de jeux et ateliers crossfit en plein air à Berck — accès libre."],
       actions:[['📄 Le dépliant','/visites-berck/docs/Parc%20de%20jeux%20et%20ateliers%20crossfit%20gratuit%20%20à%20Berck_.docx']]},
+    { cats:['decouverte','enfants'], titre:'🎰 Casino de Berck',
+      meta:["Machines à sous, jeux de table, ambiance feutrée — face à la mer.","Parfait pour une soirée animée."],
+      actions:[['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Casino+Berck+sur+Mer&travelmode=walking']]},
+    { cats:['decouverte','enfants'], titre:'🎬 Cinéma Le Styx',
+      meta:["Le cinéma de Berck-sur-Mer — films récents et séances toute l'année."],
+      actions:[['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Cinema+Le+Styx+Berck&travelmode=walking'],['🔗 Programme','https://www.google.com/search?q=cinema+Le+Styx+Berck+programme']]},
     { cats:['decouverte'], titre:'🏛️ Musée Opale Sud',
       meta:["60 rue de l'Impératrice, 62600 Berck-sur-Mer","🕒 Mar après-midi → dim · 10-12h / 14-18h · Fermé lundi","🎟️ 4 € · réduit 2,50 € · gratuit -18 ans · <em>gratuit 1er dim. du mois</em>"],
       actions:[['🔗 musee.berck.fr','https://musee.berck.fr/'],['📍 Y aller','https://maps.google.com/?q=Musee+Opale+Sud+60+rue+imperatrice+Berck']]},
@@ -1474,12 +1496,14 @@ async function loadMeteo(){
   function cardList(title, emoji, arr, urg=false){
     let out = `<h3>${emoji} ${title}</h3>`;
     arr.forEach(c => {
-      if (c.nom === 'À compléter') {
+      if (c.nom === 'À compléter' || c.nom.startsWith('À compléter')) {
         out += TODO(`${title} — zone ${z.nom}`);
         return;
       }
       const tag = urg ? '<span class="tag urg">urgence</span>' : '';
       const mapsQ = encodeURIComponent(`${c.nom} ${c.adresse} Berck`);
+      // Lien Google Maps en mode "directions à pied" depuis l'adresse de l'appart → affiche distance + temps
+      const walkUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(ap.adr)}&destination=${mapsQ}&travelmode=walking`;
       out += `
         <div class="card">
           <div class="name">${esc(c.nom)}${tag}</div>
@@ -1488,7 +1512,7 @@ async function loadMeteo(){
           ${c.note ? `<div class="meta" style="font-style:italic">💡 ${esc(c.note)}</div>` : ''}
           <div class="actions">
             ${c.tel ? `<a href="tel:${c.tel.replace(/\s/g,'')}">📞 ${esc(c.tel)}</a>` : ''}
-            <a href="https://maps.google.com/?q=${mapsQ}" target="_blank" rel="noopener">📍 Y aller</a>
+            <a href="${walkUrl}" target="_blank" rel="noopener">🗺️ Itinéraire à pied</a>
             ${c.livraison ? `<a href="https://courses.carrefour.fr" target="_blank" rel="noopener">🛒 Livraison</a>` : ''}
           </div>
         </div>
