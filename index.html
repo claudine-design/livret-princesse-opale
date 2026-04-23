@@ -69,9 +69,13 @@
   .corner.c-bl::after{bottom:-2px;left:-2px}
   .corner.c-br::after{bottom:-2px;right:-2px}
 
-  /* Animations d'entrée orchestrée */
+  /* Animations d'entrée orchestrée — avec fallback visible si pas d'animation */
   @keyframes heroRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   @keyframes tileRise{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+  /* Si l'utilisateur a désactivé les animations, tout reste visible */
+  @media (prefers-reduced-motion: reduce){
+    .hero, .tile{animation:none!important;opacity:1!important;transform:none!important}
+  }
   @keyframes crownShine{0%,100%{filter:drop-shadow(0 0 4px rgba(212,175,94,.3))}50%{filter:drop-shadow(0 0 12px rgba(240,217,138,.55))}}
   @keyframes goldShimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
 
@@ -152,8 +156,8 @@
     text-align:center;cursor:pointer;text-decoration:none;color:var(--ink);
     display:flex;flex-direction:column;align-items:center;justify-content:center;
     min-height:90px;position:relative;overflow:hidden;
+    opacity:1;
     transition:transform .18s ease, border-color .25s ease, box-shadow .25s ease;
-    animation:tileRise .6s cubic-bezier(.2,.7,.2,1) both;
   }
   /* Filet doré en haut */
   .tile::before{
@@ -184,20 +188,7 @@
   .tile:hover .ico{color:var(--gold-light);filter:drop-shadow(0 0 8px rgba(240,217,138,.5))}
   .tile .lbl{font-family:'Cinzel',serif;font-size:10px;font-weight:500;line-height:1.25;color:var(--gold-light);text-transform:uppercase;letter-spacing:.07em}
 
-  /* Staggered reveal : délai de 80ms par tuile (jusqu'à la 13e) */
-  .tile:nth-child(1){animation-delay:.40s}
-  .tile:nth-child(2){animation-delay:.48s}
-  .tile:nth-child(3){animation-delay:.56s}
-  .tile:nth-child(4){animation-delay:.64s}
-  .tile:nth-child(5){animation-delay:.72s}
-  .tile:nth-child(6){animation-delay:.80s}
-  .tile:nth-child(7){animation-delay:.88s}
-  .tile:nth-child(8){animation-delay:.96s}
-  .tile:nth-child(9){animation-delay:1.04s}
-  .tile:nth-child(10){animation-delay:1.12s}
-  .tile:nth-child(11){animation-delay:1.20s}
-  .tile:nth-child(12){animation-delay:1.28s}
-  .tile:nth-child(13){animation-delay:1.36s}
+  /* Staggered reveal retiré — causait un bug où les tuiles restaient invisibles et non cliquables */
 
   /* PAGES */
   .page{
