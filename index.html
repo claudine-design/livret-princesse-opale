@@ -804,6 +804,16 @@ function goHome(){
   $('hdr').classList.remove('sub');
   window.scrollTo(0,0);
 }
+/* Expose au scope global pour que les onclick="open_(...)" du HTML fonctionnent */
+window.open_ = open_;
+window.goHome = goHome;
+window.copy = function(txt, btn){
+  navigator.clipboard.writeText(txt).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copié';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+};
 
 /* ----- Helper "à compléter" ------------------------------ */
 const TODO = msg => `<div class="todo">⚙️ <strong>À compléter :</strong> ${msg}</div>`;
@@ -1107,7 +1117,7 @@ function copy(txt, btn){
         ✨ <strong>Vous êtes 2 et souhaitez dormir en lits séparés&nbsp;?</strong><br>
         Supplément blanchisserie&nbsp;: <strong>10 €</strong>.
       </div>
-      <a href="${optionLink('Demande lits séparés', 'Nous sommes 2 voyageurs et souhaitons dormir dans des lits séparés plutôt qu\\'un lit double (supplément blanchisserie 10 €).')}" style="${btnStyle}">📩 Demander l'option</a>
+      <a href="${optionLink('Demande lits séparés', "Nous sommes 2 voyageurs et souhaitons dormir dans des lits séparés plutôt qu'un lit double (supplément blanchisserie 10 €).")}" style="${btnStyle}">📩 Demander l'option</a>
     </div>
   `;
 
@@ -1119,7 +1129,7 @@ function copy(txt, btn){
       <div class="meta" style="color:var(--gold-light);margin-top:8px">
         ✨ <strong>Check-in anticipé</strong> possible dès 14h sur demande.<br>Supplément&nbsp;: 15 à 20 €.
       </div>
-      <a href="${optionLink('Demande check-in anticipé 14h', 'Je souhaite un check-in anticipé à 14h (supplément 15 à 20 €).\nDate d\\'arrivée : ___')}" style="${btnStyle}">📩 Demander l'option</a>
+      <a href="${optionLink('Demande check-in anticipé 14h', "Je souhaite un check-in anticipé à 14h (supplément 15 à 20 €).\nDate d'arrivée : ___")}" style="${btnStyle}">📩 Demander l'option</a>
     </div>
 
     <h3>🚪 Départ — check-out</h3>
@@ -1313,7 +1323,7 @@ async function loadMeteo(){
     { cats:['enfants','sport','decouverte'], titre:'🎢 Parc Bagatelle (Merlimont)',
       meta:["940 Route de Berck, 62155 Merlimont — 15 min de Berck","40+ attractions familiales : auto-tamponneuses, grande roue, carrousel…","🗓️ Ouvert du 11 avril au 1<sup>er</sup> novembre"],
       actions:[['📞 03 21 89 09 90','tel:0321890990'],['🔗 parcbagatelle.com','https://www.parcbagatelle.com/fr'],['📍 Y aller','https://maps.google.com/?q=Parc+Bagatelle+Merlimont']]},
-    { cats:['enfants','sport'], titre:'🌳 Laby\\'parc (Saint-Josse)',
+    { cats:['enfants','sport'], titre:"🌳 Laby'parc (Saint-Josse)",
       meta:["Chemin des Ardronnières, 62170 Saint-Josse — 20 min de Berck","Parc nature : toboggan UltraSpeed, toboggan spiralé, parcours du combattant, accro-spider","☀️ Ouvert l'été uniquement"],
       actions:[['📍 Y aller','https://maps.google.com/?q=Labyparc+Du+Touquet+Saint+Josse']]},
     { cats:['enfants','decouverte'], titre:'🐠 Nausicaá — Centre National de la Mer (Boulogne-sur-Mer)',
@@ -1334,8 +1344,8 @@ async function loadMeteo(){
   const GUIDES_PAR_RESIDENCE = {
     // Le 23 + Le 25 : 7 apparts (Maréchal Juin)
     zone_marechal: [
-      { nom:'🏅 Activités sportives depuis l\\'appartement', file: docBase + 'Berck%20depuis%2023/' + encodeURIComponent('23 activités sportives.docx') },
-      { nom:'🏠 Activités intérieures depuis l\\'appartement', file: docBase + 'Berck%20depuis%2023/' + encodeURIComponent('Activités intérieurs depuis le 23.docx') }
+      { nom:"🏅 Activités sportives depuis l'appartement", file: docBase + 'Berck%20depuis%2023/' + encodeURIComponent('23 activités sportives.docx') },
+      { nom:"🏠 Activités intérieures depuis l'appartement", file: docBase + 'Berck%20depuis%2023/' + encodeURIComponent('Activités intérieurs depuis le 23.docx') }
     ],
     // Face Mer et les apparts autour (esplanade/apollo/albatros/grand large)
     zone_esplanade: [
