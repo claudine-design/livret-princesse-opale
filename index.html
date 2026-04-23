@@ -1,0 +1,1702 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a7d8c">
+<title>Livret d'accueil — Appart-Hôtel Berck</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Allura&display=swap" rel="stylesheet">
+<script src="trello-data/appart-faq.js"></script>
+<script src="trello-data/access-templates.js"></script>
+<style>
+  :root{
+    --bg:#0b0a08;
+    --bg-2:#141108;
+    --card:#1a1610;
+    --card-2:#221c12;
+    --gold:#d4af5e;
+    --gold-light:#f0d98a;
+    --gold-dark:#8b6d2e;
+    --gold-soft:rgba(212,175,94,.15);
+    --gold-line:rgba(212,175,94,.35);
+    --ink:#f5ecd8;
+    --muted:#a89878;
+    --danger:#d07560;
+    --radius:14px;
+    --shadow:0 8px 32px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Montserrat',-apple-system,BlinkMacSystemFont,sans-serif;font-size:16px;line-height:1.55;font-weight:400}
+  body{
+    min-height:100vh;min-height:100dvh;
+    padding-bottom:env(safe-area-inset-bottom);
+    /* Fond velours multicouche : radial dorés + voile pourpre + base noire */
+    background:
+      radial-gradient(ellipse 80% 50% at 15% 8%, rgba(212,175,94,.12) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 40% at 85% 12%, rgba(166,60,80,.08) 0%, transparent 55%),
+      radial-gradient(ellipse 90% 60% at 50% 100%, rgba(212,175,94,.06) 0%, transparent 50%),
+      linear-gradient(180deg, #0d0a06 0%, #0b0907 50%, #0a0805 100%);
+    position:relative;
+  }
+  /* Grain / noise overlay subtil */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.07;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='5'/><feColorMatrix values='0 0 0 0 0.83 0 0 0 0 0.69 0 0 0 0 0.37 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:screen;
+  }
+  main,header,footer{position:relative;z-index:2}
+
+  /* Typographie */
+  h1,h2,h3{font-family:'Cinzel',serif;font-weight:500;letter-spacing:.06em}
+
+  /* Cartouche art-déco : 4 coins dorés sur un élément ancré */
+  .corner{
+    position:absolute;width:18px;height:18px;pointer-events:none;
+    border:1px solid var(--gold);opacity:.85;
+  }
+  .corner.c-tl{top:10px;left:10px;border-right:0;border-bottom:0}
+  .corner.c-tr{top:10px;right:10px;border-left:0;border-bottom:0}
+  .corner.c-bl{bottom:10px;left:10px;border-right:0;border-top:0}
+  .corner.c-br{bottom:10px;right:10px;border-left:0;border-top:0}
+  .corner::after{content:"";position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;opacity:.9}
+  .corner.c-tl::after{top:-2px;left:-2px}
+  .corner.c-tr::after{top:-2px;right:-2px}
+  .corner.c-bl::after{bottom:-2px;left:-2px}
+  .corner.c-br::after{bottom:-2px;right:-2px}
+
+  /* Animations d'entrée orchestrée */
+  @keyframes heroRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes tileRise{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+  @keyframes crownShine{0%,100%{filter:drop-shadow(0 0 4px rgba(212,175,94,.3))}50%{filter:drop-shadow(0 0 12px rgba(240,217,138,.55))}}
+  @keyframes goldShimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+  header{
+    position:sticky;top:0;z-index:10;
+    background:linear-gradient(180deg, rgba(11,10,8,.98) 0%, rgba(11,10,8,.92) 100%);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--gold-line);
+    padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));
+  }
+  header .back{
+    background:transparent;border:1px solid var(--gold-line);color:var(--gold);
+    font-size:18px;width:36px;height:36px;border-radius:50%;
+    margin-right:10px;cursor:pointer;display:none;
+    transition:all .2s
+  }
+  header.sub .back{display:inline-flex;align-items:center;justify-content:center}
+  header .back:active{background:var(--gold-soft)}
+  header h1{margin:0;font-size:14px;font-weight:500;color:var(--gold);display:inline-block;vertical-align:middle;text-transform:uppercase}
+  header .sub{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.15em;text-transform:uppercase}
+
+  main{padding:12px 14px;max-width:520px;margin:0 auto}
+
+  /* HERO — cartouche art-déco, optimisé mobile */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(ellipse at top, rgba(212,175,94,.1) 0%, transparent 70%),
+      linear-gradient(165deg, #1a1509 0%, #0f0b05 60%, #13100a 100%);
+    border:1px solid var(--gold);
+    border-radius:var(--radius);
+    padding:28px 16px 22px;margin-bottom:18px;
+    box-shadow:0 8px 30px rgba(0,0,0,.5), inset 0 1px 0 rgba(240,217,138,.18);
+    text-align:center;
+    animation:heroRise .9s cubic-bezier(.2,.7,.2,1) both;
+  }
+  /* Double filet doré */
+  .hero::before{
+    content:"";position:absolute;inset:5px;border:1px solid rgba(212,175,94,.35);border-radius:10px;pointer-events:none;
+  }
+
+  .hero-logo{
+    display:block;width:92px;height:64px;margin:0 auto 2px;
+    color:var(--gold-light);
+    filter:drop-shadow(0 0 6px rgba(212,175,94,.35));
+  }
+  .hero-brand{
+    font-family:'Cinzel',serif;font-weight:500;font-size:11px;
+    color:var(--gold);text-transform:uppercase;letter-spacing:.3em;
+    margin-top:2px;margin-bottom:10px;
+  }
+  .hero-divider{height:16px;color:var(--gold);margin-bottom:10px}
+  .hero-divider svg{width:140px;height:16px;display:block;margin:0 auto}
+
+  .hero h2{margin:0 0 2px;font-size:20px;font-weight:600;color:var(--gold-light);text-transform:uppercase;letter-spacing:.09em;line-height:1.2}
+  .hero .com{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:15px;margin-top:2px;letter-spacing:.02em}
+  .hero .addr{font-size:10px;color:var(--muted);margin-top:9px;letter-spacing:.15em;text-transform:uppercase;line-height:1.5}
+  .hero .welcome{margin-top:12px;font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--ink);font-style:italic;opacity:.95;line-height:1.45;padding:0 4px}
+  .hero .signature{
+    font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);
+    margin-top:6px;transform:rotate(-2.5deg);display:inline-block;
+    text-shadow:0 0 8px rgba(212,175,94,.2);
+  }
+
+  /* GRID tuiles — mobile compact */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .tile{
+    background:
+      linear-gradient(160deg, rgba(26,22,16,.95) 0%, rgba(34,28,18,.95) 100%);
+    border:1px solid var(--gold-line);
+    border-radius:12px;padding:14px 8px 12px;
+    text-align:center;cursor:pointer;text-decoration:none;color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    min-height:90px;position:relative;overflow:hidden;
+    transition:transform .18s ease, border-color .25s ease, box-shadow .25s ease;
+    animation:tileRise .6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  /* Filet doré en haut */
+  .tile::before{
+    content:"";position:absolute;top:0;left:15%;right:15%;height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:.5;transition:opacity .25s;
+  }
+  /* Filet doré miroir en bas (::after) */
+  .tile::after{
+    content:"";position:absolute;bottom:0;left:30%;right:30%;height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:.3;transition:opacity .25s, left .25s, right .25s;
+  }
+  .tile:active{transform:scale(.96)}
+  .tile:hover{
+    border-color:var(--gold);
+    box-shadow:0 8px 22px rgba(0,0,0,.45), inset 0 0 0 1px rgba(240,217,138,.12);
+  }
+  .tile:hover::before{opacity:1}
+  .tile:hover::after{opacity:.75;left:15%;right:15%}
+
+  .tile .ico{
+    width:26px;height:26px;line-height:1;margin-bottom:6px;
+    color:var(--gold-light);
+    filter:drop-shadow(0 0 4px rgba(212,175,94,.25));
+    transition:color .25s, filter .25s;
+  }
+  .tile:hover .ico{color:var(--gold-light);filter:drop-shadow(0 0 8px rgba(240,217,138,.5))}
+  .tile .lbl{font-family:'Cinzel',serif;font-size:10px;font-weight:500;line-height:1.25;color:var(--gold-light);text-transform:uppercase;letter-spacing:.07em}
+
+  /* Staggered reveal : délai de 80ms par tuile (jusqu'à la 13e) */
+  .tile:nth-child(1){animation-delay:.40s}
+  .tile:nth-child(2){animation-delay:.48s}
+  .tile:nth-child(3){animation-delay:.56s}
+  .tile:nth-child(4){animation-delay:.64s}
+  .tile:nth-child(5){animation-delay:.72s}
+  .tile:nth-child(6){animation-delay:.80s}
+  .tile:nth-child(7){animation-delay:.88s}
+  .tile:nth-child(8){animation-delay:.96s}
+  .tile:nth-child(9){animation-delay:1.04s}
+  .tile:nth-child(10){animation-delay:1.12s}
+  .tile:nth-child(11){animation-delay:1.20s}
+  .tile:nth-child(12){animation-delay:1.28s}
+  .tile:nth-child(13){animation-delay:1.36s}
+
+  /* PAGES */
+  .page{
+    display:none;
+    background:linear-gradient(160deg, var(--card) 0%, var(--bg-2) 100%);
+    border:1px solid var(--gold-line);border-radius:var(--radius);
+    padding:22px 18px;margin-top:4px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .page::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .page.active{display:block}
+  .page h2{margin:0 0 16px;font-size:20px;font-weight:500;color:var(--gold);text-transform:uppercase;text-align:center;letter-spacing:.12em}
+  .page h2::after{content:"❦";display:block;color:var(--gold);font-size:14px;margin-top:8px;font-weight:400;letter-spacing:0}
+  .page h3{margin:18px 0 10px;font-size:14px;font-weight:500;color:var(--gold-light);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--gold-line);padding-bottom:6px}
+  .page p{margin:0 0 10px;color:var(--ink);opacity:.92}
+
+  /* CHAMPS WiFi type "notice" */
+  .field{
+    background:var(--bg-2);border:1px solid var(--gold-line);border-radius:10px;
+    padding:14px;margin-bottom:10px;
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+  }
+  .field .lab{font-family:'Cinzel',serif;font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.2em;margin-bottom:6px}
+  .field .val{font-size:16px;font-weight:500;word-break:break-all;color:var(--gold-light);font-family:'Cormorant Garamond',serif}
+  .field button{
+    background:var(--gold);border:0;color:#1a1610;
+    padding:9px 14px;border-radius:6px;
+    font-family:'Cinzel',serif;font-size:11px;font-weight:600;
+    cursor:pointer;white-space:nowrap;letter-spacing:.1em;text-transform:uppercase;
+  }
+  .field button:active{background:var(--gold-light)}
+
+  /* BOUTONS */
+  .btn{
+    display:inline-block;background:var(--gold);color:#1a1610;
+    padding:12px 18px;border-radius:8px;text-decoration:none;
+    font-family:'Cinzel',serif;font-weight:500;font-size:12px;
+    border:0;cursor:pointer;margin-top:6px;
+    letter-spacing:.15em;text-transform:uppercase;
+    transition:all .2s;
+  }
+  .btn:active{background:var(--gold-light);transform:scale(.98)}
+  .btn.full{display:block;width:100%;text-align:center;padding:16px;font-size:12px}
+  .btn.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold)}
+  .btn.ghost:active{background:var(--gold-soft)}
+  .btn.danger{background:var(--danger);color:#fff}
+
+  /* CARDS */
+  .card{
+    background:var(--bg-2);border:1px solid var(--gold-line);
+    border-radius:10px;padding:14px;margin-bottom:10px;
+  }
+  .card .name{font-family:'Cinzel',serif;font-weight:500;margin-bottom:6px;color:var(--gold-light);font-size:15px;letter-spacing:.03em}
+  .card .meta{font-size:13px;color:var(--muted);margin-bottom:4px;line-height:1.4}
+  .card .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .card .actions a{
+    font-size:12px;padding:7px 12px;border-radius:6px;
+    background:var(--gold-soft);color:var(--gold-light);
+    text-decoration:none;font-weight:500;
+    border:1px solid var(--gold-line);letter-spacing:.05em;
+  }
+  .card .actions a:active{background:var(--gold);color:var(--bg)}
+  .card .tag{display:inline-block;font-size:10px;background:var(--gold);color:var(--bg);padding:3px 10px;border-radius:10px;margin-left:6px;vertical-align:middle;font-family:'Cinzel',serif;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+  .card .tag.urg{background:var(--danger);color:#fff}
+
+  /* TODO (placeholder info à remplir) */
+  .todo{
+    background:rgba(208,117,96,.1);border:1px dashed var(--danger);
+    border-radius:8px;padding:12px;color:#e8b0a0;font-size:13px;margin:10px 0;
+    font-family:'Montserrat',sans-serif;
+  }
+
+  /* MÉTÉO — nuit étoilée */
+  .meteo{
+    text-align:center;padding:24px 18px;
+    background:
+      radial-gradient(ellipse at top, rgba(212,175,94,.15) 0%, transparent 50%),
+      linear-gradient(160deg, #1a1f3a 0%, #0b0a08 100%);
+    border:1px solid var(--gold-line);
+    color:var(--gold-light);border-radius:12px;margin-bottom:12px;
+    position:relative;overflow:hidden;
+  }
+  .meteo::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .meteo .day{font-family:'Cinzel',serif;font-size:11px;color:var(--gold);margin-bottom:6px;letter-spacing:.12em;text-transform:uppercase}
+  .meteo .ico{font-size:56px;line-height:1;margin:10px 0}
+  .meteo .temp{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:500;line-height:1;color:var(--gold-light)}
+  .meteo .desc{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;margin-top:4px;color:var(--ink)}
+  .meteo .extra{font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.05em}
+  .meteo .err{font-size:13px;color:var(--muted)}
+
+  /* LIENS texte */
+  a{color:var(--gold)}
+  .page a{color:var(--gold-light);text-decoration:underline;text-decoration-color:var(--gold-dark);text-underline-offset:3px}
+
+  /* LISTE UL */
+  ul{padding-left:22px}
+  ul li{margin-bottom:4px}
+  ul li::marker{color:var(--gold)}
+
+  /* CHERS VOYAGEURS — mot manuscrit sous le hero */
+  .chers-voyageurs{
+    background:linear-gradient(160deg, rgba(26,21,9,.7) 0%, rgba(15,11,5,.5) 100%);
+    border:1px solid var(--gold-line);border-radius:12px;
+    padding:22px 18px;margin-bottom:18px;
+    position:relative;
+    font-family:'Cormorant Garamond',serif;
+    color:var(--ink);font-size:15px;line-height:1.6;
+  }
+  .chers-voyageurs::before{
+    content:"";position:absolute;top:0;left:15%;right:15%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+  .cv-title{font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);margin-bottom:10px}
+  .chers-voyageurs p{margin:0 0 8px;font-style:italic}
+  .chers-voyageurs em{color:var(--gold-light);font-style:italic}
+  .cv-signoff{text-align:right;margin-top:12px;font-size:14px;font-style:italic;color:var(--muted)}
+  .cv-signature{font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);display:inline-block;margin-top:4px}
+
+  /* TABS (Activités) */
+  .tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .tab{
+    background:transparent;border:1px solid var(--gold-line);color:var(--muted);
+    padding:7px 12px;border-radius:999px;
+    font-family:'Cinzel',serif;font-size:10px;font-weight:500;
+    letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+    flex-shrink:0;white-space:nowrap;transition:all .2s;
+  }
+  .tab:hover{border-color:var(--gold);color:var(--gold-light)}
+  .tab.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+
+  /* ACCORDÉON Guide pratique */
+  .faq-group{margin-bottom:22px}
+  .faq-group-title{
+    font-family:'Cinzel',serif;font-size:13px;color:var(--gold);
+    text-transform:uppercase;letter-spacing:.15em;
+    padding-bottom:8px;margin-bottom:10px;
+    border-bottom:1px solid var(--gold-line);
+    display:flex;align-items:center;gap:8px;
+  }
+  .faq-group-title .em{font-size:18px;filter:sepia(.3) saturate(1.3)}
+
+  details.faq{
+    background:var(--bg-2);border:1px solid var(--gold-line);
+    border-radius:8px;margin-bottom:8px;
+    transition:border-color .2s;
+  }
+  details.faq[open]{border-color:var(--gold)}
+  details.faq summary{
+    list-style:none;cursor:pointer;
+    padding:12px 14px;
+    font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;
+    color:var(--gold-light);
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    outline:none;
+  }
+  details.faq summary::-webkit-details-marker{display:none}
+  details.faq summary::after{
+    content:"❖";color:var(--gold);font-size:12px;
+    transition:transform .2s;opacity:.7;flex-shrink:0;
+  }
+  details.faq[open] summary::after{transform:rotate(45deg);opacity:1}
+  details.faq[open] summary{background:var(--gold-soft);border-radius:7px 7px 0 0}
+  details.faq .answer{
+    padding:2px 16px 14px;
+    font-size:14px;color:var(--ink);line-height:1.6;
+    border-top:1px solid var(--gold-line);
+    margin:0 0 0 0;
+  }
+  details.faq .answer p{margin:10px 0 0}
+
+  footer{
+    text-align:center;color:var(--muted);font-size:11px;
+    padding:24px 16px;letter-spacing:.1em;text-transform:uppercase;font-family:'Cinzel',serif
+  }
+  footer a{color:var(--gold);text-decoration:none}
+
+  /* Desktop uniquement (≥ 700px) : élargir à 3 colonnes */
+  @media(min-width:700px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .hero{padding:38px 22px 30px}
+    .hero-logo{width:120px;height:82px}
+    .hero h2{font-size:26px}
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG SPRITE : logo Princesse d'Opale + icônes trait fin doré -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <!-- Logo Princesse d'Opale : couronne royale 5 pointes + ornement floral -->
+  <symbol id="logo-pod" viewBox="0 0 160 110">
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+      <!-- Couronne : base -->
+      <path d="M42 56 L118 56 M44 60 L116 60" stroke-width="1.2"/>
+      <!-- Couronne : arches décoratives sur la base -->
+      <path d="M46 60 Q52 64 58 60 Q64 64 70 60 Q76 64 82 60 Q88 64 94 60 Q100 64 106 60 Q112 64 118 60" stroke-width="0.9" opacity="0.85"/>
+      <!-- 5 pointes avec sphères -->
+      <path d="M50 56 L50 42 M50 56 L58 50 L50 36 L42 50 L50 56z" stroke-width="1.3"/>
+      <circle cx="50" cy="36" r="2.2" fill="currentColor"/>
+      <path d="M65 56 L65 38 M65 56 L73 48 L65 30 L57 48 L65 56z" stroke-width="1.3"/>
+      <circle cx="65" cy="30" r="2.4" fill="currentColor"/>
+      <!-- Pointe centrale grande -->
+      <path d="M80 56 L80 32 M80 56 L90 44 L80 20 L70 44 L80 56z" stroke-width="1.4"/>
+      <circle cx="80" cy="20" r="2.8" fill="currentColor"/>
+      <path d="M95 56 L95 38 M95 56 L103 48 L95 30 L87 48 L95 56z" stroke-width="1.3"/>
+      <circle cx="95" cy="30" r="2.4" fill="currentColor"/>
+      <path d="M110 56 L110 42 M110 56 L118 50 L110 36 L102 50 L110 56z" stroke-width="1.3"/>
+      <circle cx="110" cy="36" r="2.2" fill="currentColor"/>
+      <!-- Ornement floral bas (fleurons symétriques) -->
+      <path d="M80 70 Q70 72 64 82 Q58 88 52 86 Q46 82 42 74 M42 74 Q38 78 40 84 M52 86 Q54 92 60 94" stroke-width="0.9" opacity="0.9"/>
+      <path d="M80 70 Q90 72 96 82 Q102 88 108 86 Q114 82 118 74 M118 74 Q122 78 120 84 M108 86 Q106 92 100 94" stroke-width="0.9" opacity="0.9"/>
+      <!-- Petites feuilles autour du centre -->
+      <path d="M80 70 Q78 75 74 76 M80 70 Q82 75 86 76" stroke-width="0.8"/>
+      <!-- Ruban central bas -->
+      <path d="M70 90 Q80 94 90 90" stroke-width="0.9"/>
+    </g>
+  </symbol>
+
+  <!-- Icônes trait fin (24×24) -->
+  <symbol id="ico-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M2 9 Q12 1 22 9"/><path d="M5 12.5 Q12 6.5 19 12.5"/><path d="M8 16 Q12 12.5 16 16"/><circle cx="12" cy="19.5" r="1" fill="currentColor"/>
+  </symbol>
+  <symbol id="ico-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <circle cx="7" cy="14.5" r="4"/><path d="M10 13 L21 4.5"/><path d="M17 8 L19.5 10.5"/><path d="M14 9.5 L16.5 12"/>
+  </symbol>
+  <symbol id="ico-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <circle cx="12" cy="12" r="9"/><path d="M12 7 L12 12 L15.5 14"/><circle cx="12" cy="12" r="0.8" fill="currentColor" stroke="none"/>
+    <path d="M12 3 L12 4.5 M21 12 L19.5 12 M12 21 L12 19.5 M3 12 L4.5 12" opacity="0.6"/>
+  </symbol>
+  <symbol id="ico-trunk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <rect x="3.5" y="7" width="17" height="13" rx="1"/><path d="M8 7 L8 4.5 Q8 3.5 9 3.5 L15 3.5 Q16 3.5 16 4.5 L16 7"/><path d="M3.5 12 L20.5 12" opacity="0.7"/><path d="M11 11 L11 13 M13 11 L13 13"/>
+  </symbol>
+  <symbol id="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <circle cx="12" cy="12" r="4.5"/>
+    <path d="M12 2 L12 4.5 M12 19.5 L12 22 M2 12 L4.5 12 M19.5 12 L22 12 M4.5 4.5 L6.5 6.5 M17.5 17.5 L19.5 19.5 M4.5 19.5 L6.5 17.5 M17.5 6.5 L19.5 4.5"/>
+  </symbol>
+  <symbol id="ico-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M5 8 L19 8 L18 20 L6 20 Z"/><path d="M8.5 8 Q8.5 4 12 4 Q15.5 4 15.5 8"/><path d="M8 12 L9 13 M14 12 L13 13" opacity="0.6"/>
+  </symbol>
+  <symbol id="ico-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M12 3 L13.5 9.5 L20 11 L13.5 12.5 L12 19 L10.5 12.5 L4 11 L10.5 9.5 Z"/>
+    <path d="M19 4 L19.5 6.5 L22 7 L19.5 7.5 L19 10 L18.5 7.5 L16 7 L18.5 6.5 Z" opacity="0.7"/>
+  </symbol>
+  <symbol id="ico-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M12 3 L22 20 L2 20 Z"/><path d="M12 10 L12 15"/><circle cx="12" cy="17.5" r="0.7" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="ico-sos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M12 3 C6.5 3 3 7 3 11.5 C3 18 12 21 12 21 C12 21 21 18 21 11.5 C21 7 17.5 3 12 3 Z"/><path d="M9 11 L15 11 M9 13.5 L15 13.5" opacity="0.9"/>
+  </symbol>
+  <symbol id="ico-event" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <circle cx="12" cy="12" r="9"/>
+    <path d="M12 6 L13.2 10.5 L17.5 10.5 L14 13.2 L15.2 17.5 L12 14.8 L8.8 17.5 L10 13.2 L6.5 10.5 L10.8 10.5 Z"/>
+  </symbol>
+  <symbol id="ico-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M12 2 C8 2 5 5 5 9 C5 14 12 22 12 22 C12 22 19 14 19 9 C19 5 16 2 12 2 Z"/><circle cx="12" cy="9" r="2.5"/>
+  </symbol>
+  <symbol id="ico-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M4 4 L4 20 Q4 19 7.5 19 L12 19 L12 5 Q12 4 10.5 4 L4 4 Z"/>
+    <path d="M20 4 L20 20 Q20 19 16.5 19 L12 19 L12 5 Q12 4 13.5 4 L20 4 Z"/>
+    <path d="M6 8 L10 8 M6 11 L10 11 M14 8 L18 8 M14 11 L18 11" opacity="0.6"/>
+  </symbol>
+  <symbol id="ico-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M12 3 C8.5 3 6 5.5 6 9 C6 11.5 7.5 13 8.5 14.5 L8.5 17 L15.5 17 L15.5 14.5 C16.5 13 18 11.5 18 9 C18 5.5 15.5 3 12 3 Z"/>
+    <path d="M9.5 19 L14.5 19 M10 21 L14 21"/>
+    <path d="M10.5 13 L13.5 13" opacity="0.6"/>
+  </symbol>
+
+  <!-- Cartouche art-déco (4 coins réutilisables) -->
+  <symbol id="corner-tl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+    <path d="M1 10 L1 1 L10 1"/><path d="M4 4 L4 2 M2 4 L4 4" opacity="0.7"/>
+  </symbol>
+
+  <!-- Séparateur art-déco horizontal -->
+  <symbol id="deco-divider" viewBox="0 0 200 20" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+    <path d="M20 10 L80 10"/><path d="M120 10 L180 10"/>
+    <circle cx="100" cy="10" r="3" fill="currentColor" opacity="0.8"/>
+    <circle cx="100" cy="10" r="6"/>
+    <path d="M90 10 L94 10 M106 10 L110 10"/>
+    <path d="M100 3 L100 5 M100 15 L100 17" opacity="0.6"/>
+  </symbol>
+</defs>
+</svg>
+
+<header id="hdr">
+  <button class="back" onclick="goHome()" aria-label="Retour">←</button>
+  <h1 id="hdrTitle">Livret d'accueil</h1>
+  <div class="sub" id="hdrSub"></div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<div id="home">
+  <div class="hero">
+    <i class="corner c-tl"></i><i class="corner c-tr"></i><i class="corner c-bl"></i><i class="corner c-br"></i>
+    <svg class="hero-logo" aria-hidden="true"><use href="#logo-pod"/></svg>
+    <div class="hero-brand">Princesse d'Opale</div>
+    <div class="hero-divider"><svg aria-hidden="true"><use href="#deco-divider"/></svg></div>
+    <h2 id="apName">—</h2>
+    <div class="com" id="apCom"></div>
+    <div class="addr" id="apAddr">—</div>
+    <div class="welcome">« Bienvenue dans votre écrin de la Côte d'Opale »</div>
+    <div class="signature">— Claudine</div>
+  </div>
+
+  <div class="chers-voyageurs">
+    <div class="cv-title">Chers Voyageurs,</div>
+    <p>J'ai mis tout mon cœur dans l'installation et la décoration de ce logement et je souhaite que vous vous y sentiez <em>comme chez vous</em>.</p>
+    <p>Sachez que la « Team » qui m'épaule au quotidien, ainsi que mes enfants qui m'aident également, se joignent à moi pour vous souhaiter de passer d'excellents moments et de profiter pleinement de votre séjour.</p>
+    <div class="cv-signoff">Votre Hôte,<br><span class="cv-signature">Claudine</span></div>
+  </div>
+
+  <div class="grid">
+    <a class="tile" onclick="open_('wifi')"><svg class="ico"><use href="#ico-wifi"/></svg><span class="lbl">WiFi</span></a>
+    <a class="tile" onclick="open_('acces')"><svg class="ico"><use href="#ico-key"/></svg><span class="lbl">Accès</span></a>
+    <a class="tile" onclick="open_('checkin')"><svg class="ico"><use href="#ico-clock"/></svg><span class="lbl">Check-in / out</span></a>
+    <a class="tile" onclick="open_('equip')"><svg class="ico"><use href="#ico-trunk"/></svg><span class="lbl">Équipement</span></a>
+    <a class="tile" onclick="open_('meteo')"><svg class="ico"><use href="#ico-sun"/></svg><span class="lbl">Météo</span></a>
+    <a class="tile" onclick="open_('activites')"><svg class="ico"><use href="#ico-bag"/></svg><span class="lbl">Activités à Berck</span></a>
+    <a class="tile" onclick="open_('probleme')"><svg class="ico"><use href="#ico-alert"/></svg><span class="lbl">Signaler un problème</span></a>
+    <a class="tile" onclick="open_('urgence')"><svg class="ico"><use href="#ico-sos"/></svg><span class="lbl">Contact d'urgence</span></a>
+    <a class="tile" onclick="open_('events')"><svg class="ico"><use href="#ico-event"/></svg><span class="lbl">Événements</span></a>
+    <a class="tile" onclick="open_('adresses')"><svg class="ico"><use href="#ico-pin"/></svg><span class="lbl">Adresses utiles</span></a>
+    <a class="tile" onclick="open_('livredor')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Livre d'or</span></a>
+    <a class="tile" onclick="open_('guide')"><svg class="ico"><use href="#ico-bulb"/></svg><span class="lbl">Guide équipements</span></a>
+    <a class="tile" onclick="open_('autres')"><svg class="ico"><use href="#logo-pod"/></svg><span class="lbl">Autres logements Princesse d'Opale</span></a>
+  </div>
+</div>
+
+<!-- PAGES -->
+<div class="page" id="p-wifi">
+  <h2>📶 WiFi</h2>
+  <div id="wifi-data"></div>
+</div>
+
+<div class="page" id="p-acces">
+  <h2>🔑 Accès au logement</h2>
+  <div id="acces-data"></div>
+</div>
+
+<div class="page" id="p-checkin">
+  <h2>🕐 Check-in / Check-out</h2>
+  <div id="checkin-data"></div>
+</div>
+
+<div class="page" id="p-equip">
+  <h2>🧰 Équipement du logement</h2>
+  <div id="equip-data"></div>
+</div>
+
+<div class="page" id="p-meteo">
+  <h2>☀️ Météo du jour</h2>
+  <div id="meteo-data"><div class="meteo"><div class="desc">Chargement…</div></div></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px">Météo actuelle à Berck-sur-Mer. Prévisions 7 jours sur <a href="https://meteofrance.com/previsions-meteo-france/berck/62600" target="_blank" rel="noopener">Météo-France</a>.</p>
+</div>
+
+<div class="page" id="p-activites">
+  <h2>🎯 Activités à Berck</h2>
+  <div id="activites-data"></div>
+</div>
+
+<div class="page" id="p-probleme">
+  <h2>⚠️ Signaler un problème</h2>
+  <div id="probleme-data"></div>
+</div>
+
+<div class="page" id="p-urgence">
+  <h2>🆘 Contacts d'urgence</h2>
+  <div id="urgence-data"></div>
+</div>
+
+<div class="page" id="p-events">
+  <h2>🎉 Événements à Berck</h2>
+  <p style="font-size:14px;color:var(--muted);text-align:center;margin-bottom:14px">Berck-sur-Mer vibre toute l'année : cerfs-volants, marchés, concerts, sports…</p>
+
+  <h3>📅 Agendas officiels</h3>
+  <div class="card">
+    <div class="name">Office de tourisme</div>
+    <div class="meta">Agenda annuel complet : festivals, expositions, sports, marchés.</div>
+    <div class="actions">
+      <a href="https://www.berck-tourisme.com/fr/sortir-et-se-divertir/agenda-annuel" target="_blank" rel="noopener">🔗 berck-tourisme.com</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="name">Mairie de Berck</div>
+    <div class="meta">Agenda municipal officiel.</div>
+    <div class="actions">
+      <a href="https://berck.fr/agenda" target="_blank" rel="noopener">🔗 berck.fr/agenda</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="name">Alentoor — agenda citoyen</div>
+    <div class="meta">Sorties du week-end, exposition, loisirs, théâtre…</div>
+    <div class="actions">
+      <a href="https://www.alentoor.fr/berck/agenda" target="_blank" rel="noopener">🔗 alentoor.fr/berck</a>
+    </div>
+  </div>
+
+  <h3>📱 Application "Berck — Ma Ville"</h3>
+  <div class="card" style="background:linear-gradient(160deg, rgba(212,175,94,.08) 0%, transparent 100%);border-color:var(--gold)">
+    <div class="name">Toutes les infos dans votre poche</div>
+    <div class="meta">Actualités, agenda, marchés, parking, météo, horaires de marée — l'appli officielle de la mairie.</div>
+    <div class="actions">
+      <a href="https://apps.apple.com/fr/app/berck-ma-ville/id6740579716" target="_blank" rel="noopener">🍎 iOS</a>
+      <a href="https://play.google.com/store/apps/details?id=com.mairie.bercksurmer" target="_blank" rel="noopener">🤖 Android</a>
+      <a href="https://berck.fr/au-quotidien/application-mobile" target="_blank" rel="noopener">🔗 En savoir +</a>
+    </div>
+  </div>
+
+  <h3>⭐ Temps fort de l'année</h3>
+  <div class="card">
+    <div class="name">🪁 Rencontres Internationales de Cerfs-Volants</div>
+    <div class="meta">Chaque année en avril — plage de Berck · incontournable</div>
+    <div class="actions">
+      <a href="https://www.cerf-volant-berck.com/" target="_blank" rel="noopener">🔗 Site officiel</a>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="p-adresses">
+  <h2>📍 Adresses utiles</h2>
+  <div id="adresses-data"></div>
+</div>
+
+<div class="page" id="p-guide">
+  <h2>💡 Guide pratique des équipements</h2>
+  <p style="font-size:14px;text-align:center;color:var(--muted);margin-bottom:16px">Les réponses aux questions les plus courantes, pour que votre séjour soit serein.</p>
+  <div id="guide-data"></div>
+</div>
+
+<div class="page" id="p-autres">
+  <h2>🏛️ Autres logements gérés par la Conciergerie Princesse d'Opale</h2>
+  <p style="font-size:14px;color:var(--muted);text-align:center;margin-bottom:14px">Vous aimez votre séjour ? La Conciergerie Princesse d'Opale gère <strong>22 appartements</strong> à Berck-sur-Mer — pensez-y pour revenir, ou pour recommander à vos proches.</p>
+  <div id="autres-data"></div>
+  <div class="card" style="background:linear-gradient(160deg, rgba(212,175,94,.08) 0%, transparent 100%);border-color:var(--gold);margin-top:14px">
+    <div class="name">🌐 Voir tous les logements</div>
+    <div class="meta">Photos, descriptions, disponibilités et réservation en direct (sans commission).</div>
+    <div class="actions">
+      <a href="https://appart-hotel-berck.com" target="_blank" rel="noopener">appart-hotel-berck.com</a>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="p-livredor">
+  <h2>📖 Livre d'or</h2>
+  <p>Votre séjour vous a plu ? Partagez votre avis, il nous aide énormément !</p>
+  <a class="btn full" id="livredorBtn" href="#" target="_blank" rel="noopener">✍️ Laisser un avis</a>
+  <p style="font-size:13px;color:var(--muted);margin-top:12px">Vous pouvez aussi nous laisser un avis sur :</p>
+  <a class="btn ghost full" id="gmbBtn" href="#" target="_blank" rel="noopener">⭐ Google</a>
+</div>
+
+</main>
+
+<footer>
+  Appart-Hôtel Berck · <a href="https://appart-hotel-berck.com" style="color:var(--muted)">appart-hotel-berck.com</a>
+</footer>
+
+<script>
+/* =========================================================
+   DONNÉES
+   ========================================================= */
+
+/* --- ZONES GÉOGRAPHIQUES (adresses utiles partagées) ---- */
+const ZONES = {
+  marechal: {
+    nom: "Maréchal Juin",
+    commerces: {
+      urgence: [
+        { nom: "CITIS (Coccimarket)", type: "Mini-market", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "Parfait pour les urgences" }
+      ],
+      supermarche: [
+        { nom: "Carrefour", type: "Supermarché", adresse: "Berck-sur-Mer", tel: "", horaires: "" },
+        { nom: "Aldi", type: "Discount", adresse: "Berck-sur-Mer", tel: "", horaires: "" }
+      ],
+      boulangerie: [
+        { nom: "Boulangerie Tumé", adresse: "Berck-sur-Mer", tel: "", horaires: "" },
+        { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "" }
+      ],
+      restaurants: [
+        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
+      ]
+    }
+  },
+  jeanne: {
+    nom: "Rue Jeanne",
+    commerces: {
+      urgence: [
+        { nom: "Au panier de la ménagère", type: "Mini-market", adresse: "À compléter — Rue Jeanne / Berck centre", tel: "", horaires: "À compléter", note: "Très bien pour les urgences" }
+      ],
+      supermarche: [
+        { nom: "Carrefour Market", type: "Supermarché", adresse: "À compléter", tel: "", horaires: "À compléter", livraison: true }
+      ],
+      boulangerie: [
+        { nom: "À compléter", adresse: "", tel: "", horaires: "" }
+      ],
+      restaurants: [
+        { nom: "À compléter", adresse: "", tel: "", horaires: "" }
+      ]
+    }
+  },
+  esplanade: {
+    nom: "Esplanade / Apollo",
+    commerces: {
+      urgence: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
+      supermarche: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
+      boulangerie: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
+      restaurants: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ]
+    }
+  },
+  terrasse: {
+    nom: "Terrasse / rue des Sables",
+    commerces: {
+      urgence: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
+      supermarche: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
+      boulangerie: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ],
+      restaurants: [ { nom: "À compléter", adresse: "", tel: "", horaires: "" } ]
+    }
+  }
+};
+
+/* --- APPARTEMENTS (22 courte durée) ---------------------- */
+/* Sources : business-berck skill, tableau master validé 2026-04-18 */
+
+const APPARTS = {
+  kitesurf:   { nom:"Kitesurf",         com:"Kitesurf",                adr:"23 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 23",       zone:"marechal"  },
+  hamac:      { nom:"Hamac",            com:"Hamac",                   adr:"23 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 23",       zone:"marechal"  },
+  paddle:     { nom:"Paddle",           com:"Paddle",                  adr:"23 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 23",       zone:"marechal"  },
+  surf:       { nom:"Surf",             com:"Surf",                    adr:"23 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 23",       zone:"marechal"  },
+  famille:    { nom:"Famille",          com:"3 Chambres 100m Plage",   adr:"23 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 23",       zone:"marechal"  },
+  balneo:     { nom:"Balnéo",           com:"Balnéo Garden",           adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
+  cocon:      { nom:"Cocon Romantique", com:"Cocon Romantique",        adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
+  terrasse:   { nom:"Terrasse",         com:"La Terrasse",             adr:"17 rue du Grand Hôtel, 62600 Berck-sur-Mer",   res:"Terrasse",    zone:"terrasse"  },
+  maisonnette:{ nom:"Maisonnette",      com:"Cœur de Berck",           adr:"2 rue des Sables, 62600 Berck-sur-Mer",        res:"Terrasse",    zone:"terrasse"  },
+  facemer:    { nom:"Face Mer",         com:"Face Mer Esplanade",      adr:"1 rue de la Plage, 62600 Berck-sur-Mer",       res:"Face Mer",    zone:"esplanade" },
+  grandlarge: { nom:"Grand Large",      com:"Hamac Face Mer",          adr:"45 Esplanade Parmentier, 62600 Berck-sur-Mer", res:"Grand Large", zone:"esplanade" },
+  apolove:    { nom:"Apolove",          com:"Suite Romantique Face Mer", adr:"2 Avenue Marianne, 62600 Berck-sur-Mer",     res:"Apollo",      zone:"esplanade" },
+  apollo:     { nom:"Apollo",           com:"Panoramique 2 Chambres",  adr:"2 Avenue Marianne, 62600 Berck-sur-Mer",       res:"Apollo",      zone:"esplanade" },
+  kingston:   { nom:"Kingston",         com:"Face Mer Exceptionnel",   adr:"2 Avenue Marianne, 62600 Berck-sur-Mer",       res:"Apollo",      zone:"esplanade" },
+  reserve:    { nom:"La Réserve",       com:"La Réserve",              adr:"2 Avenue Marianne, 62600 Berck-sur-Mer",       res:"Apollo",      zone:"esplanade" },
+  albatros:   { nom:"Albatros",         com:"Hamac Chic Vue Mer",      adr:"10 Avenue Marianne, 62600 Berck-sur-Mer",      res:"Albatros",    zone:"esplanade" },
+  miniloveroom:  { nom:"Mini Love Room",   com:"Balnéo Face Mer",      adr:"59 Esplanade Parmentier, 62600 Berck-sur-Mer", res:"Esplanade",   zone:"esplanade" },
+  grandeloveroom:{ nom:"Grande Love Room", com:"Romantique Face Mer",  adr:"59 Esplanade Parmentier, 62600 Berck-sur-Mer", res:"Esplanade",   zone:"esplanade" },
+  jeanne:     { nom:"Jeanne",           com:"Cœur des Sables",         adr:"23 Rue Jeanne, 62600 Berck-sur-Mer",           res:"Rue Jeanne",  zone:"jeanne"    },
+  evasion:    { nom:"Évasion",          com:"L'Évasion Balnéo & Sauna",adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    },
+  rotonde:    { nom:"Rotonde",          com:"La Rotonde du Bien-être", adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    },
+  patio:      { nom:"Patio",            com:"Patio Romantique Chic",   adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    }
+};
+
+/* --- DONNÉES SPÉCIFIQUES (WiFi / Accès / Équipement)
+   À remplir : pour chaque appart, informations propres.
+   Un appart sans entrée ici = message "à compléter"
+-----------------------------------------------------------*/
+const DATA = {
+  kitesurf: {
+    wifi:  { reseau: "À COMPLÉTER", password: "À COMPLÉTER" },
+    acces: "À COMPLÉTER : copier ici le texte d'accès envoyé aux voyageurs depuis Beds24 (sans code boîte à clé ni digicode — ceux-ci sont transmis à part).",
+    checkin:  "À partir de 16h",
+    checkout: "Avant 10h",
+    checkoutConsignes: [
+      "Fermer les fenêtres",
+      "Éteindre les lumières et le chauffage",
+      "Laisser les clés dans la boîte à clé"
+    ],
+    equipement: [
+      { cat:"🛏️ Confort",      items:["Lit queen size","Linge de lit fourni","Draps changés à chaque séjour"] },
+      { cat:"🍳 Cuisine",       items:["Plaques induction","Micro-ondes","Réfrigérateur","Cafetière Nespresso","Lave-vaisselle"] },
+      { cat:"🛁 Salle de bain", items:["Douche à l'italienne","Serviettes fournies"] },
+      { cat:"📺 Multimédia",    items:["TV connectée","WiFi fibre"] },
+      { cat:"🌊 Bord de mer",   items:["100m de la plage","Thème kitesurf"] }
+    ]
+  }
+  // Les 21 autres : à remplir après validation du prototype
+};
+
+/* =========================================================
+   ROUTEUR & RENDU
+   ========================================================= */
+
+const $ = id => document.getElementById(id);
+const qs = new URLSearchParams(location.search);
+const apKey = (qs.get('a') || 'kitesurf').toLowerCase();
+const ap = APPARTS[apKey] || APPARTS.kitesurf;
+const apData = DATA[apKey] || {};
+const zone = ZONES[ap.zone];
+
+/* ----- Remplissage header + hero ------------------------- */
+$('apName').textContent = ap.nom;
+$('apCom').textContent = (ap.com && ap.com !== ap.nom) ? ap.com : '';
+$('apAddr').textContent = ap.adr;
+$('hdrTitle').textContent = 'Princesse d\'Opale';
+$('hdrSub').textContent = ap.nom + ' · ' + ap.res;
+
+/* ----- Ouvrir / fermer une page -------------------------- */
+function open_(id){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  $('home').style.display = 'none';
+  $('p-'+id).classList.add('active');
+  $('hdr').classList.add('sub');
+  window.scrollTo(0,0);
+  if (id === 'meteo') loadMeteo();
+}
+function goHome(){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  $('home').style.display = '';
+  $('hdr').classList.remove('sub');
+  window.scrollTo(0,0);
+}
+
+/* ----- Helper "à compléter" ------------------------------ */
+const TODO = msg => `<div class="todo">⚙️ <strong>À compléter :</strong> ${msg}</div>`;
+const esc = s => (s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ----- SCRUB (masque codes boîte à clé, digicode, numéros perso) */
+const TRELLO_FAQ = (typeof window !== 'undefined' && window.TRELLO_FAQ) ? window.TRELLO_FAQ : {};
+const BEDS24_ACCESS = (typeof window !== 'undefined' && window.BEDS24_ACCESS) ? window.BEDS24_ACCESS : {};
+const apFaq = TRELLO_FAQ[apKey] || [];
+const apBeds24 = BEDS24_ACCESS[apKey] || null;
+
+/* ----- WIFI manuel centralisé (priorité > Trello/Beds24 auto) -- */
+const WIFI_BY_SLUG = {
+  // Le 23 Maréchal Juin — chaque appart a son propre WiFi
+  kitesurf:  { reseau:'BBOX - 4929C743', password:'KXv9 DNH2 uDd5 n165 1u' },
+  paddle:    { reseau:'BBOX - 4929C743', password:'KXv9 DNH2 uDd5 n165 1u' },
+  hamac:     { reseau:'TP LINK E2E4', password:'40803500' },
+  surf:      { reseau:'SURF', password:'Marechal' },
+  // famille → à remplir depuis fiche Albert
+  // Apolove + Apollo + Kingston (Le 25 + Apollo via Trello "suite2")
+  apolove:   { reseau:'suite2', password:'2Avmarianne' },
+  // Face Mer
+  facemer:   { reseau:'SFR_39E8', password:'facemercentreesplanade' },
+  // Maisonnette
+  maisonnette: { reseau:'TP link 2DA2 5G', password:'59725954' },
+  // 23 rue Jeanne (Évasion + Jeanne — même immeuble, même WiFi)
+  evasion:   { reseau:'TP-LINK _6322', password:'83968280' },
+  jeanne:    { reseau:'TP-LINK _6322', password:'83968280' },
+  // 25 rue maréchal juin (Balnéo + Cocon — même immeuble, même WiFi)
+  balneo:    { reseau:'XXX_63B8', password:'89tnbr3bqk33pwkp8tjj' },
+  cocon:     { reseau:'XXX_63B8', password:'89tnbr3bqk33pwkp8tjj' },
+  // 58 Esplanade Parmentier (Mini + Grande Love Room — même immeuble, même WiFi)
+  miniloveroom:   { reseau:'Romance', password:'58Facemer' },
+  grandeloveroom: { reseau:'Romance', password:'58Facemer' },
+  // Apollo (2 av Marianne toute seule)
+  apollo:    { reseau:'TP link DODO', password:'15246653' },
+  // Albatros (10 av Marianne toute seule)
+  albatros:  { reseau:'TP link D1E8', password:'66436003' },
+  // Grand Large (45 esplanade Parmentier)
+  grandlarge:{ reseau:'TP link D1EE', password:'74817733' },
+  // Kingston (2 av Marianne toute seule, RCH parking 16)
+  kingston:  { reseau:'TP-LINK -B2A5', password:'82562328' },
+  // Rotonde + Patio (même immeuble 23 rue Jeanne côté "Patio23")
+  rotonde:   { reseau:'Patio23', password:'23Patio23' },
+  patio:     { reseau:'Patio23', password:'23Patio23' },
+  // Terrasse (17 rue du grand hôtel)
+  terrasse:  { reseau:'xxxx_5ACO', password:'qpvr6qkj76bhcb6uyw25' }
+  // ⚠️ À compléter : reserve
+};
+
+const LINGE_NON_FOURNI = ['kitesurf','hamac','paddle','surf','famille','terrasse','facemer','grandlarge','jeanne'];
+
+/* ----- APPART_INFO : fiche détaillée par appart (format Albert SAV) ----- */
+/* Remplissable progressivement. Pour chaque appart : surface/lits/étage + équipements + vidéos + proximité */
+const APPART_INFO = {
+  maisonnette: {
+    typeLogement: 'Studio',
+    surface: '23 m²',
+    lits: '2 lits · 160 × 200',
+    etage: 'Rez-de-chaussée',
+    ascenseur: false,
+    parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite)',
+    videoAcces: 'https://drive.google.com/file/d/14nBlb8KgwoHIzeLN7z8mi9n9eAP6CuAq/view?usp=sharing',
+    videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
+    chauffage: 'Électrique — écran digital (bouton power à l\'arrière). Validez n\'importe quelle date/heure au bouton du milieu, puis ajustez la température avec les flèches haut/bas.',
+    equipements: ['Machine à laver','Douche','Balcon / terrasse','Machine à café'],
+    fournis: ['Serviettes','Café','Thé','Draps de lit','Gels douche / shampoings'],
+    proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: '10 min à pied de la gare routière'
+  },
+  evasion: {
+    typeLogement: 'Appartement',
+    surface: '38 m²',
+    lits: '4 couchages · chambre 160 × 200 + canapé convertible salon 140 × 190',
+    etage: '1er étage',
+    ascenseur: false,
+    parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité, ou abonnement Prestopark 20 €/semaine.',
+    videoAcces: 'https://drive.google.com/file/d/1UGxYQjz06UbgdcJZw5Zn0lZ0a_AmTa0j/view?usp=drive_link',
+    videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
+    chauffage: 'Électrique',
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)'],
+    fournis: ['Serviettes','Café','Thé','Eau','Draps de lit','Gels douche / shampoings'],
+    proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: '5 min à pied de la gare routière'
+  },
+  jeanne: {
+    typeLogement: 'Appartement',
+    surface: '48 m²',
+    lits: '4 couchages · chambre 160 × 200 + canapé convertible salon 140 × 190',
+    etage: '1er étage · appartement 3',
+    ascenseur: false,
+    parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité, ou abonnement Prestopark 20 €/semaine.',
+    videoAcces: 'https://drive.google.com/file/d/1cQR6Hv6br1B7-VEVXDFCPFT_Z3H7OL75/view?usp=sharing',
+    videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
+    chauffage: 'Gaz — vérifiez que les radiateurs sont en position ouvert. Si oui, allez au thermostat au mur à droite en entrant dans le salon et tournez la molette à 20°.',
+    equipements: ['Machine à laver','Douche','Machine à café (1 Senseo + 1 à filtre)'],
+    fournis: ['Café','Thé','Gels douche / shampoings','Draps de lit'],
+    proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: '5 min à pied de la gare routière'
+  },
+  balneo: {
+    typeLogement: 'Appartement',
+    surface: '53 m²',
+    lits: '6 couchages · chambre 1 : 160 × 200 · chambre 2 : 2 × (90 × 190) · canapé convertible salon : 140 × 190',
+    etage: 'Rez-de-chaussée',
+    ascenseur: false,
+    parking: '✅ Parking sécurisé inclus. À défaut, stationnement rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
+    videoAcces: 'https://drive.google.com/file/d/1tc8QjWR0X3tYzfez82oHtJ4DMdQ2uLhw/view?usp=drive_link',
+    videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
+    chauffage: 'Électrique — écran digital (bouton power à l\'arrière). Validez n\'importe quelle date/heure au bouton du milieu, puis ajustez la température avec les flèches haut/bas.',
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur'],
+    fournis: ['Serviettes','Café','Thé','Draps de lit','Gels douche / shampoings'],
+    proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: '15 min à pied de la gare routière'
+  }
+  // À remplir pour : kitesurf, hamac, paddle, surf, famille, cocon, apollo, apolove,
+  //                  albatros, kingston, reserve, facemer, grandlarge, miniloveroom,
+  //                  grandeloveroom, rotonde, patio, terrasse
+};
+
+function scrub(text){
+  if (!text) return '';
+  let s = text;
+  // Numéros de téléphone français (+33, 06, 07, 03, 02, 01)
+  s = s.replace(/(\+33[\s.-]?[1-9](?:[\s.-]?\d{2}){4})/g, '📞 Contactez la conciergerie');
+  s = s.replace(/\b(0[1-9](?:[\s.-]?\d{2}){4})\b/g, '📞 Contactez la conciergerie');
+  // Codes boîte à clé / digicode (mentions explicites)
+  s = s.replace(/(code.{0,20}?(boîte|boite|clé|cle)\s*:?\s*)\d{3,6}/gi, '$1[transmis séparément]');
+  s = s.replace(/(boîte\s*à\s*clé.{0,30}?)\d{4,6}/gi, '$1[transmis séparément]');
+  // Coordonnées GPS type 50.403575, 1.560232
+  s = s.replace(/\d{2}\.\d{4,}[\s,]+\d+\.\d{4,}/g, '[coordonnées GPS fournies séparément]');
+  return s;
+}
+
+/* ----- Détection WiFi dans les cartes Trello ------------- */
+function extractWifiFromFaq(){
+  const card = apFaq.find(c => /wi.?fi/i.test(c.name));
+  if (!card) return null;
+  const lines = card.desc.split('\n').map(l => l.trim()).filter(Boolean);
+  let reseau = '', password = '';
+  for (let i = 0; i < lines.length; i++) {
+    const l = lines[i];
+    // Patterns "Identifiant:", "Nom:", "Réseau:"
+    let m = l.match(/(?:identifiant|nom du réseau|nom|réseau|ssid)\s*:\s*(.+)/i);
+    if (m) reseau = m[1].trim();
+    // Patterns "MDP:", "Code:", "Mot de passe:", "Password:"
+    m = l.match(/(?:mdp|mot de passe|password|code)\s*:\s*(.+)/i);
+    if (m) password = m[1].trim();
+  }
+  // Pattern alternatif : "BBOX - XXXX" suivi d'un code sur les lignes suivantes
+  if (!reseau) {
+    const bbox = lines.find(l => /^(bbox|orange|free|sfr|livebox)/i.test(l));
+    if (bbox) reseau = bbox;
+  }
+  if (!password) {
+    const codeIdx = lines.findIndex(l => /^code\s*$/i.test(l));
+    if (codeIdx >= 0 && lines[codeIdx+1]) password = lines[codeIdx+1];
+  }
+  if (!password) {
+    // Dernière ligne si ressemble à un code wifi (lettres+chiffres, 6+ caractères)
+    const last = lines[lines.length-1];
+    if (last && /^[\w\s.-]{6,}$/.test(last) && !/wifi|identifiant|mdp|code/i.test(last)) {
+      password = last;
+    }
+  }
+  return (reseau || password) ? { reseau: reseau || 'À compléter', password: password || 'À compléter' } : null;
+}
+
+/* ----- WIFI ---------------------------------------------- */
+(function renderWifi(){
+  // Priorité : mapping manuel > data appart > extraction FAQ Trello
+  const w = WIFI_BY_SLUG[apKey] || apData.wifi || extractWifiFromFaq();
+  let html = '';
+  if (!w) {
+    html = TODO(`Renseigner le réseau WiFi et le mot de passe pour <strong>${ap.nom}</strong>.`);
+  } else {
+    html = `
+      <div class="field">
+        <div><div class="lab">Réseau</div><div class="val">${esc(w.reseau)}</div></div>
+        <button onclick="copy(${JSON.stringify(w.reseau)},this)">Copier</button>
+      </div>
+      <div class="field">
+        <div><div class="lab">Mot de passe</div><div class="val">${esc(w.password)}</div></div>
+        <button onclick="copy(${JSON.stringify(w.password)},this)">Copier</button>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:8px">Touchez « Copier » pour récupérer la valeur sur votre téléphone.</p>
+    `;
+  }
+  $('wifi-data').innerHTML = html;
+})();
+
+function copy(txt, btn){
+  navigator.clipboard.writeText(txt).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copié';
+    setTimeout(() => btn.textContent = orig, 1500);
+  });
+}
+
+/* ----- ACCÈS --------------------------------------------- */
+(function renderAcces(){
+  // Priorité 1 : texte manuel dans DATA
+  // Priorité 2 : template Beds24 scrubbé
+  // Priorité 3 : placeholder
+  let rawText = apData.acces || (apBeds24 ? apBeds24.text : null);
+
+  if (!rawText) {
+    $('acces-data').innerHTML = TODO(`Texte d'accès à compléter pour <strong>${ap.nom}</strong>.`);
+    return;
+  }
+
+  // Transforme liens Google Drive en lecteur intégré
+  const body = esc(rawText)
+    .replace(/\n\n+/g, '</p><p>')
+    .replace(/\n/g, '<br>')
+    .replace(/(https?:\/\/[^\s&lt;]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+
+  // Vidéos check-in / parking si disponibles (depuis APPART_INFO)
+  const info = APPART_INFO[apKey] || {};
+  let videosHtml = '';
+  if (info.videoAcces) {
+    videosHtml += `
+      <div class="card" style="border-color:var(--gold)">
+        <div class="name">🎥 Vidéo : accès à l'appartement</div>
+        <div class="actions" style="margin-top:6px">
+          <a href="${info.videoAcces}" target="_blank" rel="noopener">▶️ Regarder la vidéo</a>
+        </div>
+      </div>
+    `;
+  }
+  if (info.videoParking) {
+    videosHtml += `
+      <div class="card">
+        <div class="name">🚗 Vidéo : se garer à Berck</div>
+        <div class="actions" style="margin-top:6px">
+          <a href="${info.videoParking}" target="_blank" rel="noopener">▶️ Regarder la vidéo</a>
+        </div>
+      </div>
+    `;
+  }
+  if (info.parking) {
+    videosHtml += `
+      <div class="card">
+        <div class="name">🅿️ Parking</div>
+        <div class="meta">${esc(info.parking)}</div>
+      </div>
+    `;
+  }
+
+  $('acces-data').innerHTML = `
+    <p>${body}</p>
+    ${videosHtml ? '<h3>🎬 Vidéos &amp; parking</h3>' + videosHtml : ''}
+    <div class="todo" style="background:rgba(212,175,94,.08);border-color:var(--gold-line);color:var(--gold-light);margin-top:16px">
+      🔒 <strong>Sécurité :</strong> le code de la boîte à clé et le digicode vous sont transmis par <strong>message séparé</strong>, 24 à 48 h avant votre arrivée.
+    </div>
+  `;
+})();
+
+/* ----- CHECK-IN / CHECK-OUT ------------------------------ */
+(function renderCheckin(){
+  // Apparts où le linge n'est PAS fourni par défaut (option payante)
+  const LINGE_NON_FOURNI = [
+    // Tous les apparts du Le 23
+    'kitesurf','hamac','paddle','surf','famille',
+    // Autres
+    'terrasse','facemer','grandlarge','jeanne'
+  ];
+  const lingeEnOption = LINGE_NON_FOURNI.includes(apKey);
+
+  const cons = apData.checkoutConsignes || [
+    'Fermer les fenêtres',
+    'Éteindre les lumières et mettre le chauffage sur 12°',
+    'Vider les poubelles',
+    'Rendre la cuisine propre (vaisselle rangée)',
+    'Laisser les clés dans la boîte à clé (brouiller le code)'
+  ];
+
+  // Génère un lien mailto pré-rempli pour commander une option
+  const optionLink = (sujet, corps) => {
+    const s = encodeURIComponent(sujet + ' — ' + ap.nom);
+    const b = encodeURIComponent(`Bonjour,\n\n${corps}\n\nLogement : ${ap.nom}\nAdresse : ${ap.adr}\n\nMerci !`);
+    return `mailto:princessedopale@gmail.com?subject=${s}&body=${b}`;
+  };
+  const btnStyle = 'display:inline-block;margin-top:8px;padding:7px 14px;background:var(--gold);color:var(--bg);text-decoration:none;border-radius:7px;font-family:Cinzel,serif;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase';
+
+  const lingeCard = lingeEnOption ? `
+    <h3>🛏️ Pack linge — option</h3>
+    <div class="card" style="border-color:var(--gold)">
+      <div class="name">Dans cet appartement, le linge n'est pas inclus</div>
+      <div class="meta">Vous pouvez commander un pack à l'avance (draps + serviettes) :</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>Pack lit double — 15 €</strong><br>Draps + 2 serviettes par personne (1 grande + 1 petite)</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — 10 €</strong><br>Draps + 2 serviettes (1 grande + 1 petite)</div>
+      <a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (15 €) : ___\n- Pack lit simple (10 €) : ___')}" style="${btnStyle}">📩 Commander le pack</a>
+    </div>
+  ` : `
+    <h3>🛏️ Linge</h3>
+    <div class="card">
+      <div class="name">Linge fourni</div>
+      <div class="meta">Draps et serviettes sont <strong>inclus</strong> dans votre séjour.</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:10px">
+        ✨ <strong>Vous êtes 2 et souhaitez dormir en lits séparés&nbsp;?</strong><br>
+        Supplément blanchisserie&nbsp;: <strong>10 €</strong>.
+      </div>
+      <a href="${optionLink('Demande lits séparés', 'Nous sommes 2 voyageurs et souhaitons dormir dans des lits séparés plutôt qu\\'un lit double (supplément blanchisserie 10 €).')}" style="${btnStyle}">📩 Demander l'option</a>
+    </div>
+  `;
+
+  $('checkin-data').innerHTML = `
+    <h3>🕐 Arrivée — check-in</h3>
+    <div class="card">
+      <div class="name">À partir de 17h</div>
+      <div class="meta">Nous vous transmettons le code de la boîte à clé quelques jours avant votre arrivée.</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:8px">
+        ✨ <strong>Check-in anticipé</strong> possible dès 14h sur demande.<br>Supplément&nbsp;: 15 à 20 €.
+      </div>
+      <a href="${optionLink('Demande check-in anticipé 14h', 'Je souhaite un check-in anticipé à 14h (supplément 15 à 20 €).\nDate d\\'arrivée : ___')}" style="${btnStyle}">📩 Demander l'option</a>
+    </div>
+
+    <h3>🚪 Départ — check-out</h3>
+    <div class="card">
+      <div class="name">Avant 11h</div>
+      <div class="meta">Avant de partir, merci de&nbsp;:</div>
+      <ul style="margin:8px 0 0;padding-left:20px">
+        ${cons.map(c => `<li>${esc(c)}</li>`).join('')}
+      </ul>
+      <div class="meta" style="color:var(--gold-light);margin-top:12px">
+        ✨ <strong>Check-out tardif</strong> possible jusqu'à 13h sur demande.<br>Supplément&nbsp;: 15 à 20 €.
+      </div>
+      <a href="${optionLink('Demande check-out tardif 13h', 'Je souhaite un check-out tardif à 13h (supplément 15 à 20 €).\nDate de départ : ___')}" style="${btnStyle}">📩 Demander l'option</a>
+    </div>
+
+    ${lingeCard}
+
+    <p style="font-size:13px;color:var(--muted);margin-top:14px;font-style:italic;text-align:center">Toute option est à demander <strong>au moins 24 h à l'avance</strong>.</p>
+  `;
+})();
+
+/* ----- ÉQUIPEMENT ---------------------------------------- */
+(function renderEquip(){
+  const e = apData.equipement;
+  // Famille = seul appart avec plaque INDUCTION, les autres = VITRO-CÉRAMIQUE
+  const isInduction = apKey === 'famille';
+  const plaque = isInduction ? 'Plaque induction' : 'Plaque vitro-céramique';
+  const lingeInclus = !LINGE_NON_FOURNI.includes(apKey);
+
+  let html = '';
+
+  // Bloc Linge (toujours affiché, adapté par appart)
+  html += `<h3>🛏️ Linge</h3>`;
+  if (lingeInclus) {
+    html += `
+      <div class="card">
+        <div class="name">✅ Draps &amp; serviettes inclus</div>
+        <div class="meta">Le linge de lit et de toilette est <strong>fourni</strong> dans votre appartement.</div>
+        <div class="meta" style="color:var(--muted);font-size:13px;margin-top:6px">Voir l'item <strong>Check-in / Check-out</strong> pour l'option lits séparés (+10 €).</div>
+      </div>
+    `;
+  } else {
+    html += `
+      <div class="card" style="border-color:var(--gold)">
+        <div class="name">⚠️ Linge non fourni</div>
+        <div class="meta">Dans cet appartement, le linge de lit et de toilette <strong>n'est pas inclus</strong>. Vous pouvez le commander en option :</div>
+        <div class="meta" style="color:var(--gold-light);margin-top:6px">Pack lit double — 15 €&nbsp;&nbsp;·&nbsp;&nbsp;Pack lit simple — 10 €</div>
+        <div class="meta" style="color:var(--muted);font-size:13px;margin-top:6px">Voir l'item <strong>Check-in / Check-out</strong> pour commander.</div>
+      </div>
+    `;
+  }
+
+  // Fiche détaillée (format Albert SAV) si disponible
+  const info = APPART_INFO[apKey];
+  if (info) {
+    html += `<h3>📐 Votre logement</h3>`;
+    html += `<div class="card">`;
+    const rows = [
+      info.typeLogement && ['Type', esc(info.typeLogement)],
+      info.surface && ['Surface', esc(info.surface)],
+      info.lits && ['Couchage', esc(info.lits)],
+      info.etage && ['Étage', esc(info.etage)],
+      info.ascenseur !== undefined && ['Ascenseur', info.ascenseur ? 'Oui' : 'Non'],
+      info.transport && ['Transports', esc(info.transport)]
+    ].filter(Boolean);
+    rows.forEach(([k,v]) => {
+      html += `<div class="meta"><strong style="color:var(--gold-light)">${k}&nbsp;:</strong> ${v}</div>`;
+    });
+    html += `</div>`;
+
+    if (info.equipements && info.equipements.length) {
+      html += `<h3>✨ Équipements</h3><div class="card"><ul style="margin:0;padding-left:20px">`;
+      info.equipements.forEach(e => html += `<li>${esc(e)}</li>`);
+      html += `</ul></div>`;
+    }
+    if (info.fournis && info.fournis.length) {
+      html += `<h3>🎁 Fournis à votre arrivée</h3><div class="card"><ul style="margin:0;padding-left:20px">`;
+      info.fournis.forEach(e => html += `<li>${esc(e)}</li>`);
+      html += `</ul></div>`;
+    }
+    if (info.chauffage) {
+      html += `<h3>🔥 Chauffage</h3><div class="card"><div class="meta">${esc(info.chauffage)}</div></div>`;
+    }
+    if (info.proximite && info.proximite.length) {
+      html += `<h3>📍 À proximité</h3><div class="card"><div class="meta">${info.proximite.map(esc).join(' · ')}</div></div>`;
+    }
+  } else if (e) {
+    html += e.map(c => `
+      <h3>${c.cat}</h3>
+      <ul style="margin:0;padding-left:20px">
+        ${c.items.map(i => `<li>${esc(i)}</li>`).join('')}
+      </ul>
+    `).join('');
+  } else {
+    html += TODO(`Fiche détaillée (surface, étage, équipements…) à compléter pour <strong>${ap.nom}</strong>. Claudine, envoie-moi le résumé Albert SAV et je l'intègre !`);
+  }
+
+  // Bloc commun : astuce plaque (sécurité enfant) présent dans tous les apparts
+  html += `
+    <h3>🔒 Plaque de cuisson — sécurité enfant</h3>
+    <div class="card">
+      <div class="name">${plaque}</div>
+      <div class="meta">Toutes nos plaques ont une <strong>touche sécurité enfant</strong> activée pour éviter les démarrages accidentels.</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:6px">
+        💡 <strong>Astuce</strong> : si la plaque ne s'allume pas, posez simplement votre doigt sur le cadenas <strong>quelques secondes</strong> — c'est la seule façon de déverrouiller la sécurité enfant.
+      </div>
+    </div>
+
+    <h3>☕ Cafetières</h3>
+    <div class="card">
+      <div class="name">Senseo à dosettes</div>
+      <div class="meta">Une <strong>cafetière Senseo</strong> est fournie dans <strong>tous les logements</strong>. Dosettes de dépannage à votre arrivée.</div>
+    </div>
+    <div class="card">
+      <div class="name">Cafetière à filtre</div>
+      <div class="meta">La plupart des logements disposent aussi d'une <strong>cafetière à filtre</strong> en complément de la Senseo.</div>
+    </div>
+  `;
+
+  $('equip-data').innerHTML = html;
+})();
+
+/* ----- MÉTÉO (Open-Meteo, gratuit, sans clé) ------------- */
+function wmoToIcon(code){
+  if (code === 0) return ['☀️','Ensoleillé'];
+  if (code <= 3)  return ['🌤️','Ciel variable'];
+  if (code <= 48) return ['🌫️','Brouillard'];
+  if (code <= 57) return ['🌦️','Bruine'];
+  if (code <= 67) return ['🌧️','Pluie'];
+  if (code <= 77) return ['🌨️','Neige'];
+  if (code <= 82) return ['🌧️','Averses'];
+  if (code <= 86) return ['🌨️','Averses de neige'];
+  return ['⛈️','Orage'];
+}
+async function loadMeteo(){
+  const box = $('meteo-data');
+  try {
+    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=50.4083&longitude=1.5728&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m&timezone=Europe/Paris');
+    const d = await r.json();
+    const c = d.current;
+    const [ico, desc] = wmoToIcon(c.weather_code);
+    const date = new Date(c.time);
+    const dStr = date.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    const tStr = date.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+    box.innerHTML = `
+      <div class="meteo">
+        <div class="day">📍 Berck-sur-Mer · ${dStr} · ${tStr}</div>
+        <div class="ico">${ico}</div>
+        <div class="temp">${Math.round(c.temperature_2m)}°C</div>
+        <div class="desc">${desc}</div>
+        <div class="extra">💨 ${Math.round(c.wind_speed_10m)} km/h · 💧 ${c.relative_humidity_2m}% humidité</div>
+      </div>
+    `;
+  } catch(e){
+    box.innerHTML = `<div class="meteo"><div class="err">Météo indisponible. Consultez <a href="https://meteofrance.com/previsions-meteo-france/berck/62600" style="color:#fff;text-decoration:underline">Météo-France</a>.</div></div>`;
+  }
+}
+
+/* ----- ACTIVITÉS À BERCK --------------------------------- */
+(function renderActivites(){
+  // Catalogue unifié : chaque activité appartient à 1 ou plusieurs catégories
+  // Catégories : 'sport' · 'enfants' · 'decouverte'
+  const ACTIVITES = [
+    { cats:['sport','decouverte'], titre:'🪁 Kitesurf · Opale Kite',
+      meta:["École officielle de Berck depuis 2011 — cours et initiations sur la Grande Plage."],
+      actions:[['🔗 opale-kite.fr','https://www.opale-kite.fr/'],['📍 Y aller','https://maps.google.com/?q=Opale+Kite+Berck']]},
+    { cats:['sport','decouverte'], titre:'🏖️ Char à voile',
+      meta:["Berck est le <strong>berceau du char à voile</strong> — sensations garanties sur la grande plage."],
+      actions:[['🔗 Office de tourisme','https://www.berck-tourisme.com/fr/sortir-et-se-divertir']]},
+    { cats:['sport','enfants'], titre:'🏊 Piscine intercommunale Agora',
+      meta:["Esplanade Parmentier — Front de mer, 62600 Berck","8 lignes d'eau, bassin à vagues, toboggan — toute l'année"],
+      actions:[['📞 03 21 89 87 08','tel:0321898708'],['📍 Y aller','https://maps.google.com/?q=Piscine+Agora+Berck'],['🔗 Site','https://www.ca2bm.fr/loisirs-culture/piscine-intercommunale-de-berck-sur-mer/']]},
+    { cats:['enfants','decouverte'], titre:'🎳 Bowling Agora',
+      meta:["1 Esplanade Parmentier, 62600 Berck — même complexe que la piscine","8 pistes · restaurant vue panoramique · beach bar"],
+      actions:[['📞 03 21 89 87 08','tel:0321898708'],['📍 Y aller','https://maps.google.com/?q=Bowling+Berck+Esplanade+Parmentier']]},
+    { cats:['enfants','decouverte'], titre:'🚲 Rosalie Beach — rosalies &amp; vélos',
+      meta:["72 Esplanade Parmentier, 62600 Berck-sur-Mer","🕒 Tous les jours 9h → 18h30 (1er avril → 1er septembre)","👶 Enfants dès 2 ans (mini 1 m)"],
+      actions:[['📞 07 86 79 47 96','tel:0786794796'],['📍 Y aller','https://maps.google.com/?q=Rosalie+Beach+Berck'],['🔗 Facebook','https://fr-fr.facebook.com/rosalie.beach.berck/']]},
+    { cats:['sport'], titre:'🧘 Yoga à Berck',
+      meta:["Cours collectifs et séances sur la plage en saison — programme via l'office de tourisme."],
+      actions:[['🔗 Voir agenda','https://www.berck-tourisme.com/fr/sortir-et-se-divertir']]},
+    { cats:['sport','enfants'], titre:'🤸 Parc de jeux &amp; crossfit gratuit',
+      meta:["Parc de jeux et ateliers crossfit en plein air à Berck — accès libre."],
+      actions:[['📄 Le dépliant','/visites-berck/docs/Parc%20de%20jeux%20et%20ateliers%20crossfit%20gratuit%20%20à%20Berck_.docx']]},
+    { cats:['decouverte'], titre:'🏛️ Musée Opale Sud',
+      meta:["60 rue de l'Impératrice, 62600 Berck-sur-Mer","🕒 Mar après-midi → dim · 10-12h / 14-18h · Fermé lundi","🎟️ 4 € · réduit 2,50 € · gratuit -18 ans · <em>gratuit 1er dim. du mois</em>"],
+      actions:[['🔗 musee.berck.fr','https://musee.berck.fr/'],['📍 Y aller','https://maps.google.com/?q=Musee+Opale+Sud+60+rue+imperatrice+Berck']]},
+    { cats:['enfants','decouverte'], titre:'⛳ Mini-golf Le Mambo',
+      meta:["Place de l'Entonnoir, Berck-sur-Mer","18 trous + voitures & motos électriques pour enfants (3-12 ans) · terrasses intérieure chauffée et extérieure"],
+      actions:[['📍 Y aller','https://maps.google.com/?q=Le+Mambo+mini+golf+Berck']]},
+    { cats:['enfants','sport','decouverte'], titre:'🎢 Parc Bagatelle (Merlimont)',
+      meta:["940 Route de Berck, 62155 Merlimont — 15 min de Berck","40+ attractions familiales : auto-tamponneuses, grande roue, carrousel…","🗓️ Ouvert du 11 avril au 1<sup>er</sup> novembre"],
+      actions:[['📞 03 21 89 09 90','tel:0321890990'],['🔗 parcbagatelle.com','https://www.parcbagatelle.com/fr'],['📍 Y aller','https://maps.google.com/?q=Parc+Bagatelle+Merlimont']]},
+    { cats:['enfants','sport'], titre:'🌳 Laby\\'parc (Saint-Josse)',
+      meta:["Chemin des Ardronnières, 62170 Saint-Josse — 20 min de Berck","Parc nature : toboggan UltraSpeed, toboggan spiralé, parcours du combattant, accro-spider","☀️ Ouvert l'été uniquement"],
+      actions:[['📍 Y aller','https://maps.google.com/?q=Labyparc+Du+Touquet+Saint+Josse']]},
+    { cats:['enfants','decouverte'], titre:'🐠 Nausicaá — Centre National de la Mer (Boulogne-sur-Mer)',
+      meta:["Boulevard Sainte-Beuve, 62203 Boulogne-sur-Mer — 50 min de Berck","Le <strong>plus grand aquarium d'Europe</strong> — requins, phoques, poissons tropicaux, Grand Large.","🕒 Tous les jours 9h30 → 18h30 (fermeture annuelle 5 → 30 janvier)","🎟️ Adulte 31,50 € · Enfant 3-12 ans 24,50 € · Gratuit -3 ans"],
+      actions:[['🔗 nausicaa.fr','https://www.nausicaa.fr/'],['📍 Y aller','https://maps.google.com/?q=Nausicaa+Boulogne-sur-Mer']]},
+    { cats:['sport','decouverte'], titre:'🏞️ Cap Blanc-Nez',
+      meta:["Escalles / Sangatte — 1h30 de Berck en voiture","<strong>Grand Site de France</strong> : falaises de craie blanche, panorama sur l'Angleterre par temps clair, sentiers de randonnée, accès libre et gratuit."],
+      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-blanc-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Blanc+Nez']]}
+  ];
+
+  // Bibliothèque de guides PDF/DOCX par slug/résidence
+  const docBase = '/visites-berck/docs/';
+  const GUIDES_COMMUNS = [
+    { nom:'🗺️ Plan de Berck — Office de tourisme', file:'https://www.berck-tourisme.com/fr/pratique/nos-brochures' },
+    { nom:'🚗 Balades hors de Berck', file: docBase + encodeURIComponent('Balade hors de Berck (1).pdf') },
+    { nom:'☀️ Activités sportives hors été', file: docBase + encodeURIComponent('Activités sportives et loisirs à Berck hors été -.pdf') }
+  ];
+  const GUIDES_PAR_RESIDENCE = {
+    // Le 23 + Le 25 : 7 apparts (Maréchal Juin)
+    zone_marechal: [
+      { nom:'🏅 Activités sportives depuis l\\'appartement', file: docBase + 'Berck%20depuis%2023/' + encodeURIComponent('23 activités sportives.docx') },
+      { nom:'🏠 Activités intérieures depuis l\\'appartement', file: docBase + 'Berck%20depuis%2023/' + encodeURIComponent('Activités intérieurs depuis le 23.docx') }
+    ],
+    // Face Mer et les apparts autour (esplanade/apollo/albatros/grand large)
+    zone_esplanade: [
+      { nom:'🏅 Face Mer — Activités sportives', file: docBase + encodeURIComponent('FACE MER Activités sportives et loisirs à Berck_.docx') },
+      { nom:'🏠 Face Mer — Activités intérieur', file: docBase + encodeURIComponent('face mer activités intérieur.docx') },
+      { nom:'🌧️ Face Mer — Si il pleut', file: docBase + encodeURIComponent('FACE MER activités à faire si il pleut (1).pdf') }
+    ],
+    // Terrasse + Maisonnette
+    zone_terrasse: [
+      { nom:'🏠 Terrasse — Activités intérieur', file: docBase + encodeURIComponent('Terrasse activités interieur.pdf') },
+      { nom:'🚶 Terrasse — Balades pédestres', file: docBase + encodeURIComponent('Terrasse  balades pédestres.pdf') }
+    ],
+    // Rue Jeanne : pas de dépliant dédié → guides communs seulement
+    zone_jeanne: []
+  };
+
+  // Choix de la bibliothèque par zone
+  const zoneDocs = {
+    marechal:  GUIDES_PAR_RESIDENCE.zone_marechal,
+    esplanade: GUIDES_PAR_RESIDENCE.zone_esplanade,
+    terrasse:  GUIDES_PAR_RESIDENCE.zone_terrasse,
+    jeanne:    GUIDES_PAR_RESIDENCE.zone_jeanne
+  }[ap.zone] || [];
+
+  // Rendu carte activité
+  const renderCard = a => `
+    <div class="card" data-cats="${a.cats.join(' ')}">
+      <div class="name">${a.titre}</div>
+      ${a.meta.map(m => `<div class="meta">${m}</div>`).join('')}
+      <div class="actions">
+        ${a.actions.map(([lbl,url]) => `<a href="${url}" target="_blank" rel="noopener">${lbl}</a>`).join('')}
+      </div>
+    </div>
+  `;
+
+  $('activites-data').innerHTML = `
+    <div class="tabs">
+      <button class="tab active" data-filter="all">Tout</button>
+      <button class="tab" data-filter="sport">🏃 Sport</button>
+      <button class="tab" data-filter="enfants">👶 Enfants</button>
+      <button class="tab" data-filter="decouverte">🌟 Découverte</button>
+    </div>
+    <div id="activites-list">
+      ${ACTIVITES.map(renderCard).join('')}
+    </div>
+
+    <h3>📖 Vos guides — à télécharger</h3>
+    <p style="font-size:13px;color:var(--muted);margin-top:-4px;margin-bottom:10px">Dépliants préparés par Claudine.</p>
+    ${[...zoneDocs, ...GUIDES_COMMUNS].map(g => `
+      <div class="card">
+        <div class="name"><a href="${g.file}" target="_blank" rel="noopener" style="color:var(--gold-light);text-decoration:none">${g.nom}</a></div>
+      </div>
+    `).join('')}
+  `;
+
+  // Gestion des tabs
+  const tabs = $('activites-data').querySelectorAll('.tab');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    const filter = t.dataset.filter;
+    $('activites-data').querySelectorAll('[data-cats]').forEach(c => {
+      c.style.display = (filter === 'all' || c.dataset.cats.includes(filter)) ? '' : 'none';
+    });
+  }));
+})();
+
+/* renderServices retiré — les options check-in/out + pack linge sont maintenant dans renderCheckin */
+
+/* ----- SIGNALER UN PROBLÈME ------------------------------ */
+(function renderProbleme(){
+  $('probleme-data').innerHTML = `
+    <p>Un souci dans votre logement ? On s'en occupe vite.</p>
+    ${TODO('Choisir le canal : formulaire en ligne, WhatsApp conciergerie, email dédié ?')}
+    <a class="btn full" href="mailto:princessedopale@gmail.com?subject=Problème%20${encodeURIComponent(ap.nom)}&body=Bonjour,%0A%0ALogement%20:%20${encodeURIComponent(ap.nom)}%0AAdresse%20:%20${encodeURIComponent(ap.adr)}%0A%0ADescription%20du%20problème%20:%0A">✉️ Envoyer un email</a>
+    <p style="font-size:13px;color:var(--muted);margin-top:10px">Pour les urgences (fuite, panne électrique…), contactez directement le numéro d'urgence (rubrique dédiée).</p>
+  `;
+})();
+
+/* ----- CONTACT D'URGENCE --------------------------------- */
+(function renderUrgence(){
+  $('urgence-data').innerHTML = `
+    ${TODO('À définir : numéro unique conciergerie (pas le numéro perso de Claudine) OU numéro du prestataire ménage selon l\'appart ?')}
+    <div class="card">
+      <div class="name">🔑 Conciergerie Princesse d'Opale</div>
+      <div class="meta">Équipe d'accueil et maintenance</div>
+      <div class="actions">
+        <a href="mailto:princessedopale@gmail.com">✉️ Email</a>
+      </div>
+    </div>
+    <h3>Urgences officielles</h3>
+    <div class="card">
+      <div class="name">🚒 Pompiers</div>
+      <div class="actions"><a href="tel:18">📞 18</a></div>
+    </div>
+    <div class="card">
+      <div class="name">🚑 SAMU</div>
+      <div class="actions"><a href="tel:15">📞 15</a></div>
+    </div>
+    <div class="card">
+      <div class="name">👮 Police / Gendarmerie</div>
+      <div class="actions"><a href="tel:17">📞 17</a></div>
+    </div>
+    <div class="card">
+      <div class="name">📞 Urgences européennes</div>
+      <div class="actions"><a href="tel:112">📞 112</a></div>
+    </div>
+    <h3>Santé à Berck</h3>
+    <div class="card">
+      <div class="name">🏥 Hôpital maritime de Berck</div>
+      <div class="meta">47 rue du Dr Calot, 62600 Berck-sur-Mer</div>
+      <div class="actions">
+        <a href="tel:+33321893100">📞 03 21 89 31 00</a>
+        <a href="https://maps.google.com/?q=Hopital+maritime+Berck" target="_blank" rel="noopener">📍 Y aller</a>
+      </div>
+    </div>
+  `;
+})();
+
+/* ----- ADRESSES UTILES (par zone) ------------------------ */
+(function renderAdresses(){
+  const z = zone;
+  const box = $('adresses-data');
+  let html = `<p style="color:var(--muted);font-size:14px">📍 Adresses proches de <strong>${esc(ap.nom)}</strong> — quartier ${esc(z.nom)}</p>`;
+
+  function cardList(title, emoji, arr, urg=false){
+    let out = `<h3>${emoji} ${title}</h3>`;
+    arr.forEach(c => {
+      if (c.nom === 'À compléter') {
+        out += TODO(`${title} — zone ${z.nom}`);
+        return;
+      }
+      const tag = urg ? '<span class="tag urg">urgence</span>' : '';
+      const mapsQ = encodeURIComponent(`${c.nom} ${c.adresse} Berck`);
+      out += `
+        <div class="card">
+          <div class="name">${esc(c.nom)}${tag}</div>
+          <div class="meta">${c.type ? esc(c.type)+' · ' : ''}${esc(c.adresse || 'Adresse à compléter')}</div>
+          ${c.horaires ? `<div class="meta">🕒 ${esc(c.horaires)}</div>` : ''}
+          ${c.note ? `<div class="meta" style="font-style:italic">💡 ${esc(c.note)}</div>` : ''}
+          <div class="actions">
+            ${c.tel ? `<a href="tel:${c.tel.replace(/\s/g,'')}">📞 ${esc(c.tel)}</a>` : ''}
+            <a href="https://maps.google.com/?q=${mapsQ}" target="_blank" rel="noopener">📍 Y aller</a>
+            ${c.livraison ? `<a href="https://courses.carrefour.fr" target="_blank" rel="noopener">🛒 Livraison</a>` : ''}
+          </div>
+        </div>
+      `;
+    });
+    return out;
+  }
+
+  html += cardList('Urgence (mini-market)', '🚨', z.commerces.urgence, true);
+  html += cardList('Supermarchés', '🛒', z.commerces.supermarche);
+  html += `
+    <div class="card" style="background:var(--sand)">
+      <div class="name">🛒 Livraison de courses à domicile</div>
+      <div class="meta">Carrefour propose la livraison et le drive directement depuis l'appartement.</div>
+      <div class="actions">
+        <a href="https://courses.carrefour.fr" target="_blank" rel="noopener">Commander</a>
+      </div>
+    </div>
+  `;
+  html += cardList('Boulangeries', '🥖', z.commerces.boulangerie);
+  html += cardList('Restaurants', '🍽️', z.commerces.restaurants);
+
+  // Marchés de Berck (communs à tous les apparts)
+  html += `
+    <h3>🥕 Marchés de Berck</h3>
+    <div class="card">
+      <div class="name">Marché devant la Mairie</div>
+      <div class="meta">Place de l'Hôtel de Ville, Berck-sur-Mer</div>
+      <div class="meta">🕒 <strong>Mardi & vendredi matin</strong></div>
+      <div class="actions">
+        <a href="https://maps.google.com/?q=Mairie+de+Berck+sur+Mer" target="_blank" rel="noopener">📍 Y aller</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="name">Marché de l'Église</div>
+      <div class="meta">Proche de l'église de Berck-sur-Mer</div>
+      <div class="meta">🕒 <strong>Mercredi & samedi matin</strong></div>
+      <div class="actions">
+        <a href="https://maps.google.com/?q=Eglise+Notre+Dame+des+Sables+Berck+sur+Mer" target="_blank" rel="noopener">📍 Y aller</a>
+      </div>
+    </div>
+  `;
+
+  box.innerHTML = html;
+})();
+
+/* ----- GUIDE PRATIQUE (FAQ depuis Trello) ---------------- */
+(function renderGuide(){
+  const box = $('guide-data');
+
+  // ----- Molotov (TV) — apparts concernés ------------------
+  // 2 télécommandes : Le 23 (kitesurf, hamac, paddle, surf, famille)
+  // 1 télécommande  : Le 25 (balneo, cocon) + patio, rotonde, miniloveroom, grandeloveroom, maisonnette
+  const MOLOTOV_2 = ['kitesurf','hamac','paddle','surf','famille'];
+  const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom','maisonnette'];
+  const hasMolotov = MOLOTOV_2.includes(apKey) || MOLOTOV_1.includes(apKey);
+  const twoRemotes = MOLOTOV_2.includes(apKey);
+
+  let molotovCard = '';
+  if (hasMolotov) {
+    const remoteTxt = twoRemotes
+      ? 'Votre appartement dispose de <strong>deux télécommandes</strong> : une grande (pour allumer la télé) et une petite (pour naviguer dans le menu).'
+      : 'Votre appartement dispose d\'<strong>une seule télécommande</strong>.';
+    const steps = twoRemotes
+      ? `<ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Allumez la télé avec la <strong>grande télécommande</strong> (bouton en haut à gauche).</li>
+          <li>Attendez que la télé charge — cela peut prendre <strong>plusieurs minutes</strong>.</li>
+          <li>Quand l'écran d'accueil apparaît (avec Netflix &amp; diverses icônes), prenez la <strong>petite télécommande</strong>.</li>
+          <li>Déplacez-vous vers la droite et cliquez sur <strong>Molotov</strong>.</li>
+          <li>Cliquez sur l'onglet <strong>« Direct »</strong> — les chaînes apparaissent en dessous.</li>
+        </ol>`
+      : `<ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Allumez la télé avec la télécommande.</li>
+          <li>Attendez que l'écran d'accueil apparaisse (avec Netflix &amp; diverses icônes).</li>
+          <li>Naviguez vers <strong>Molotov</strong>.</li>
+          <li>Cliquez sur l'onglet <strong>« Direct »</strong> pour voir les chaînes en direct.</li>
+        </ol>`;
+    molotovCard = `
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="em">📺</span> Télévision — Molotov</div>
+        <div class="card">
+          <div class="name">Comment regarder la télé</div>
+          <div class="meta">${remoteTxt}</div>
+          ${steps}
+          <div class="actions" style="margin-top:10px">
+            <a href="/assets/molotov-2-telecommandes.pdf" target="_blank" rel="noopener">📄 Voir le guide illustré (PDF)</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  if (!apFaq.length && !hasMolotov) {
+    box.innerHTML = TODO(`Pas encore de guide pratique pour <strong>${ap.nom}</strong>. Les descriptions Trello seront ajoutées prochainement.`);
+    return;
+  }
+  if (!apFaq.length) {
+    // Pas de FAQ Trello, mais on a quand même le Molotov à afficher
+    box.innerHTML = molotovCard;
+    return;
+  }
+
+  /* Groupes par mots-clés sur le nom de la carte */
+  const GROUPS = [
+    { id:'tv',      em:'📺', titre:'Télévision & WiFi',        test: n => /télé|tele|tv|wifi|wi.?fi|hdmi|molotov|spot|led|télécommande|telecommande|internet|videoprojecteur/i.test(n) },
+    { id:'cuisine', em:'🍳', titre:'Cuisine',                   test: n => /frigo|plaque|bouilloire|sel|poivre|panier/i.test(n) },
+    { id:'spa',     em:'🛁', titre:'Balnéo & Spa',              test: n => /spa|balnéo|balneo|eau chaude|vmc|filtre|moteur/i.test(n) },
+    { id:'acces',   em:'🚗', titre:'Parking & Accès',           test: n => /parking|stationnement|digicode|immeuble|garage|voiture|borne/i.test(n) },
+    { id:'linge',   em:'🧺', titre:'Linge & Équipement',        test: n => /linge|taille.*lit|lit|prise|porte|fenêtre|fenetre|enedis|linky|horloge|radiateur|ballon|placard/i.test(n) }
+  ];
+
+  /* Exclusion : cartes déjà utilisées ailleurs ou internes */
+  const EXCLUDE = n => /code.*boite|code.*boîte|code.*clé|check-?in.*check-?out.*rib|photo de claudine/i.test(n);
+
+  /* Filtrage cartes WiFi (déjà dans l'item WiFi) pour ne pas dupliquer */
+  const wifiCards = apFaq.filter(c => /^wi.?fi(\s|$)|^wifi\s*\d/i.test(c.name));
+  const wifiNames = new Set(wifiCards.map(c => c.name));
+
+  /* Classement par groupe + dédoublonnage */
+  const seen = new Set();
+  const groups = {};
+  GROUPS.forEach(g => groups[g.id] = []);
+  const autre = [];
+
+  for (const c of apFaq) {
+    if (EXCLUDE(c.name)) continue;
+    if (wifiNames.has(c.name)) continue;
+    const key = c.name.toLowerCase().trim();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const g = GROUPS.find(g => g.test(c.name));
+    if (g) groups[g.id].push(c);
+    else autre.push(c);
+  }
+
+  /* Rendu */
+  let html = molotovCard; // Molotov en tête si applicable
+  for (const g of GROUPS) {
+    if (!groups[g.id].length) continue;
+    html += `<div class="faq-group">
+      <div class="faq-group-title"><span class="em">${g.em}</span> ${g.titre}</div>`;
+    for (const c of groups[g.id]) {
+      const ans = scrub(c.desc).replace(/\n\n+/g,'</p><p>').replace(/\n/g,'<br>');
+      html += `<details class="faq">
+        <summary>${esc(c.name)}</summary>
+        <div class="answer"><p>${ans}</p></div>
+      </details>`;
+    }
+    html += `</div>`;
+  }
+  if (autre.length) {
+    html += `<div class="faq-group">
+      <div class="faq-group-title"><span class="em">💡</span> Autres questions</div>`;
+    for (const c of autre) {
+      const ans = scrub(c.desc).replace(/\n\n+/g,'</p><p>').replace(/\n/g,'<br>');
+      html += `<details class="faq">
+        <summary>${esc(c.name)}</summary>
+        <div class="answer"><p>${ans}</p></div>
+      </details>`;
+    }
+    html += `</div>`;
+  }
+
+  html += `<p style="font-size:12px;color:var(--muted);margin-top:16px;text-align:center;font-style:italic">Ces réponses sont rédigées par Claudine elle-même. Si votre question n'y figure pas, contactez la conciergerie via la rubrique « Signaler un problème ».</p>`;
+
+  box.innerHTML = html;
+})();
+
+/* ----- AUTRES LOGEMENTS ---------------------------------- */
+(function renderAutres(){
+  // Groupe les apparts par résidence, exclut celui en cours
+  const groups = {};
+  for (const [key, a] of Object.entries(APPARTS)) {
+    if (key === apKey) continue; // exclure l'appart actuel
+    if (!groups[a.res]) groups[a.res] = [];
+    groups[a.res].push({ key, ...a });
+  }
+  // Ordre des résidences (commence par la zone de l'appart actuel)
+  const resOrder = ['Le 23','Le 25','Apollo','Albatros','Rue Jeanne','Esplanade','Face Mer','Grand Large','Terrasse'];
+  const currentRes = ap.res;
+  const ordered = resOrder.filter(r => r !== currentRes);
+  if (currentRes && !ordered.includes(currentRes)) ordered.push(currentRes);
+
+  let html = '';
+  for (const resName of ordered) {
+    if (!groups[resName] || !groups[resName].length) continue;
+    html += `<h3>${esc(resName)}</h3>`;
+    for (const appt of groups[resName]) {
+      const url = '?a=' + appt.key;
+      const nomCom = (appt.com && appt.com !== appt.nom) ? `<span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-weight:400"> · ${esc(appt.com)}</span>` : '';
+      html += `
+        <div class="card">
+          <div class="name">${esc(appt.nom)}${nomCom}</div>
+          <div class="meta">${esc(appt.adr)}</div>
+          <div class="actions">
+            <a href="${url}">Voir le livret</a>
+          </div>
+        </div>
+      `;
+    }
+  }
+  $('autres-data').innerHTML = html;
+})();
+
+/* ----- LIVRE D'OR ---------------------------------------- */
+(function renderLivreDor(){
+  // URL du questionnaire voyageurs (skill questionnaire-berck)
+  const url = 'https://enquete-berck.netlify.app/?appart=' + encodeURIComponent(apKey);
+  $('livredorBtn').href = url;
+  // Lien générique Google (à personnaliser par appart plus tard)
+  $('gmbBtn').href = 'https://www.google.com/search?q=appart-hotel+berck+' + encodeURIComponent(ap.nom);
+})();
+
+/* ----- Retour bouton natif Android ----------------------- */
+window.addEventListener('popstate', goHome);
+</script>
+
+</body>
+</html>
