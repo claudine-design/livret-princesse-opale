@@ -313,6 +313,24 @@
   .cv-signoff{text-align:right;margin-top:12px;font-size:14px;font-style:italic;color:var(--muted)}
   .cv-signature{font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);display:inline-block;margin-top:4px}
 
+  /* PHOTO STRIP (Autres logements — mini carrousel horizontal) */
+  .photo-strip{
+    display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;
+    margin:10px -2px 4px;padding:2px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:var(--gold) transparent;
+  }
+  .photo-strip::-webkit-scrollbar{height:4px}
+  .photo-strip::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+  .photo-strip img{
+    flex:0 0 auto;
+    width:130px;height:90px;object-fit:cover;
+    border-radius:6px;border:1px solid var(--gold-line);
+    scroll-snap-align:start;
+    transition:transform .2s;
+  }
+  .photo-strip img:active{transform:scale(.96)}
+
   /* TABS (Activités) */
   .tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
   .tab{
@@ -1051,8 +1069,80 @@ function copy(txt, btn){
     return;
   }
 
+  // ----- Extraction : ne garder que la DESCRIPTION DE L'ADRESSE / ENTRÉE -----
+  // Retire l'intro (Bonjour, code boîte à clé, check-in/out),
+  // retire le WiFi, contacts, règles (animaux, non-fumeur...), salutations finales.
+  function extractAccessOnly(text){
+    if (!text) return text;
+    const lines = text.split('\n');
+
+    // Repères de DÉBUT (première ligne utile)
+    const startPatterns = [
+      /voici\s+un\s+rappel\s+de\s+la\s+description/i,
+      /voici\s+un\s+rappel\s+des\s+informations/i,
+      /rappel\s+du\s+descriptif/i,
+      /^l.?appartement\s+est\s+situ[ée]/i,
+      /^l.?appartement\s+se\s+situ[ée]/i,
+      /^adresse\s*:/i,
+      /^.\s*.?\s*dresse\s*:/i, // "📍 Adresse :" etc.
+      /^tout\s+d.?abord\s+allez\s+chercher/i
+    ];
+    // Repères de FIN (première ligne à partir de laquelle on coupe)
+    const stopPatterns = [
+      /^\s*wifi\s*[:\s]/i,
+      /^\s*wi-fi/i,
+      /contact\s+(en|conciergerie)/i,
+      /^\s*l[eé]a\s*:/i,
+      /^\s*claudine\s*$/i,
+      /^\s*votre\s+h[ôo]te/i,
+      /^\s*-\s*l.?appartement\s+est\s+non/i,  // règles
+      /^\s*le\s+linge\s+est\s+fourni/i,
+      /^\s*linge.*fourni/i,
+      /^\s*✨/,
+      /^\s*ps\s*:/i,
+      /^\s*p\.s\./i,
+      /je\s+vous\s+souhaite.*s[ée]jour/i,
+      /soyez\s+les\s+bienvenus/i,
+      /non-?fumeur/i
+    ];
+
+    // Trouve index de début
+    let startIdx = -1;
+    for (let i = 0; i < lines.length; i++) {
+      if (startPatterns.some(rx => rx.test(lines[i]))) { startIdx = i; break; }
+    }
+    // Si pas de repère, tente depuis "boite à clé" + 1 ligne (pour sauter le code)
+    if (startIdx === -1) {
+      for (let i = 0; i < lines.length; i++) {
+        if (/boi.?te\s+[aà]\s+cl[ée]/i.test(lines[i])) { startIdx = i + 1; break; }
+      }
+    }
+    if (startIdx === -1) startIdx = 0;
+
+    // Trouve index de fin
+    let endIdx = lines.length;
+    for (let i = startIdx + 1; i < lines.length; i++) {
+      if (stopPatterns.some(rx => rx.test(lines[i]))) { endIdx = i; break; }
+    }
+
+    // Nettoie les lignes extraites
+    const extract = lines.slice(startIdx, endIdx)
+      .join('\n')
+      .trim()
+      // Enlève les mentions check-in/out qui pourraient traîner en début
+      .replace(/^check-in[^]*?check-out[^\n]*\n/im, '')
+      .replace(/^.?\s*partir\s+de\s+1[467]h[^\n]*\n?/im, '')
+      // Supprime les lignes vides en excès
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+
+    return extract || text; // fallback
+  }
+
+  const accessText = extractAccessOnly(rawText);
+
   // Transforme liens Google Drive en lecteur intégré
-  const body = esc(rawText)
+  const body = esc(accessText)
     .replace(/\n\n+/g, '</p><p>')
     .replace(/\n/g, '<br>')
     .replace(/(https?:\/\/[^\s&lt;]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
@@ -1756,20 +1846,53 @@ async function loadMeteo(){
 
 /* ----- AUTRES LOGEMENTS ---------------------------------- */
 (function renderAutres(){
+  // Mapping slug → nombre de photos disponibles dans /photos/<slug>/
+  const APPART_PHOTOS = {
+    apolove: 6, balneo: 6, cocon: 6, facemer: 6, famille: 6,
+    grandeloveroom: 6, jeanne: 6, kingston: 1, kitesurf: 2,
+    maisonnette: 6, miniloveroom: 6, patio: 6, reserve: 6
+  };
+
+  // Apparts sur le même palier au Le 23 (possibilité de louer plusieurs logements ensemble)
+  const PALIER_LE_23 = ['kitesurf','hamac','paddle'];
+
   // Groupe les apparts par résidence, exclut celui en cours
   const groups = {};
   for (const [key, a] of Object.entries(APPARTS)) {
-    if (key === apKey) continue; // exclure l'appart actuel
+    if (key === apKey) continue;
     if (!groups[a.res]) groups[a.res] = [];
     groups[a.res].push({ key, ...a });
   }
-  // Ordre des résidences (commence par la zone de l'appart actuel)
   const resOrder = ['Le 23','Le 25','Apollo','Albatros','Rue Jeanne','Esplanade','Face Mer','Grand Large','Terrasse'];
   const currentRes = ap.res;
   const ordered = resOrder.filter(r => r !== currentRes);
   if (currentRes && !ordered.includes(currentRes)) ordered.push(currentRes);
 
   let html = '';
+
+  // Note spéciale palier Le 23 si l'appart courant en fait partie
+  if (PALIER_LE_23.includes(apKey)) {
+    const autres = PALIER_LE_23.filter(k => k !== apKey).map(k => APPARTS[k]?.nom).join(' · ');
+    html += `
+      <div class="card" style="border-color:var(--gold);background:linear-gradient(160deg, rgba(212,175,94,.1) 0%, transparent 100%);margin-bottom:14px">
+        <div class="name">👨‍👩‍👧‍👦 Voyager à plusieurs familles ?</div>
+        <div class="meta"><strong>Kitesurf</strong>, <strong>Hamac</strong> et <strong>Paddle</strong> sont tous les trois <strong>sur le même palier</strong> au Le 23. Parfait pour louer 2 ou 3 appartements ensemble — idéal pour les familles élargies ou les groupes d'amis.</div>
+        <div class="meta" style="color:var(--gold-light);margin-top:6px">Contactez Claudine pour réserver plusieurs logements : <strong>princessedopale@gmail.com</strong></div>
+      </div>
+    `;
+  }
+
+  function photoStrip(slug){
+    const n = APPART_PHOTOS[slug] || 0;
+    if (!n) return '';
+    let imgs = '';
+    for (let i = 1; i <= n; i++) {
+      const num = String(i).padStart(2, '0');
+      imgs += `<img src="/photos/${slug}/${num}.jpg" alt="" loading="lazy" onerror="this.style.display='none'">`;
+    }
+    return `<div class="photo-strip">${imgs}</div>`;
+  }
+
   for (const resName of ordered) {
     if (!groups[resName] || !groups[resName].length) continue;
     html += `<h3>${esc(resName)}</h3>`;
@@ -1780,6 +1903,7 @@ async function loadMeteo(){
         <div class="card">
           <div class="name">${esc(appt.nom)}${nomCom}</div>
           <div class="meta">${esc(appt.adr)}</div>
+          ${photoStrip(appt.key)}
           <div class="actions">
             <a href="${url}">Voir le livret</a>
           </div>
