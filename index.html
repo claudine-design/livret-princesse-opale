@@ -1460,24 +1460,39 @@ async function loadMeteo(){
 
 /* ----- SIGNALER UN PROBLÈME ------------------------------ */
 (function renderProbleme(){
+  const email = 'princessedopale@gmail.com';
+  const subject = encodeURIComponent('Problème — ' + ap.nom);
+  const body = encodeURIComponent(`Bonjour,\n\nLogement : ${ap.nom}\nAdresse : ${ap.adr}\n\nDescription du problème :\n`);
   $('probleme-data').innerHTML = `
-    <p>Un souci dans votre logement ? On s'en occupe vite.</p>
-    ${TODO('Choisir le canal : formulaire en ligne, WhatsApp conciergerie, email dédié ?')}
-    <a class="btn full" href="mailto:princessedopale@gmail.com?subject=Problème%20${encodeURIComponent(ap.nom)}&body=Bonjour,%0A%0ALogement%20:%20${encodeURIComponent(ap.nom)}%0AAdresse%20:%20${encodeURIComponent(ap.adr)}%0A%0ADescription%20du%20problème%20:%0A">✉️ Envoyer un email</a>
-    <p style="font-size:13px;color:var(--muted);margin-top:10px">Pour les urgences (fuite, panne électrique…), contactez directement le numéro d'urgence (rubrique dédiée).</p>
+    <p style="font-size:14px;line-height:1.5">Un souci dans votre logement ? Écrivez-nous, on s'en occupe vite.</p>
+    <div class="card" style="border-color:var(--gold);margin-top:12px">
+      <div class="name">✉️ Contactez la Conciergerie Princesse d'Opale</div>
+      <div class="field" style="margin-top:10px">
+        <div><div class="lab">Email</div><div class="val">${email}</div></div>
+        <button onclick="copy('${email}',this)">Copier</button>
+      </div>
+      <a class="btn full" href="mailto:${email}?subject=${subject}&body=${body}" style="margin-top:8px">✉️ Ouvrir mon appli mail</a>
+      <a class="btn full ghost" href="https://mail.google.com/mail/?view=cm&to=${email}&su=${subject}&body=${body}" target="_blank" rel="noopener" style="margin-top:6px">📧 Écrire via Gmail (navigateur)</a>
+    </div>
+    <p style="font-size:13px;color:var(--muted);margin-top:14px;font-style:italic">⚠️ Pour les urgences (fuite, panne électrique…), voir la rubrique <strong>Contact d'urgence</strong>.</p>
   `;
 })();
 
 /* ----- CONTACT D'URGENCE --------------------------------- */
 (function renderUrgence(){
+  const email = 'princessedopale@gmail.com';
   $('urgence-data').innerHTML = `
-    ${TODO('À définir : numéro unique conciergerie (pas le numéro perso de Claudine) OU numéro du prestataire ménage selon l\'appart ?')}
-    <div class="card">
-      <div class="name">🔑 Conciergerie Princesse d'Opale</div>
-      <div class="meta">Équipe d'accueil et maintenance</div>
-      <div class="actions">
-        <a href="mailto:princessedopale@gmail.com">✉️ Email</a>
+    <p style="font-size:14px;line-height:1.5">En cas d'urgence durant votre séjour, voici les contacts utiles.</p>
+
+    <h3>🔑 Conciergerie Princesse d'Opale</h3>
+    <div class="card" style="border-color:var(--gold)">
+      <div class="name">Équipe d'accueil et maintenance</div>
+      <div class="field" style="margin-top:10px">
+        <div><div class="lab">Email</div><div class="val">${email}</div></div>
+        <button onclick="copy('${email}',this)">Copier</button>
       </div>
+      <a class="btn full" href="mailto:${email}" style="margin-top:8px">✉️ Ouvrir mon appli mail</a>
+      <a class="btn full ghost" href="https://mail.google.com/mail/?view=cm&to=${email}" target="_blank" rel="noopener" style="margin-top:6px">📧 Écrire via Gmail</a>
     </div>
     <h3>Urgences officielles</h3>
     <div class="card">
