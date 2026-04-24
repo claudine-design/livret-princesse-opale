@@ -606,6 +606,22 @@
     </div>
   </div>
 
+  <h3>🚆 Venir / repartir de Berck</h3>
+  <div class="card">
+    <div class="name">🚌 En bus depuis la gare</div>
+    <div class="meta">Navettes et bus locaux depuis les gares de Rang-du-Fliers et Étaples-Le Touquet.</div>
+    <div class="actions">
+      <a href="https://www.berck-tourisme.com/fr/pratique/preparer-sa-venue/en-bus" target="_blank" rel="noopener">🔗 Horaires & itinéraires bus</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="name">🚆 En train</div>
+    <div class="meta">Gares de rattachement : Rang-du-Fliers - Verton - Berck (15 min en bus) et Étaples - Le Touquet.</div>
+    <div class="actions">
+      <a href="https://www.berck-tourisme.com/fr/pratique/preparer-sa-venue/en-train" target="_blank" rel="noopener">🔗 Horaires train & liaisons</a>
+    </div>
+  </div>
+
   <h3>⭐ Temps fort de l'année</h3>
   <div class="card">
     <div class="name">🪁 Rencontres Internationales de Cerfs-Volants</div>
@@ -675,7 +691,10 @@ const ZONES = {
         { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
       ],
       restaurants: [
-        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
+        { nom: "L'Avenue", type: "🌟 Le meilleur (recommandation Claudine)", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "Incontournable" },
+        { nom: "Sunset Beach", type: "Pieds dans le sable · plage", adresse: "Sur la plage de Berck", tel: "", horaires: "", note: "Demandez à être placé près du coucher de soleil — ambiance magique" },
+        { nom: "L'Alaska", type: "Fruits de mer", adresse: "1 rue de la Plage, Berck", tel: "", horaires: "", note: "Parfait pour les amateurs de poissons et fruits de mer" },
+        { nom: "La Grignote", type: "Local & convivial", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "L'adresse locale" }
       ]
     }
   },
@@ -692,7 +711,10 @@ const ZONES = {
         { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
       ],
       restaurants: [
-        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
+        { nom: "L'Avenue", type: "🌟 Le meilleur (recommandation Claudine)", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "Incontournable" },
+        { nom: "Sunset Beach", type: "Pieds dans le sable · plage", adresse: "Sur la plage de Berck", tel: "", horaires: "", note: "Demandez à être placé près du coucher de soleil — ambiance magique" },
+        { nom: "L'Alaska", type: "Fruits de mer", adresse: "1 rue de la Plage, Berck", tel: "", horaires: "", note: "Parfait pour les amateurs de poissons et fruits de mer" },
+        { nom: "La Grignote", type: "Local & convivial", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "L'adresse locale" }
       ]
     }
   },
@@ -710,7 +732,10 @@ const ZONES = {
         { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
       ],
       restaurants: [
-        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
+        { nom: "L'Avenue", type: "🌟 Le meilleur (recommandation Claudine)", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "Incontournable" },
+        { nom: "Sunset Beach", type: "Pieds dans le sable · plage", adresse: "Sur la plage de Berck", tel: "", horaires: "", note: "Demandez à être placé près du coucher de soleil — ambiance magique" },
+        { nom: "L'Alaska", type: "Fruits de mer", adresse: "1 rue de la Plage, Berck", tel: "", horaires: "", note: "Parfait pour les amateurs de poissons et fruits de mer" },
+        { nom: "La Grignote", type: "Local & convivial", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "L'adresse locale" }
       ]
     }
   },
@@ -727,7 +752,10 @@ const ZONES = {
         { nom: "Boulangerie Sophie", adresse: "Rue Carnot, Berck-sur-Mer", tel: "", horaires: "", note: "La boulangerie recommandée" }
       ],
       restaurants: [
-        { nom: "À compléter depuis vos préconisations Airbnb", adresse: "", tel: "", horaires: "" }
+        { nom: "L'Avenue", type: "🌟 Le meilleur (recommandation Claudine)", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "Incontournable" },
+        { nom: "Sunset Beach", type: "Pieds dans le sable · plage", adresse: "Sur la plage de Berck", tel: "", horaires: "", note: "Demandez à être placé près du coucher de soleil — ambiance magique" },
+        { nom: "L'Alaska", type: "Fruits de mer", adresse: "1 rue de la Plage, Berck", tel: "", horaires: "", note: "Parfait pour les amateurs de poissons et fruits de mer" },
+        { nom: "La Grignote", type: "Local & convivial", adresse: "Berck-sur-Mer", tel: "", horaires: "", note: "L'adresse locale" }
       ]
     }
   }
@@ -1263,6 +1291,13 @@ function copy(txt, btn){
       <div class="name">Cafetière à filtre</div>
       <div class="meta">La plupart des logements disposent aussi d'une <strong>cafetière à filtre</strong> en complément de la Senseo.</div>
     </div>
+
+    <h3>🔥 Radiateur — mode d'emploi</h3>
+    <div class="card">
+      <div class="meta">Si l'<strong>écran digital</strong> n'est pas allumé : appuyez sur le <strong>bouton Power à l'arrière</strong> du radiateur.</div>
+      <div class="meta" style="margin-top:6px">Une fois l'écran allumé : validez n'importe quelle date / heure proposée en appuyant sur le <strong>bouton du milieu</strong>.</div>
+      <div class="meta" style="margin-top:6px">Sélectionnez ensuite la <strong>température</strong> avec les flèches <strong>haut / bas</strong>. ✅</div>
+    </div>
   `;
 
   $('equip-data').innerHTML = html;
@@ -1353,13 +1388,32 @@ async function loadMeteo(){
       actions:[['🔗 nausicaa.fr','https://www.nausicaa.fr/'],['📍 Y aller','https://maps.google.com/?q=Nausicaa+Boulogne-sur-Mer']]},
     { cats:['sport','decouverte'], titre:'🏞️ Cap Blanc-Nez',
       meta:["Escalles / Sangatte — 1h30 de Berck en voiture","<strong>Grand Site de France</strong> : falaises de craie blanche, panorama sur l'Angleterre par temps clair, sentiers de randonnée, accès libre et gratuit."],
-      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-blanc-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Blanc+Nez']]}
+      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-blanc-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Blanc+Nez']]},
+    { cats:['sport','decouverte'], titre:'🏞️ Cap Gris-Nez',
+      meta:["Audinghen — 1h15 de Berck en voiture","Falaises emblématiques de la Côte d'Opale, le point de France le plus proche de l'Angleterre (28 km). Randonnées, phare, panoramas spectaculaires."],
+      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-gris-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Gris+Nez']]},
+    { cats:['decouverte','enfants'], titre:'🦭 Visite des phoques',
+      meta:["Observation des colonies de phoques gris et veaux-marins sur la plage de Berck / baie d'Authie — l'une des plus grandes colonies de France.","⚠️ <strong>Impératif : y aller à marée basse</strong> — c'est à ce moment que les phoques se reposent sur les bancs de sable. Consultez les horaires de marée avant votre visite.","💡 Respectez une distance de <strong>300 m minimum</strong> pour ne pas les déranger."],
+      actions:[['🌊 Horaires des marées','https://www.horaire-maree.fr/maree/berck-sur-mer/'],['🗺️ Itinéraire plage','https://www.google.com/maps/dir/?api=1&destination=Baie+Authie+Berck&travelmode=walking']]},
+    { cats:['sport','enfants'], titre:'🏎️ Karting de Berck',
+      meta:["Sensations fortes pour les grands et les enfants — circuit indoor / outdoor selon saison."],
+      actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Karting+Berck&travelmode=driving']]},
+    { cats:['sport','enfants'], titre:'🔫 Opal Laser (extérieur)',
+      meta:["Laser game en plein air — parfait pour une sortie en famille ou entre amis."],
+      actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Opal+Laser+Berck&travelmode=driving']]},
+    { cats:['sport'], titre:'⛳ Golf de Berck (parcours 9 trous)',
+      meta:["Plus au nord de Berck — parcours 9 trous en bord de mer."],
+      actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Golf+Berck+sur+Mer&travelmode=driving'],['🔗 En savoir +','https://www.golf-berck.fr/']]},
+    { cats:['enfants','decouverte'], titre:'⛳ Mini-golf de la Grande Roue',
+      meta:["Mini-golf saisonnier situé près de la Grande Roue, sur l'esplanade.","À faire en plus du Mambo (Place de l'Entonnoir)."],
+      actions:[['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Grande+Roue+Berck+Esplanade&travelmode=walking']]}
   ];
 
   // Bibliothèque de guides PDF/DOCX par slug/résidence
   const docBase = '/visites-berck/docs/';
   const GUIDES_COMMUNS = [
-    { nom:'🗺️ Plan de Berck — Office de tourisme', file:'https://www.berck-tourisme.com/fr/pratique/nos-brochures' },
+    { nom:'🗺️ Plan de Berck 2024 (PDF)', file:'/assets/plan-berck-2024.pdf' },
+    { nom:'🗺️ Plans &amp; brochures — Office de tourisme', file:'https://www.berck-tourisme.com/fr/pratique/nos-brochures' },
     { nom:'🚗 Balades hors de Berck', file: docBase + encodeURIComponent('Balade hors de Berck (1).pdf') },
     { nom:'☀️ Activités sportives hors été', file: docBase + encodeURIComponent('Activités sportives et loisirs à Berck hors été -.pdf') }
   ];
