@@ -794,25 +794,7 @@ const APPARTS = {
    Un appart sans entrée ici = message "à compléter"
 -----------------------------------------------------------*/
 const DATA = {
-  kitesurf: {
-    wifi:  { reseau: "À COMPLÉTER", password: "À COMPLÉTER" },
-    acces: "À COMPLÉTER : copier ici le texte d'accès envoyé aux voyageurs depuis Beds24 (sans code boîte à clé ni digicode — ceux-ci sont transmis à part).",
-    checkin:  "À partir de 16h",
-    checkout: "Avant 10h",
-    checkoutConsignes: [
-      "Fermer les fenêtres",
-      "Éteindre les lumières et le chauffage",
-      "Laisser les clés dans la boîte à clé"
-    ],
-    equipement: [
-      { cat:"🛏️ Confort",      items:["Lit queen size","Linge de lit fourni","Draps changés à chaque séjour"] },
-      { cat:"🍳 Cuisine",       items:["Plaques induction","Micro-ondes","Réfrigérateur","Cafetière Nespresso","Lave-vaisselle"] },
-      { cat:"🛁 Salle de bain", items:["Douche à l'italienne","Serviettes fournies"] },
-      { cat:"📺 Multimédia",    items:["TV connectée","WiFi fibre"] },
-      { cat:"🌊 Bord de mer",   items:["100m de la plage","Thème kitesurf"] }
-    ]
-  }
-  // Les 21 autres : à remplir après validation du prototype
+  // Plus d'entrée hardcodée ici : tout passe par APPART_INFO + blocs communs (linge, plaque, cafetières, radiateur)
 };
 
 /* =========================================================
@@ -1148,8 +1130,8 @@ function copy(txt, btn){
     <div class="card" style="border-color:var(--gold)">
       <div class="name">Dans cet appartement, le linge n'est pas inclus</div>
       <div class="meta">Vous pouvez commander un pack à l'avance (draps + serviettes) :</div>
-      <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>Pack lit double — 15 €</strong><br>Draps + 2 serviettes par personne (1 grande + 1 petite)</div>
-      <div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — 10 €</strong><br>Draps + 2 serviettes (1 grande + 1 petite)</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>Pack lit double — 15 €</strong><br>Draps + housse de couette + taies d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — 10 €</strong><br>Draps + housse de couette + taie d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>
       <a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (15 €) : ___\n- Pack lit simple (10 €) : ___')}" style="${btnStyle}">📩 Commander le pack</a>
     </div>
   ` : `
@@ -1198,9 +1180,11 @@ function copy(txt, btn){
 /* ----- ÉQUIPEMENT ---------------------------------------- */
 (function renderEquip(){
   const e = apData.equipement;
-  // Famille = seul appart avec plaque INDUCTION, les autres = VITRO-CÉRAMIQUE
-  const isInduction = apKey === 'famille';
-  const plaque = isInduction ? 'Plaque induction' : 'Plaque vitro-céramique';
+  // Règle plaque : Famille = induction · Jeanne = gaz · tous les autres = vitro-céramique
+  let plaqueType;
+  if (apKey === 'famille') plaqueType = 'Plaque à induction';
+  else if (apKey === 'jeanne') plaqueType = 'Plaque à gaz';
+  else plaqueType = 'Plaque vitro-céramique';
   const lingeInclus = !LINGE_NON_FOURNI.includes(apKey);
 
   let html = '';
@@ -1271,32 +1255,15 @@ function copy(txt, btn){
     html += TODO(`Fiche détaillée (surface, étage, équipements…) à compléter pour <strong>${ap.nom}</strong>. Claudine, envoie-moi le résumé Albert SAV et je l'intègre !`);
   }
 
-  // Bloc commun : astuce plaque (sécurité enfant) présent dans tous les apparts
+  // Bloc commun : liste des équipements (sans mode d'emploi — les modes d'emploi sont dans l'item "Guide équipements")
   html += `
-    <h3>🔒 Plaque de cuisson — sécurité enfant</h3>
+    <h3>🔥 Cuisine</h3>
     <div class="card">
-      <div class="name">${plaque}</div>
-      <div class="meta">Toutes nos plaques ont une <strong>touche sécurité enfant</strong> activée pour éviter les démarrages accidentels.</div>
-      <div class="meta" style="color:var(--gold-light);margin-top:6px">
-        💡 <strong>Astuce</strong> : si la plaque ne s'allume pas, posez simplement votre doigt sur le cadenas <strong>quelques secondes</strong> — c'est la seule façon de déverrouiller la sécurité enfant.
-      </div>
-    </div>
-
-    <h3>☕ Cafetières</h3>
-    <div class="card">
-      <div class="name">Senseo à dosettes</div>
-      <div class="meta">Une <strong>cafetière Senseo</strong> est fournie dans <strong>tous les logements</strong>. Dosettes de dépannage à votre arrivée.</div>
-    </div>
-    <div class="card">
-      <div class="name">Cafetière à filtre</div>
-      <div class="meta">La plupart des logements disposent aussi d'une <strong>cafetière à filtre</strong> en complément de la Senseo.</div>
-    </div>
-
-    <h3>🔥 Radiateur — mode d'emploi</h3>
-    <div class="card">
-      <div class="meta">Si l'<strong>écran digital</strong> n'est pas allumé : appuyez sur le <strong>bouton Power à l'arrière</strong> du radiateur.</div>
-      <div class="meta" style="margin-top:6px">Une fois l'écran allumé : validez n'importe quelle date / heure proposée en appuyant sur le <strong>bouton du milieu</strong>.</div>
-      <div class="meta" style="margin-top:6px">Sélectionnez ensuite la <strong>température</strong> avec les flèches <strong>haut / bas</strong>. ✅</div>
+      <ul style="margin:0;padding-left:20px">
+        <li>${plaqueType}</li>
+        <li>Cafetière Senseo</li>
+        <li>Cafetière à filtre (dans la plupart des logements)</li>
+      </ul>
     </div>
   `;
 
@@ -1625,6 +1592,47 @@ async function loadMeteo(){
   const hasMolotov = MOLOTOV_2.includes(apKey) || MOLOTOV_1.includes(apKey);
   const twoRemotes = MOLOTOV_2.includes(apKey);
 
+  // ----- Plaque de cuisson — mode d'emploi (adapté par appart)
+  let plaqueCard = '';
+  if (apKey === 'jeanne') {
+    plaqueCard = `
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="em">🔥</span> Plaque à gaz</div>
+        <div class="card">
+          <div class="name">Plaque à gaz</div>
+          <div class="meta">Votre cuisine est équipée d'une <strong>plaque à gaz</strong> classique. Allumez les brûleurs comme chez vous — aucune sécurité enfant à débloquer.</div>
+        </div>
+      </div>
+    `;
+  } else {
+    const nomPlaque = apKey === 'famille' ? 'Plaque à induction' : 'Plaque vitro-céramique';
+    plaqueCard = `
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="em">🔒</span> ${nomPlaque} — sécurité enfant</div>
+        <div class="card">
+          <div class="name">La plaque ne s'allume pas ?</div>
+          <div class="meta">La plaque a une <strong>touche sécurité enfant</strong> activée pour éviter les démarrages accidentels.</div>
+          <div class="meta" style="color:var(--gold-light);margin-top:6px">💡 <strong>Astuce</strong> : posez votre doigt sur le cadenas <strong>quelques secondes</strong> — c'est la seule façon de déverrouiller.</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // ----- Radiateur — mode d'emploi (commun à tous les apparts)
+  const radiateurCard = `
+    <div class="faq-group">
+      <div class="faq-group-title"><span class="em">🌡️</span> Radiateur électrique</div>
+      <div class="card">
+        <div class="name">Mode d'emploi</div>
+        <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Si l'écran digital n'est pas allumé : appuyez sur le <strong>bouton Power à l'arrière</strong>.</li>
+          <li>Une fois l'écran allumé : validez n'importe quelle date / heure proposée en appuyant sur le <strong>bouton du milieu</strong>.</li>
+          <li>Sélectionnez ensuite la <strong>température</strong> avec les flèches <strong>haut / bas</strong>. ✅</li>
+        </ol>
+      </div>
+    </div>
+  `;
+
   let molotovCard = '';
   if (hasMolotov) {
     const remoteTxt = twoRemotes
@@ -1659,13 +1667,9 @@ async function loadMeteo(){
     `;
   }
 
-  if (!apFaq.length && !hasMolotov) {
-    box.innerHTML = TODO(`Pas encore de guide pratique pour <strong>${ap.nom}</strong>. Les descriptions Trello seront ajoutées prochainement.`);
-    return;
-  }
   if (!apFaq.length) {
-    // Pas de FAQ Trello, mais on a quand même le Molotov à afficher
-    box.innerHTML = molotovCard;
+    // Pas de FAQ Trello — on affiche quand même Molotov + Plaque + Radiateur
+    box.innerHTML = molotovCard + plaqueCard + radiateurCard;
     return;
   }
 
@@ -1702,8 +1706,8 @@ async function loadMeteo(){
     else autre.push(c);
   }
 
-  /* Rendu */
-  let html = molotovCard; // Molotov en tête si applicable
+  /* Rendu : Molotov + Plaque + Radiateur en tête, puis FAQ Trello groupée par thème */
+  let html = molotovCard + plaqueCard + radiateurCard;
   for (const g of GROUPS) {
     if (!groups[g.id].length) continue;
     html += `<div class="faq-group">
