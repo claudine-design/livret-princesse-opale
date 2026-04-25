@@ -540,6 +540,7 @@
     <a class="tile" onclick="open_('adresses')"><svg class="ico"><use href="#ico-pin"/></svg><span class="lbl">Adresses utiles</span></a>
     <a class="tile" onclick="open_('livredor')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Livre d'or</span></a>
     <a class="tile" onclick="open_('guide')"><svg class="ico"><use href="#ico-bulb"/></svg><span class="lbl">Guide équipements</span></a>
+    <a class="tile" onclick="open_('faq')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Questions fréquentes</span></a>
     <a class="tile" onclick="open_('autres')"><svg class="ico"><use href="#logo-pod"/></svg><span class="lbl">Autres logements Princesse d'Opale</span></a>
   </div>
 </div>
@@ -659,6 +660,12 @@
   <h2>💡 Guide pratique des équipements</h2>
   <p style="font-size:14px;text-align:center;color:var(--muted);margin-bottom:16px">Les réponses aux questions les plus courantes, pour que votre séjour soit serein.</p>
   <div id="guide-data"></div>
+</div>
+
+<div class="page" id="p-faq">
+  <h2>❓ Questions fréquentes des voyageurs</h2>
+  <p style="font-size:14px;text-align:center;color:var(--muted);margin-bottom:16px">Les questions que d'autres voyageurs nous ont déjà posées — peut-être que vous vous les posez aussi !</p>
+  <div id="faq-data"></div>
 </div>
 
 <div class="page" id="p-autres">
@@ -923,7 +930,7 @@ const APPART_INFO = {
     videoAcces: 'https://drive.google.com/file/d/14nBlb8KgwoHIzeLN7z8mi9n9eAP6CuAq/view?usp=sharing',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
     chauffage: 'Électrique — écran digital (bouton power à l\'arrière). Validez n\'importe quelle date/heure au bouton du milieu, puis ajustez la température avec les flèches haut/bas.',
-    equipements: ['Machine à laver','Douche','Balcon / terrasse','Machine à café'],
+    equipements: ['Machine à laver','Douche','Balcon / terrasse','Machine à café','🔥 Brasero (extérieur)'],
     fournis: ['Serviettes','Café','Thé','Draps de lit','Gels douche / shampoings'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '10 min à pied de la gare routière'
@@ -967,7 +974,7 @@ const APPART_INFO = {
     parking: '✅ Parking sécurisé inclus.',
     videoAcces: 'https://drive.google.com/file/d/1tc8QjWR0X3tYzfez82oHtJ4DMdQ2uLhw/view?usp=drive_link',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🔥 Brasero (extérieur)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1034,7 +1041,7 @@ const APPART_INFO = {
     ascenseur: false,
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','Sauna','Balnéo'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','Sauna','Balnéo','🔥 Brasero (extérieur)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1061,7 +1068,7 @@ const APPART_INFO = {
     parking: '✅ Parking couvert n°206 inclus (résidence Albatros, rue Saint-Louis).',
     videoAcces: 'https://drive.google.com/file/d/1AFgKVhahrxvljkL7vVa8ZU1-zA0BgHwo/view?usp=sharing',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','Balnéo'],
+    equipements: ['Lave-vaisselle','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','Balnéo'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1130,7 +1137,7 @@ const APPART_INFO = {
     ascenseur: false,
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Douche','Machine à café Senseo','Ventilateur'],
+    equipements: ['Lave-vaisselle','Douche','Machine à café Senseo','Ventilateur'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '10 min à pied de la gare routière'
   },
@@ -1157,7 +1164,7 @@ const APPART_INFO = {
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité.',
     videoAcces: 'https://drive.google.com/file/d/1DcKUvgC95o72FmCf8Wc-KeCE-chpgV4I/view?usp=drive_link',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🔥 Brasero (extérieur)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1171,11 +1178,39 @@ const APPART_INFO = {
     ascenseur: false,
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🍖 Barbecue (extérieur)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
+  },
+
+  // ===== Famille (Le 23) =====
+  famille: {
+    typeLogement: 'Grand appartement 3 chambres',
+    surface: '70 m²',
+    lits: '6+ couchages · 3 chambres',
+    etage: 'À préciser',
+    ascenseur: false,
+    parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
+    videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
+    equipements: ['Machine à laver','Lave-vaisselle','Douche','Machine à café (1 Senseo + 1 à filtre)','Plaque induction'],
+    proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: '15 min à pied de la gare routière'
+  },
+
+  // ===== Face Mer (1 rue de la Plage) =====
+  facemer: {
+    typeLogement: 'Appartement',
+    surface: 'À préciser',
+    lits: 'À préciser',
+    etage: '2e étage',
+    ascenseur: false,
+    parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
+    videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
+    equipements: ['Machine à laver','Lave-vaisselle','Douche','Machine à café (1 Senseo + 1 à filtre)','Vue mer'],
+    proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: '5 min à pied de la gare routière'
   }
-  // Encore à compléter : famille, facemer, reserve (fiches Albert non reçues pour famille/reserve)
+  // Encore à compléter : reserve (fiche Albert non reçue)
 };
 
 function scrub(text){
@@ -1420,14 +1455,18 @@ function copy(txt, btn){
   };
   const btnStyle = 'display:inline-block;margin-top:8px;padding:7px 14px;background:var(--gold);color:var(--bg);text-decoration:none;border-radius:7px;font-family:Cinzel,serif;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase';
 
+  // Hamac n'a que des lits doubles (chambre 160 + canapé-lit 140) → pas de pack simple
+  const noPackSimple = ['hamac'].includes(apKey);
+  const packSimpleHTML = noPackSimple ? '' : `<div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — 10 €</strong><br>Draps + housse de couette + taie d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>`;
+  const packSimpleMail = noPackSimple ? '' : '\n- Pack lit simple (10 €) : ___';
   const lingeCard = lingeEnOption ? `
     <h3>🛏️ Pack linge — option</h3>
     <div class="card" style="border-color:var(--gold)">
       <div class="name">Dans cet appartement, le linge n'est pas inclus</div>
       <div class="meta">Vous pouvez commander un pack à l'avance (draps + serviettes) :</div>
       <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>Pack lit double — 15 €</strong><br>Draps + housse de couette + taies d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>
-      <div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — 10 €</strong><br>Draps + housse de couette + taie d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>
-      <a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (15 €) : ___\n- Pack lit simple (10 €) : ___')}" style="${btnStyle}">📩 Commander le pack</a>
+      ${packSimpleHTML}
+      <a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (15 €) : ___' + packSimpleMail)}" style="${btnStyle}">📩 Commander le pack</a>
     </div>
   ` : `
     <h3>🛏️ Linge</h3>
@@ -1560,6 +1599,34 @@ function copy(txt, btn){
         <li>Cafetière à filtre (dans la plupart des logements)</li>
       </ul>
     </div>
+
+    <h3>🍽️ Vaisselle &amp; couverts</h3>
+    <div class="card">
+      <div class="meta"><strong>De quoi cuisiner et recevoir confortablement</strong> dans tous les logements :</div>
+      <ul style="margin:8px 0;padding-left:20px;line-height:1.6">
+        <li><strong>Grand évier</strong></li>
+        <li>Assiettes plates &amp; petites assiettes</li>
+        <li>Verres à eau · <strong>verres à champagne</strong> 🥂</li>
+        <li>Couverts complets pour toute la tablée</li>
+        <li>Casseroles, poêles, ustensiles de cuisine</li>
+      </ul>
+    </div>
+
+    <h3>🎁 Vos paniers à l'arrivée</h3>
+    <div class="card">
+      <div class="meta" style="color:var(--gold-light)"><strong>🧹 Petit panier d'accueil</strong></div>
+      <ul style="margin:6px 0 12px 0;padding-left:20px;line-height:1.6">
+        <li>Un torchon</li>
+        <li>Une éponge</li>
+        <li>Du liquide vaisselle</li>
+      </ul>
+      <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>💛 Petit panier de bienvenue</strong></div>
+      <ul style="margin:6px 0 0 0;padding-left:20px;line-height:1.6">
+        <li>Un peu de café et de thé</li>
+        <li>Quelques dosettes de sucre</li>
+        <li>Un petit cadeau de la part de Claudine 🎀</li>
+      </ul>
+    </div>
   `;
 
   $('equip-data').innerHTML = html;
@@ -1603,72 +1670,79 @@ async function loadMeteo(){
 
 /* ----- ACTIVITÉS À BERCK --------------------------------- */
 (function renderActivites(){
-  // Catalogue unifié : chaque activité appartient à 1 ou plusieurs catégories
-  // Catégories : 'sport' · 'enfants' · 'decouverte'
+  // Catalogue unifié — 3 familles : 'sport-berck' · 'interieur-berck' · 'exterieur-alentours'
+  // (filtre transversal possible via 'enfants')
   const ACTIVITES = [
-    { cats:['sport','decouverte'], titre:'🪁 Opale Kite — Jérôme Buselin ⭐',
+    /* ─── COUP DE CŒUR PARTENAIRES ─── */
+    { cats:['sport-berck'], titre:'🪁 Opale Kite — Jérôme Buselin ⭐',
       meta:["<strong>Coup de cœur de votre hôte</strong> 💛","<em>« Le kite, c'est ma passion depuis toujours — 🏆 <strong>Championne du Monde de Kite Mountain Board</strong>, <strong>vainqueur du Mondial du Vent 2005 en kitesurf</strong>, participation aux <strong>étapes de la Coupe du Monde de kitesurf</strong>, <strong>ex-membre de l'Équipe de France de freestyle kitesurf</strong>. Jérôme Buselin est un ami avec lequel j'ai beaucoup navigué : super moniteur, je le recommande les yeux fermés. »</em>","École officielle de kitesurf de Berck depuis 2011 — cours et initiations sur la Grande Plage."],
       actions:[['🔗 opale-kite.fr','https://www.opale-kite.fr/'],['📍 Y aller','https://maps.google.com/?q=Opale+Kite+Berck']]},
-    { cats:['sport','decouverte'], titre:'🏖️ Char à voile — Éole Club',
-      meta:["Berck est le <strong>berceau du char à voile</strong> — sensations garanties sur la grande plage.","Éole Club — école officielle de char à voile de Berck."],
-      actions:[['🔗 eoleclub.fr','https://eoleclub.fr/'],['📍 Y aller','https://maps.google.com/?q=Eole+Club+Berck']]},
-    { cats:['sport','enfants'], titre:'🏊 Piscine Agora — Espace bien-être',
-      meta:["Esplanade Parmentier — Front de mer, 62600 Berck","<strong>Espace bien-être complet</strong> : 8 lignes d'eau, bassin à vagues, <strong>toboggan</strong>, <strong>jacuzzi</strong>, <strong>sauna</strong>","Ouvert toute l'année"],
-      actions:[['📞 03 21 89 87 08','tel:0321898708'],['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Piscine+Agora+Berck&travelmode=walking'],['🔗 Site','https://www.ca2bm.fr/loisirs-culture/piscine-intercommunale-de-berck-sur-mer/']]},
-    { cats:['enfants','decouverte'], titre:'🎳 Bowling Agora',
-      meta:["1 Esplanade Parmentier, 62600 Berck — même complexe que la piscine","8 pistes · restaurant vue panoramique · beach bar"],
-      actions:[['📞 03 21 89 87 08','tel:0321898708'],['📍 Y aller','https://maps.google.com/?q=Bowling+Berck+Esplanade+Parmentier']]},
-    { cats:['enfants','decouverte'], titre:'🚲 Rosalie Beach — rosalies &amp; vélos',
-      meta:["72 Esplanade Parmentier, 62600 Berck-sur-Mer","🕒 Tous les jours 9h → 18h30 (1er avril → 1er septembre)","👶 Enfants dès 2 ans (mini 1 m)"],
-      actions:[['📞 07 86 79 47 96','tel:0786794796'],['📍 Y aller','https://maps.google.com/?q=Rosalie+Beach+Berck'],['🔗 Facebook','https://fr-fr.facebook.com/rosalie.beach.berck/']]},
-    { cats:['sport'], titre:'🧘 Yoga & Reiki — Florence Couturier ⭐',
+    { cats:['sport-berck'], titre:'🧘 Yoga & Reiki — Florence Couturier ⭐',
       meta:["<strong>Coup de cœur de votre hôte</strong> 💛","<em>« Florence est une amie que je recommande chaleureusement — professeure de yoga et praticienne de reiki. »</em>","<strong>60 €</strong> la séance — à domicile dans votre appartement, ou directement sur la plage de Berck.","Réservation en ligne via Médoucine (plateforme certifiée)."],
       actions:[['🗓️ Réserver','https://www.medoucine.com/consultation/berck/florence-couturier-bouville/19358']]},
-    { cats:['sport','enfants'], titre:'🤸 Parc de jeux &amp; crossfit gratuit',
-      meta:["Parc de jeux et ateliers crossfit en plein air à Berck — accès libre."],
-      actions:[['📄 Le dépliant','/visites-berck/docs/Parc%20de%20jeux%20et%20ateliers%20crossfit%20gratuit%20%20à%20Berck_.docx']]},
-    { cats:['decouverte','enfants'], titre:'🎰 Casino de Berck',
-      meta:["Machines à sous, jeux de table, ambiance feutrée — face à la mer.","Parfait pour une soirée animée."],
-      actions:[['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Casino+Berck+sur+Mer&travelmode=walking']]},
-    { cats:['decouverte','enfants'], titre:'🎬 Cinéma Le Styx',
-      meta:["Le cinéma de Berck-sur-Mer — films récents et séances toute l'année."],
-      actions:[['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Cinema+Le+Styx+Berck&travelmode=walking'],['🔗 Programme','https://www.google.com/search?q=cinema+Le+Styx+Berck+programme']]},
-    { cats:['decouverte'], titre:'🏛️ Musée Opale Sud',
-      meta:["60 rue de l'Impératrice, 62600 Berck-sur-Mer","🕒 Mar après-midi → dim · 10-12h / 14-18h · Fermé lundi","🎟️ 4 € · réduit 2,50 € · gratuit -18 ans · <em>gratuit 1er dim. du mois</em>"],
-      actions:[['🔗 musee.berck.fr','https://musee.berck.fr/'],['📍 Y aller','https://maps.google.com/?q=Musee+Opale+Sud+60+rue+imperatrice+Berck']]},
-    { cats:['enfants','decouverte'], titre:'⛳ Mini-golf Le Mambo',
-      meta:["Place de l'Entonnoir, Berck-sur-Mer","18 trous + voitures & motos électriques pour enfants (3-12 ans) · terrasses intérieure chauffée et extérieure"],
-      actions:[['📍 Y aller','https://maps.google.com/?q=Le+Mambo+mini+golf+Berck']]},
-    { cats:['enfants','sport','decouverte'], titre:'🎢 Parc Bagatelle (Merlimont)',
-      meta:["940 Route de Berck, 62155 Merlimont — 15 min de Berck","40+ attractions familiales : auto-tamponneuses, grande roue, carrousel…","🗓️ Ouvert du 11 avril au 1<sup>er</sup> novembre"],
-      actions:[['📞 03 21 89 09 90','tel:0321890990'],['🔗 parcbagatelle.com','https://www.parcbagatelle.com/fr'],['📍 Y aller','https://maps.google.com/?q=Parc+Bagatelle+Merlimont']]},
-    { cats:['enfants','sport'], titre:"🌳 Laby'parc (Saint-Josse)",
-      meta:["Chemin des Ardronnières, 62170 Saint-Josse — 20 min de Berck","Parc nature : toboggan UltraSpeed, toboggan spiralé, parcours du combattant, accro-spider","☀️ Ouvert l'été uniquement"],
-      actions:[['📍 Y aller','https://maps.google.com/?q=Labyparc+Du+Touquet+Saint+Josse']]},
-    { cats:['enfants','decouverte'], titre:'🐠 Nausicaá — Centre National de la Mer (Boulogne-sur-Mer)',
-      meta:["Boulevard Sainte-Beuve, 62203 Boulogne-sur-Mer — 50 min de Berck","Le <strong>plus grand aquarium d'Europe</strong> — requins, phoques, poissons tropicaux, Grand Large.","🕒 Tous les jours 9h30 → 18h30 (fermeture annuelle 5 → 30 janvier)","🎟️ Adulte 31,50 € · Enfant 3-12 ans 24,50 € · Gratuit -3 ans"],
-      actions:[['🔗 nausicaa.fr','https://www.nausicaa.fr/'],['📍 Y aller','https://maps.google.com/?q=Nausicaa+Boulogne-sur-Mer']]},
-    { cats:['sport','decouverte'], titre:'🏞️ Cap Blanc-Nez',
-      meta:["Escalles / Sangatte — 1h30 de Berck en voiture","<strong>Grand Site de France</strong> : falaises de craie blanche, panorama sur l'Angleterre par temps clair, sentiers de randonnée, accès libre et gratuit."],
-      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-blanc-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Blanc+Nez']]},
-    { cats:['sport','decouverte'], titre:'🏞️ Cap Gris-Nez',
-      meta:["Audinghen — 1h15 de Berck en voiture","Falaises emblématiques de la Côte d'Opale, le point de France le plus proche de l'Angleterre (28 km). Randonnées, phare, panoramas spectaculaires."],
-      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-gris-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Gris+Nez']]},
-    { cats:['decouverte','enfants'], titre:'🦭 Visite des phoques',
-      meta:["Observation des colonies de phoques gris et veaux-marins sur la plage de Berck / baie d'Authie — l'une des plus grandes colonies de France.","⚠️ <strong>Impératif : y aller à marée basse</strong> — c'est à ce moment que les phoques se reposent sur les bancs de sable. Consultez les horaires de marée avant votre visite.","💡 Respectez une distance de <strong>300 m minimum</strong> pour ne pas les déranger."],
-      actions:[['🌊 Horaires des marées','https://www.horaire-maree.fr/maree/berck-sur-mer/'],['🗺️ Itinéraire plage','https://www.google.com/maps/dir/?api=1&destination=Baie+Authie+Berck&travelmode=walking']]},
-    { cats:['sport','enfants'], titre:'🏎️ Karting de Berck',
-      meta:["Sensations fortes pour les grands et les enfants — circuit indoor / outdoor selon saison."],
-      actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Karting+Berck&travelmode=driving']]},
-    { cats:['sport','enfants'], titre:'🔫 Opal Laser (extérieur)',
-      meta:["Laser game en plein air — parfait pour une sortie en famille ou entre amis."],
-      actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Opal+Laser+Berck&travelmode=driving']]},
-    { cats:['sport'], titre:'⛳ Golf de Berck (parcours 9 trous)',
+
+    /* ─── SPORTIVES À BERCK ─── */
+    { cats:['sport-berck'], titre:'🏖️ Char à voile — Éole Club',
+      meta:["Berck est le <strong>berceau du char à voile</strong> — sensations garanties sur la grande plage.","Éole Club — école officielle de char à voile de Berck."],
+      actions:[['🔗 eoleclub.fr','https://eoleclub.fr/'],['📍 Y aller','https://maps.google.com/?q=Eole+Club+Berck']]},
+    { cats:['sport-berck','enfants'], titre:'🚲 Rosalie Beach — rosalies &amp; vélos',
+      meta:["72 Esplanade Parmentier, 62600 Berck-sur-Mer","🕒 Tous les jours 9h → 18h30 (1<sup>er</sup> avril → 1<sup>er</sup> septembre)","👶 Enfants dès 2 ans (mini 1 m)","<em>L'activité <strong>fun et rigolote</strong> par excellence des plages du Nord — on en croise aussi beaucoup en Belgique. À faire absolument <strong>en famille</strong> : ceux qui veulent <strong>pédaler à fond</strong> peuvent s'y donner à cœur joie, et ceux qui veulent <strong>pédaler doucement</strong> se laisseront porter. Tout le monde en profite ! 🚲</em>"],
+      actions:[['📞 07 86 79 47 96','tel:0786794796'],['📍 Y aller','https://maps.google.com/?q=Rosalie+Beach+Berck'],['🔗 Facebook','https://fr-fr.facebook.com/rosalie.beach.berck/']]},
+    { cats:['sport-berck','enfants'], titre:'🤸 CrossFit gratuit — 3 zones en ville',
+      meta:["La ville de Berck-sur-Mer s'est dotée d'équipements de CrossFit en plein air, répartis sur 3 zones :","📍 <strong>Avenue du 8 mai</strong>","📍 <strong>Boulevard de Paris</strong>","📍 <strong>Jardin du Tortillard</strong>","🆓 Accès libre et gratuit toute l'année."],
+      actions:[['📍 Av. du 8 mai','https://maps.google.com/?q=Avenue+du+8+mai+Berck'],['📍 Bd de Paris','https://maps.google.com/?q=Boulevard+de+Paris+Berck'],['📍 Jardin du Tortillard','https://maps.google.com/?q=Jardin+du+Tortillard+Berck']]},
+    { cats:['sport-berck','enfants','decouverte'], titre:'🥏 Disc Golf — au bois de Berck',
+      meta:["Parcours de <strong>disc golf</strong> dans le bois de Berck — discipline qui se joue avec un frisbee, sur le principe du golf.","🌟 <strong>Site reconnu</strong> : les pratiquants réguliers viennent de loin pour jouer ici.","Accès libre — emporter ses frisbees (location possible auprès de l'Office de tourisme)."],
+      actions:[['📍 Y aller','https://maps.google.com/?q=Disc+Golf+Berck'],['🔗 En savoir +','https://www.berck-tourisme.com/fr/sortir-et-se-divertir']]},
+    { cats:['sport-berck'], titre:'⛳ Golf de Berck (parcours 9 trous)',
       meta:["Plus au nord de Berck — parcours 9 trous en bord de mer."],
       actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Golf+Berck+sur+Mer&travelmode=driving'],['🔗 En savoir +','https://www.golf-berck.fr/']]},
-    { cats:['enfants','decouverte'], titre:'⛳ Mini-golf de la Grande Roue',
-      meta:["Mini-golf saisonnier situé près de la Grande Roue, sur l'esplanade.","À faire en plus du Mambo (Place de l'Entonnoir)."],
-      actions:[['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Grande+Roue+Berck+Esplanade&travelmode=walking']]}
+    { cats:['sport-berck','enfants'], titre:'🦭 Visite des phoques',
+      meta:["Observation des colonies de phoques gris et veaux-marins sur la plage de Berck / baie d'Authie — l'une des plus grandes colonies de France.","⚠️ <strong>Impératif : y aller à marée basse</strong> — c'est à ce moment que les phoques se reposent sur les bancs de sable. Consultez les horaires de marée avant votre visite.","💡 Respectez une distance de <strong>300 m minimum</strong> pour ne pas les déranger."],
+      actions:[['🌊 Horaires des marées','https://www.horaire-maree.fr/maree/berck-sur-mer/'],['🗺️ Itinéraire plage','https://www.google.com/maps/dir/?api=1&destination=Baie+Authie+Berck&travelmode=walking']]},
+    { cats:['sport-berck','enfants'], titre:'🔫 Opal Laser (extérieur)',
+      meta:["Laser game en plein air — parfait pour une sortie en famille ou entre amis."],
+      actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Opal+Laser+Berck&travelmode=driving']]},
+    { cats:['sport-berck','enfants'], titre:'🏎️ Karting de Berck',
+      meta:["Sensations fortes pour les grands et les enfants — circuit indoor / outdoor selon saison."],
+      actions:[['🗺️ Itinéraire','https://www.google.com/maps/dir/?api=1&destination=Karting+Berck&travelmode=driving']]},
+    { cats:['sport-berck','enfants'], titre:'⛳ Mini-golf Le Mambo',
+      meta:["Place de l'Entonnoir, Berck-sur-Mer (à côté de la Grande Roue, sur l'esplanade)","18 trous · voitures &amp; motos électriques pour enfants (3-12 ans) · terrasses intérieure chauffée et extérieure"],
+      actions:[['📍 Y aller','https://maps.google.com/?q=Le+Mambo+mini+golf+Berck']]},
+
+    /* ─── EN INTÉRIEUR À BERCK ─── */
+    { cats:['interieur-berck','sport-berck','enfants'], titre:'🏊 Piscine Agora — Espace bien-être',
+      meta:["Esplanade Parmentier — Front de mer, 62600 Berck","<strong>Espace bien-être complet</strong> : 8 lignes d'eau, bassin à vagues, <strong>toboggan</strong>, <strong>jacuzzi</strong>, <strong>sauna</strong>","Ouvert toute l'année"],
+      actions:[['📞 03 21 89 87 08','tel:0321898708'],['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Piscine+Agora+Berck&travelmode=walking'],['🔗 Site','https://www.ca2bm.fr/loisirs-culture/piscine-intercommunale-de-berck-sur-mer/']]},
+    { cats:['interieur-berck','enfants'], titre:'🎳 Bowling Agora',
+      meta:["1 Esplanade Parmentier, 62600 Berck — même complexe que la piscine","8 pistes · restaurant vue panoramique · beach bar"],
+      actions:[['📞 03 21 89 87 08','tel:0321898708'],['📍 Y aller','https://maps.google.com/?q=Bowling+Berck+Esplanade+Parmentier']]},
+    { cats:['interieur-berck','enfants'], titre:'🎬 Les Cinos — cinéma de Berck',
+      meta:["Le cinéma de Berck-sur-Mer — <strong>plusieurs salles</strong>, films récents et séances toute l'année."],
+      actions:[['🗺️ Itinéraire à pied','https://www.google.com/maps/dir/?api=1&destination=Cinema+Cinos+Berck&travelmode=walking'],['🔗 Programme','https://www.google.com/search?q=cinema+Cinos+Berck+programme']]},
+    { cats:['interieur-berck'], titre:'🏛️ Musée Opale Sud',
+      meta:["60 rue de l'Impératrice, 62600 Berck-sur-Mer","🕒 Mar après-midi → dim · 10-12h / 14-18h · Fermé lundi","🎟️ 4 € · réduit 2,50 € · gratuit -18 ans · <em>gratuit 1<sup>er</sup> dim. du mois</em>"],
+      actions:[['🔗 musee.berck.fr','https://musee.berck.fr/'],['📍 Y aller','https://maps.google.com/?q=Musee+Opale+Sud+60+rue+imperatrice+Berck']]},
+
+    /* ─── EXTÉRIEUR / ALENTOURS ─── */
+    { cats:['exterieur-alentours','enfants'], titre:'🎡 BiPark — parc d\'attractions familial',
+      meta:["Parc d'attractions près de Berck, idéal pour les <strong>familles avec enfants jusqu'à 14-15 ans</strong>.","Petites attractions, ambiance détendue — <strong>pas de grosses structures</strong> comme à Bagatelle.","💰 <strong>Tarifs accessibles</strong> — bon plan pour une demi-journée nature et fun."],
+      actions:[['📍 Y aller','https://maps.google.com/?q=BiPark+Berck'],['🔗 En savoir +','https://www.google.com/search?q=BiPark+Berck']]},
+    { cats:['exterieur-alentours','enfants'], titre:'🎢 Parc Bagatelle (Merlimont)',
+      meta:["940 Route de Berck, 62155 Merlimont — 15 min de Berck","40+ attractions familiales : auto-tamponneuses, grande roue, carrousel…","🗓️ Ouvert du 11 avril au 1<sup>er</sup> novembre"],
+      actions:[['📞 03 21 89 09 90','tel:0321890990'],['🔗 parcbagatelle.com','https://www.parcbagatelle.com/fr'],['📍 Y aller','https://maps.google.com/?q=Parc+Bagatelle+Merlimont']]},
+    { cats:['exterieur-alentours','enfants'], titre:"🌳 Laby'parc (Saint-Josse)",
+      meta:["Chemin des Ardronnières, 62170 Saint-Josse — 20 min de Berck","Parc nature : toboggan UltraSpeed, toboggan spiralé, parcours du combattant, accro-spider","☀️ Ouvert l'été uniquement"],
+      actions:[['📍 Y aller','https://maps.google.com/?q=Labyparc+Du+Touquet+Saint+Josse']]},
+    { cats:['exterieur-alentours','enfants'], titre:'🐠 Nausicaá — Centre National de la Mer (Boulogne-sur-Mer)',
+      meta:["Boulevard Sainte-Beuve, 62203 Boulogne-sur-Mer — 50 min de Berck","Le <strong>plus grand aquarium d'Europe</strong> — requins, phoques, poissons tropicaux, Grand Large.","🕒 Tous les jours 9h30 → 18h30 (fermeture annuelle 5 → 30 janvier)","🎟️ Adulte 31,50 € · Enfant 3-12 ans 24,50 € · Gratuit -3 ans"],
+      actions:[['🔗 nausicaa.fr','https://www.nausicaa.fr/'],['📍 Y aller','https://maps.google.com/?q=Nausicaa+Boulogne-sur-Mer']]},
+    { cats:['exterieur-alentours'], titre:'🏞️ Cap Blanc-Nez',
+      meta:["Escalles / Sangatte — 1h30 de Berck en voiture","<strong>Grand Site de France</strong> : falaises de craie blanche, panorama sur l'Angleterre par temps clair, sentiers de randonnée, accès libre et gratuit."],
+      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-blanc-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Blanc+Nez']]},
+    { cats:['exterieur-alentours'], titre:'🏞️ Cap Gris-Nez',
+      meta:["Audinghen — 1h15 de Berck en voiture","Falaises emblématiques de la Côte d'Opale, le point de France le plus proche de l'Angleterre (28 km). Randonnées, phare, panoramas spectaculaires."],
+      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-gris-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Gris+Nez']]}
   ];
 
   // Bibliothèque de guides PDF/DOCX par slug/résidence
@@ -1722,9 +1796,10 @@ async function loadMeteo(){
   $('activites-data').innerHTML = `
     <div class="tabs">
       <button class="tab active" data-filter="all">Tout</button>
-      <button class="tab" data-filter="sport">🏃 Sport</button>
-      <button class="tab" data-filter="enfants">👶 Enfants</button>
-      <button class="tab" data-filter="decouverte">🌟 Découverte</button>
+      <button class="tab" data-filter="sport-berck">🏃 Sportives à Berck</button>
+      <button class="tab" data-filter="interieur-berck">🏠 Intérieur à Berck</button>
+      <button class="tab" data-filter="exterieur-alentours">🚗 Aux alentours</button>
+      <button class="tab" data-filter="enfants">👶 Avec enfants</button>
     </div>
     <div id="activites-list">
       ${ACTIVITES.map(renderCard).join('')}
@@ -1921,8 +1996,9 @@ async function loadMeteo(){
         <div class="faq-group-title"><span class="em">🔒</span> ${nomPlaque} — sécurité enfant</div>
         <div class="card">
           <div class="name">La plaque ne s'allume pas ?</div>
-          <div class="meta">La plaque a une <strong>touche sécurité enfant</strong> activée pour éviter les démarrages accidentels.</div>
-          <div class="meta" style="color:var(--gold-light);margin-top:6px">💡 <strong>Astuce</strong> : posez votre doigt sur le cadenas <strong>quelques secondes</strong> — c'est la seule façon de déverrouiller.</div>
+          <div class="meta">👶 <strong>Sécurité enfant activée</strong> — la plaque est verrouillée par défaut pour éviter les démarrages accidentels (très utile si vous voyagez avec des enfants).</div>
+          <div class="meta" style="color:var(--gold-light);margin-top:6px">💡 <strong>Pour déverrouiller</strong> : posez votre doigt sur l'icône cadenas <strong>quelques secondes</strong> jusqu'à ce que le verrou s'éteigne. C'est la seule façon de l'utiliser.</div>
+          <div class="meta" style="margin-top:6px">🔁 La sécurité se réactive automatiquement après chaque utilisation — pratique pour les familles avec jeunes enfants.</div>
         </div>
       </div>
     `;
@@ -2047,6 +2123,82 @@ async function loadMeteo(){
   html += `<p style="font-size:12px;color:var(--muted);margin-top:16px;text-align:center;font-style:italic">Ces réponses sont rédigées par Claudine elle-même. Si votre question n'y figure pas, contactez la conciergerie via la rubrique « Signaler un problème ».</p>`;
 
   box.innerHTML = html;
+})();
+
+/* ----- QUESTIONS FRÉQUENTES VOYAGEURS -------------------- */
+(function renderFaq(){
+  const apHasAscenseur = (APPART_INFO[apKey] && APPART_INFO[apKey].ascenseur) ? true : false;
+  const apHasParkingPrive = APPART_INFO[apKey] && /parking.*inclus|✅/i.test(APPART_INFO[apKey].parking || '');
+  const lingeInclus = !LINGE_NON_FOURNI.includes(apKey);
+
+  const QR = [
+    {
+      em:'🛏️', q:'Le linge de lit et les serviettes sont-ils fournis ?',
+      r: lingeInclus
+        ? `Oui ! Dans <strong>${esc(ap.nom)}</strong>, draps et serviettes sont <strong>inclus</strong>. Si vous êtes 2 et préférez des lits séparés, c'est possible (+10 € de blanchisserie) — voir l'item Check-in / Check-out.`
+        : `Dans <strong>${esc(ap.nom)}</strong>, le linge n'est pas inclus, mais vous pouvez commander un <strong>pack à 15 €</strong> (draps + couette + 2 serviettes par personne). Voir l'item Check-in / Check-out pour commander.`
+    },
+    {
+      em:'🚗', q:'Y a-t-il un parking ?',
+      r: apHasParkingPrive
+        ? `Oui, votre logement bénéficie d'un <strong>parking privatif inclus</strong>. Voir l'item Accès au logement pour les détails et la vidéo.`
+        : `Pas de parking privé, mais vous pouvez vous garer dans la rue. ⚠️ <strong>Stationnement payant</strong> du 1<sup>er</sup> mai au 30 septembre + vacances de Toussaint, avec la <strong>1<sup>re</sup> heure gratuite</strong>. En basse saison : gratuit. Astuce : essayez le <strong>parking du stade</strong> à proximité, ou prenez un abonnement <strong>Prestopark</strong> (20 €/semaine).`
+    },
+    {
+      em:'🏥', q:'En cas de souci pendant le séjour, qui contacter ?',
+      r:`Écrivez-nous à <strong>princessedopale@gmail.com</strong> via l'item <strong>Signaler un problème</strong> — votre message arrive directement à notre Conciergerie. En cas d'urgence vitale, l'item <strong>Contact d'urgence</strong> regroupe tous les numéros : Pompiers <strong>18</strong>, SAMU <strong>15</strong>, Police <strong>17</strong>, hôpital de Berck.`
+    },
+    {
+      em:'📺', q:'Comment regarder la télé ?',
+      r:`Toutes nos télés sont équipées de <strong>Molotov</strong> (chaînes en direct + replay). Voir l'item <strong>Guide équipements</strong> pour la procédure complète, et le <strong>guide PDF illustré</strong>.`
+    },
+    {
+      em:'🐶', q:'Peut-on venir avec son chien ?',
+      r:`Sur demande au moment de la réservation. Précisez-le-nous, certains logements sont plus adaptés que d'autres aux animaux. Un supplément ménage peut être demandé pour les races qui perdent beaucoup de poils.`
+    },
+    {
+      em:'👶', q:'Je voyage avec un bébé — y a-t-il un lit / une chaise haute ?',
+      r:`Sur demande, nous pouvons vous prêter un <strong>lit parapluie</strong> et/ou une <strong>chaise haute</strong>. Faites-en la demande au moins 24 h avant votre arrivée par mail. La plaque de cuisson dispose d'une <strong>sécurité enfant</strong> activée par défaut (voir Guide équipements).`
+    },
+    {
+      em:'🕐', q:'Puis-je arriver plus tôt ou partir plus tard ?',
+      r:`Oui, c'est possible en option (sous réserve de disponibilité — pas de ménage entre deux séjours). Voir l'item <strong>Check-in / Check-out</strong> pour le tarif applicable à votre logement et la procédure de demande.`
+    },
+    {
+      em:'🚲', q:'Où louer un vélo / une rosalie ?',
+      r:`Direction <strong>Rosalie Beach</strong>, 72 Esplanade Parmentier — l'incontournable des plages du Nord, à faire en famille. Détails dans l'item <strong>Activités à Berck</strong>.`
+    },
+    {
+      em:'🥖', q:'Où trouver une bonne boulangerie ?',
+      r:`L'item <strong>Adresses utiles</strong> liste les boulangeries proches de votre logement, avec l'itinéraire à pied (distance + temps). Notre coup de cœur partout : <strong>Boulangerie Sophie</strong>, rue Carnot.`
+    },
+    {
+      em:'🌧️', q:"Que faire s'il pleut ?",
+      r:`Pas de panique : Berck offre plein d'activités en intérieur (Piscine Agora, bowling, cinéma Les Cinos, Musée Opale Sud) et les alentours regorgent de parcs (Bagatelle, Nausicaá, Laby'parc). Voir l'item <strong>Activités à Berck</strong> avec le filtre <strong>« Intérieur à Berck »</strong>.`
+    },
+    {
+      em:'🎁', q:"Que vais-je trouver à mon arrivée ?",
+      r:`Un petit <strong>panier d'accueil</strong> (torchon + éponge + liquide vaisselle) et un <strong>panier de bienvenue</strong> (café, thé, dosettes de sucre + un petit cadeau). De quoi commencer votre séjour en douceur !`
+    },
+    {
+      em:'🏠', q:'Je veux revenir / faire connaître à des amis — comment faire ?',
+      r:`Notre Conciergerie gère <strong>22 logements</strong> à Berck. Tous sont visibles sur <strong>appart-hotel-berck.com</strong> (réservation directe sans commission). Voir l'item <strong>Autres logements Princesse d'Opale</strong>.`
+    }
+  ];
+
+  const html = QR.map(({em,q,r}) => `
+    <div class="card">
+      <div class="name">${em} ${q}</div>
+      <div class="meta" style="margin-top:6px;line-height:1.5">${r}</div>
+    </div>
+  `).join('') + `
+    <div class="card" style="background:linear-gradient(160deg, rgba(212,175,94,.08) 0%, transparent 100%);border-color:var(--gold);margin-top:14px;text-align:center">
+      <div class="meta" style="font-style:italic;color:var(--gold-light);font-size:15px">Une autre question ? N'hésitez pas à nous écrire — nous sommes là pour vous.</div>
+      <div class="meta" style="font-family:Allura,cursive;font-size:24px;color:var(--gold);margin-top:8px">Belle journée à vous,<br>— Claudine</div>
+    </div>
+  `;
+
+  $('faq-data').innerHTML = html;
 })();
 
 /* ----- AUTRES LOGEMENTS ---------------------------------- */
