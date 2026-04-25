@@ -2031,23 +2031,31 @@ async function loadMeteo(){
   if (BALNEO_CETANA.includes(apKey) || BALNEO_DUOWAVE.includes(apKey)) {
     const modele = BALNEO_CETANA.includes(apKey) ? 'Cetana' : 'Duo Wave';
     const places = BALNEO_CETANA.includes(apKey)
-      ? '2 places côte à côte — parfait pour partager un moment de détente.'
-      : '2 personnes face à face — pour les têtes-à-têtes romantiques.';
+      ? '2 places côte à côte'
+      : '2 personnes face à face';
     balneoCard = `
       <div class="faq-group">
         <div class="faq-group-title"><span class="em">🛁</span> Balnéo Spalina ${modele}</div>
         <div class="card">
           <div class="name">Mode d'emploi des boutons</div>
-          <div class="meta">Votre baignoire balnéo est un modèle <strong>Spalina ${modele}</strong> — ${places}</div>
-          <div class="meta" style="margin-top:10px">Le panneau de commande propose 4 boutons :</div>
-          <ul style="margin:8px 0;padding-left:0;list-style:none;line-height:1.7">
-            <li>💡 <strong>Lumière</strong> — allume / éteint l'éclairage de la baignoire (chromothérapie sur certains modèles).</li>
-            <li>🌊 <strong>Jets du bas</strong> — active les jets situés sous le siège pour un massage des jambes et du bas du corps.</li>
-            <li>💆 <strong>Jets dans le dos</strong> — active les jets dorsaux pour un massage profond du dos.</li>
-            <li>↔️ <strong>Jets sur le côté</strong> — active les jets latéraux pour un massage des flancs.</li>
+          <div class="meta">Votre baignoire balnéo est un modèle <strong>Spalina ${modele}</strong> (${places}).</div>
+          <div style="margin:14px 0 6px 0;text-align:center">
+            <img src="/assets/balneo-spalina-guide.png" alt="Mode d'emploi de la balnéo Spalina" style="max-width:100%;border-radius:8px;border:1px solid var(--gold);box-shadow:0 2px 12px rgba(212,175,94,.15)" />
+          </div>
+          <div class="meta" style="margin-top:14px"><strong>⚠️ Avant de démarrer les jets</strong></div>
+          <ul style="margin:6px 0;padding-left:20px;line-height:1.6">
+            <li>La baignoire doit être <strong>remplie au-dessus des buses</strong>.</li>
+            <li>Ne <strong>jamais démarrer les jets sans eau</strong> (risque d'endommager la pompe).</li>
+            <li>Ne <strong>pas tourner les boutons</strong> — seul le <strong>bouton 2 (intensité)</strong> se tourne.</li>
           </ul>
-          <div class="meta" style="color:var(--gold-light);margin-top:10px">💡 <strong>Astuce</strong> : remplissez la baignoire <strong>au-dessus du niveau des jets</strong> avant de les activer (sinon air aspiré → bruit + risque d'endommager la pompe).</div>
-          <div class="meta" style="margin-top:6px">⏱️ Les sessions s'arrêtent automatiquement après une dizaine de minutes (sécurité Spalina).</div>
+          <div class="meta" style="margin-top:10px"><strong>Les 4 boutons</strong></div>
+          <ul style="margin:6px 0;padding-left:0;list-style:none;line-height:1.7">
+            <li><strong>Bouton 1</strong> — Bulles d'air (fond de baignoire) : effet jacuzzi, massage doux 🫧</li>
+            <li><strong>Bouton 2</strong> — Intensité : tourner pour régler la puissance 🔆</li>
+            <li><strong>Bouton 3</strong> — Lumières LED : ambiance spa 💡</li>
+            <li><strong>Bouton 4</strong> — Jets hydromassants (dos) : massage du dos 💆</li>
+          </ul>
+          <div class="meta" style="color:var(--gold-light);font-style:italic;margin-top:10px;text-align:center">Nous vous souhaitons un excellent moment de détente.<br><span style="font-family:Allura,cursive;font-size:18px">— Claudine</span></div>
         </div>
       </div>
     `;
