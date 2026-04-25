@@ -1,5 +1,5 @@
-﻿// Auto-généré depuis Trello via build-faq.ps1
-// NE PAS ÉDITER MANUELLEMENT — relancer le script pour régénérer
+﻿// Auto-genere depuis Trello via build-faq.ps1
+// NE PAS EDITER MANUELLEMENT - relancer le script pour regenerer
 window.TRELLO_FAQ = {
     "apollo":  [
                    {
@@ -45,10 +45,6 @@ window.TRELLO_FAQ = {
                ],
     "apolove":  [
                     {
-                        "name":  "Garage",
-                        "desc":  "La fermeture est automatique"
-                    },
-                    {
                         "name":  "Petit tips",
                         "desc":  "- Mettre le tapis, torchon, essuis main, peignoir a tourner dans la machine a laver :Cycle lave\u0026sèche et avant de partir mettre sur le cycle sèchage  (sinon ne sèche pas complètement avec le premier cycle) \n\n- Parfum de tissu a mettre sur le lit et les peignoirs\n\n- Dans le plateau d\u0027accueil: \nle dépliant, la boîte de cadeau coeur, la boîte de biscuits apéritifs,la bouteille d\u0027alcool, 4 café, 4 thé et 4 sucres"
                     },
@@ -66,7 +62,7 @@ window.TRELLO_FAQ = {
                     },
                     {
                         "name":  "VMC apolove fait du bruit",
-                        "desc":  "Bonjour :-)\n\nmerci pour votre message 🙏 \nla VMC est  automatique en fonction de l\u0027humidité dans l\u0027appartement. \n\nSi vous venez d\u0027utiliser la balnéo ou si vous venez de prendre une douche elle va s\u0027activer un peu plus fort et naturellement elle va ralentir lorsque il y aura moins d\u0027humidité 🙏\n\nJe reste disponible pour plus de renseignements je vous souhaite une très belle journée :-)\n\nClaudine / Léa"
+                        "desc":  "Bonjour :-)\n\nmerci pour votre message 🙏 \nla VMC est  automatique en fonction de l\u0027humidité dans l\u0027appartement. \n\nSi vous venez d\u0027utiliser la balnéo ou si vous venez de prendre une douche elle va s\u0027activer un peu plus fort et naturellement elle va ralentir lorsque il y aura moins d\u0027humidité 🙏\n\nJe reste disponible pour plus de renseignements je vous souhaite une très belle journée :-)\n\nClaudine/ Clara"
                     },
                     {
                         "name":  "WiFi",
@@ -78,7 +74,7 @@ window.TRELLO_FAQ = {
                     },
                     {
                         "name":  "Code et explication du parking",
-                        "desc":  "Bonjour :-)\n\nVoici le code pour la boite à clé: 9172\n\nPetit rappel pour prendre possession des lieux.\n\nCheck-in: à partir de 17H (sauf si autorisation spéciale)\n\nCheck-out: à partir de 11H\n\nAdresse : résidence Apollo, 2 avenue Marianne toute seule à Berck.\n\nA 100m de l\u0027entrée de l\u0027immeuble, vous trouverez une boite à clé sur la gauche de la porte d\u0027immeuble au 23 rue marechal juin. Prenez la boite du haut!\nPour cette boite à clé, l\u0027emplacement gps exact est:\n50.403575, 1.560232\n\nLe code est donné au dessus:-) \n\nGrâce au trousseau que vous aurez récupéré dans la boite à clé, vous pourrez garer votre véhicule. ATTENTION: Le parking est situé dans la residence d\u0027à côté: Albatros. L\u0027entrée de ce parking couvert se fait rue saint louis par un portail blanc électrique.\n\nUtilisez le bip, bouton de droite pour ouvrir le portail, rentrez votre véhicule, et appuyez sur le bouton de gauche pour ouvrir le garage qui est 20 m à droite une fois le portail franchi. Entrer dans le garage, le parking est en face légèrement à droite, le numéro 206:-).\n\nEnsuite vous pouvez aller à l\u0027appartement au 2 av marianne toute seule :-) \n\nPrenez l\u0027ascensseur pour monter au 5ème. En sortant de l\u0027ascensseur, deuxième porte à gauche, appartement 502, vous êtes arrivés! La clé rouge et la serrure sous la poignée ouvrent la porte !\n\nLa vaisselle doit être rendu propre et les poubelles sorties. L\u0027appartement est NON-fumeur.\n\nWiFi \nIdentifiant: suite2\nMDP:   2Avmarianne\n\nN\u0027hésitez pas à contacter Léa sur cette plateforme qui m\u0027aide à répondre au plus vite à mes invités, ou si urgence +33 6 46 44 01 86 :-) \n\nJe vous souhaite un bon et paisible séjour chez moi :-)\n\nExcellente journée :-)\n\nClaudine"
+                        "desc":  "Bonjour :-)\n\nVoici le code pour la boite à clé: 9172\n\nPetit rappel pour prendre possession des lieux.\n\nCheck-in: à partir de 17H (sauf si autorisation spéciale)\n\nCheck-out: à partir de 11H\n\nAdresse : résidence Apollo, 2 avenue Marianne toute seule à Berck.\n\nA 100m de l\u0027entrée de l\u0027immeuble, vous trouverez une boite à clé sur la gauche de la porte d\u0027immeuble au 23 rue marechal juin. Prenez la boite du haut!\nPour cette boite à clé, l\u0027emplacement gps exact est:\n50.403575, 1.560232\n\nLe code est donné au dessus:-) \n\nGrâce au trousseau que vous aurez récupéré dans la boite à clé, vous pourrez garer votre véhicule. ATTENTION: Le parking est situé dans la residence d\u0027à côté: Albatros. L\u0027entrée de ce parking couvert se fait rue saint louis par un portail blanc électrique.\n\nUtilisez le bip, bouton de droite pour ouvrir le portail, rentrez votre véhicule, et appuyez sur le bouton de gauche pour ouvrir le garage qui est 20 m à droite une fois le portail franchi. Entrer dans le garage, le parking est en face légèrement à droite, le numéro 206:-).\n\nEnsuite vous pouvez aller à l\u0027appartement au 2 av marianne toute seule :-) \n\nPrenez l\u0027ascensseur pour monter au 5ème. En sortant de l\u0027ascensseur, deuxième porte à gauche, appartement 502, vous êtes arrivés! La clé rouge et la serrure sous la poignée ouvrent la porte !\n\nLa vaisselle doit être rendu propre et les poubelles sorties. L\u0027appartement est NON-fumeur.\n\nWiFi \nIdentifiant: suite2\nMDP:   2Avmarianne\n\nN\u0027hésitez pas à contacter Clara sur cette plateforme qui m\u0027aide à répondre au plus vite à mes invités, ou si urgence +33 6 46 44 01 86 :-) \n\nJe vous souhaite un bon et paisible séjour chez moi :-)\n\nExcellente journée :-)\n\nClaudine"
                     },
                     {
                         "name":  "Le frigo ne marche pas",
@@ -170,7 +166,7 @@ window.TRELLO_FAQ = {
                    },
                    {
                        "name":  "Télé",
-                       "desc":  "1- Allumer la télé \n2- aller vers la droite et sélectionner l\u0027application Molotov \n3- choisir sa chaîne"
+                       "desc":  "1- Allumer la télé \n2- aller vers la droite et sélectionner l\u0027application Molotov \n3- choisir sa chaîne \n\n\nSi la télé ne semble pas connecté c\u0027est que les voyageurs précédents ont dû installer leur propre téléphone sur la télé dans ces cas-là: \n\n- appuyer sur le bouton avec le dessin d\u0027une maison \n- appuyez sur le bouton réglage (dessin roux crantée)\n- réseau\n- rechercher réseau sans fil \n- valider SFR 63B8 5ghz\n- rentrer le mot de passe Wi-Fi\n\nPuis vous pouvez aller sur l\u0027application Molotov comme expliqué précédemment"
                    }
                ],
     "cocon":  [
@@ -229,6 +225,10 @@ window.TRELLO_FAQ = {
                   {
                       "name":  "Stationnement payant",
                       "desc":  "Bonjour,\n\nLe stationnement est payant dans le secteur plage de la ville, sur un périmètre réparti en zones verte, orange, rouge et jaune, tel que présenté sur la carte que je vous joins. \n\nLe stationnement est payant de 9h à 12h et de 14h à 19h:  \n\n\u003e En zone verte, orange et rouge : du 1er mai au 30 septembre et pendant les vanaces de la Toussaint (toutes zones scolaires)\n\n\u003e En zone jaune : toute l\u0027année \n\nUne heure gratuite est offerte  (pour en bénéficier, il faut s\u0027inscrire à l\u0027horodateur). \n\nSoyez les bienvenus 🙏 \n\nClaudine"
+                  },
+                  {
+                      "name":  "Télé",
+                      "desc":  "1- Allumer la télé \n2- aller vers la droite et sélectionner l\u0027application Molotov \n3- choisir sa chaîne \n\n\nSi la télé ne semble pas connecté c\u0027est que les voyageurs précédents ont dû installer leur propre téléphone sur la télé dans ces cas-là: \n\n- appuyer sur le bouton avec le dessin d\u0027une maison \n- appuyez sur le bouton réglage (dessin roux crantée)\n- réseau\n- rechercher réseau sans fil \n- valider SFR 63B8 5ghz\n- rentrer le mot de passe Wi-Fi\n\nPuis vous pouvez aller sur l\u0027application Molotov comme expliqué précédemment"
                   }
               ],
     "kitesurf":  [
@@ -554,7 +554,7 @@ window.TRELLO_FAQ = {
                         },
                         {
                             "name":  "Télé fonctionnement",
-                            "desc":  "Allumer la téle en appuyant sur le bouton POWER de la télécommande.\n\nSe diriger sur l\u0027icône \"toutes les applications\". \n\nChoisir l\u0027application Molotov elle est jaune avec un M noir. \n\nChoisissez votre chaîne en direct.\n\nPs: les chaînes 1 et 6 sont indisponibles.."
+                            "desc":  "Allumer la téle en appuyant sur le bouton POWER de la télécommande.\n\nSe diriger sur l\u0027icône \"toutes les applications\". \n\nChoisir l\u0027application Molotov elle est jaune avec un M noir. \n\nChoisissez votre chaîne en direct.\n\nPs: les chaînes 1 et 6 sont indisponibles..\n\nSi la télé marque aucun signal:\n- appuyez sur le bouton avec un petit bonhomme avec des antennes \n- dirigez-vous vers l\u0027icône Molotov jaune avec un M en noir \n- choisissez votre chaîne en direct"
                         },
                         {
                             "name":  "Mail  mdp : 28Mars24",
