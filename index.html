@@ -1068,7 +1068,7 @@ const APPART_INFO = {
     parking: '✅ Parking couvert n°206 inclus (résidence Albatros, rue Saint-Louis).',
     videoAcces: 'https://drive.google.com/file/d/1AFgKVhahrxvljkL7vVa8ZU1-zA0BgHwo/view?usp=sharing',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Lave-vaisselle','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🛁 Balnéo Spalina Duo Wave (2 personnes face à face)'],
+    equipements: ['Lave-vaisselle','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🛁 Balnéo Spalina Indra Wave (2 personnes, compact)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1125,7 +1125,7 @@ const APPART_INFO = {
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
     videoAcces: 'https://drive.google.com/file/d/1AWX2lXeXVBwGkngMM33dsRWiLXG1nny_/view?usp=sharing',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Baignoire','Douche','Machine à café Senseo','Vidéoprojecteur + Molotov Premium','Ventilateur','🛁 Balnéo Spalina Duo Wave (2 personnes face à face)'],
+    equipements: ['Baignoire','Douche','Machine à café Senseo','Vidéoprojecteur + Molotov Premium','Ventilateur','🛁 Balnéo Spalina Indra Wave (2 personnes, compact)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '10 min à pied de la gare routière'
   },
@@ -1137,7 +1137,7 @@ const APPART_INFO = {
     ascenseur: false,
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Lave-vaisselle','Douche','Machine à café Senseo','Ventilateur','🛁 Balnéo Spalina Duo Wave (2 personnes face à face)'],
+    equipements: ['Lave-vaisselle','Douche','Machine à café Senseo','Ventilateur','🛁 Balnéo Spalina Indra Wave (2 personnes, compact)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '10 min à pied de la gare routière'
   },
@@ -2035,39 +2035,65 @@ async function loadMeteo(){
     </div>
   `;
 
-  // ----- Balnéo Spalina (Cetana ou Duo Wave selon appart)
-  // Cetana = 2 places face à face · Duo Wave = 2 personnes face à face
+  // ----- Balnéo Spalina (Cetana ou Indra Wave selon appart (marque Spalina))
+  // Cetana = 2 places face à face · Indra Wave = 2 personnes (modèle compact)
   const BALNEO_CETANA = ['balneo','cocon','rotonde','patio','evasion'];
-  const BALNEO_DUOWAVE = ['apolove','miniloveroom','grandeloveroom'];
+  const BALNEO_INDRAWAVE = ['apolove','miniloveroom','grandeloveroom'];
   let balneoCard = '';
-  if (BALNEO_CETANA.includes(apKey) || BALNEO_DUOWAVE.includes(apKey)) {
-    const modele = BALNEO_CETANA.includes(apKey) ? 'Cetana' : 'Duo Wave';
+  if (BALNEO_CETANA.includes(apKey) || BALNEO_INDRAWAVE.includes(apKey)) {
+    const modele = BALNEO_CETANA.includes(apKey) ? 'Cetana' : 'Indra Wave';
     const places = BALNEO_CETANA.includes(apKey)
-      ? '2 places face à face'
-      : '2 personnes face à face';
+      ? '2 places face à face (grand modèle)'
+      : '2 personnes face à face (modèle compact)';
+    const isIndra = BALNEO_INDRAWAVE.includes(apKey);
+
+    // Style "poster" noir/or — même esthétique pour Indra (image Canva) et Cetana (HTML stylisé)
+    const posterStyle = 'background:#1a1610;color:#f5e9c8;border:1px solid #d4af5e;border-radius:8px;padding:18px 16px;text-align:center;box-shadow:0 2px 12px rgba(212,175,94,.15);font-family:Cormorant Garamond,serif';
+    const posterTitle = 'font-family:Cinzel,serif;letter-spacing:.18em;text-transform:uppercase;font-size:18px;color:#d4af5e;margin-bottom:6px';
+    const posterSub = 'font-family:Cinzel,serif;letter-spacing:.1em;font-size:11px;color:#b8945a;text-transform:uppercase;margin-bottom:16px';
+    const posterHr = 'border:0;border-top:1px solid rgba(212,175,94,.3);margin:14px 24px';
+    const posterBtn = 'font-family:Cinzel,serif;font-size:13px;color:#d4af5e;letter-spacing:.08em;text-transform:uppercase;margin-top:14px;font-weight:600';
+    const posterBtnDesc = 'font-size:14px;color:#f5e9c8;font-style:italic;line-height:1.4;margin-top:2px';
+
+    let posterHtml = '';
+    if (isIndra) {
+      posterHtml = `
+        <div style="margin:14px 0 6px 0;text-align:center">
+          <img src="/assets/balneo-spalina-guide.png" alt="Mode d'emploi de la balnéo Spalina Indra Wave" style="max-width:100%;border-radius:8px;border:1px solid var(--gold);box-shadow:0 2px 12px rgba(212,175,94,.15)" />
+        </div>`;
+    } else {
+      // Poster HTML pour Cetana — même esthétique que le Canva Indra
+      posterHtml = `
+        <div style="${posterStyle};margin:14px 0">
+          <div style="${posterTitle}">Balnéo</div>
+          <div style="${posterSub}">Mode d'emploi</div>
+          <div style="font-size:14px;line-height:1.5;color:#f5e9c8;font-style:italic;padding:0 8px">
+            La baignoire doit être remplie <strong style="font-style:normal">au-dessus des buses</strong>.<br>
+            Ne jamais démarrer les jets sans eau.<br>
+            Ne pas tourner les boutons — seul le bouton d'intensité se tourne.
+          </div>
+          <hr style="${posterHr}">
+          <div style="${posterBtn}">Bouton 1 · Lumières</div>
+          <div style="${posterBtnDesc}">éclairage LED — ambiance spa</div>
+          <div style="${posterBtn}">Bouton 2 · Bulles au sol</div>
+          <div style="${posterBtnDesc}">jets au fond de la baignoire</div>
+          <div style="${posterBtn}">Bouton 3 · Bulles dans le dos</div>
+          <div style="${posterBtnDesc}">⚠️ à n'activer qu'<strong style="font-style:normal">une fois bien installé</strong> dans la baignoire — sinon arrosage garanti !</div>
+          <div style="${posterBtn}">Bouton 4 · Puissance</div>
+          <div style="${posterBtnDesc}">règle l'intensité des bulles &amp; des jets d'eau</div>
+          <hr style="${posterHr}">
+          <div style="font-size:13px;color:#b8945a;font-style:italic">Nous vous souhaitons un excellent moment de détente.</div>
+          <div style="font-family:Allura,cursive;font-size:24px;color:#d4af5e;margin-top:4px">— Claudine</div>
+        </div>`;
+    }
+
     balneoCard = `
       <div class="faq-group">
         <div class="faq-group-title"><span class="em">🛁</span> Balnéo Spalina ${modele}</div>
         <div class="card">
           <div class="name">Mode d'emploi des boutons</div>
           <div class="meta">Votre baignoire balnéo est un modèle <strong>Spalina ${modele}</strong> (${places}).</div>
-          <div style="margin:14px 0 6px 0;text-align:center">
-            <img src="/assets/balneo-spalina-guide.png" alt="Mode d'emploi de la balnéo Spalina" style="max-width:100%;border-radius:8px;border:1px solid var(--gold);box-shadow:0 2px 12px rgba(212,175,94,.15)" />
-          </div>
-          <div class="meta" style="margin-top:14px"><strong>⚠️ Avant de démarrer les jets</strong></div>
-          <ul style="margin:6px 0;padding-left:20px;line-height:1.6">
-            <li>La baignoire doit être <strong>remplie au-dessus des buses</strong>.</li>
-            <li>Ne <strong>jamais démarrer les jets sans eau</strong> (risque d'endommager la pompe).</li>
-            <li>Ne <strong>pas tourner les boutons</strong> — seul le <strong>bouton 2 (intensité)</strong> se tourne.</li>
-          </ul>
-          <div class="meta" style="margin-top:10px"><strong>Les 4 boutons</strong></div>
-          <ul style="margin:6px 0;padding-left:0;list-style:none;line-height:1.7">
-            <li><strong>Bouton 1</strong> — Bulles d'air (fond de baignoire) : effet jacuzzi, massage doux 🫧</li>
-            <li><strong>Bouton 2</strong> — Intensité : tourner pour régler la puissance 🔆</li>
-            <li><strong>Bouton 3</strong> — Lumières LED : ambiance spa 💡</li>
-            <li><strong>Bouton 4</strong> — Jets hydromassants (dos) : massage du dos 💆</li>
-          </ul>
-          <div class="meta" style="color:var(--gold-light);font-style:italic;margin-top:10px;text-align:center">Nous vous souhaitons un excellent moment de détente.<br><span style="font-family:Allura,cursive;font-size:18px">— Claudine</span></div>
+          ${posterHtml}
         </div>
       </div>
     `;
