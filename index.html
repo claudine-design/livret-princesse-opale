@@ -532,15 +532,15 @@
     <a class="tile" onclick="open_('acces')"><svg class="ico"><use href="#ico-key"/></svg><span class="lbl">Accès</span></a>
     <a class="tile" onclick="open_('checkin')"><svg class="ico"><use href="#ico-clock"/></svg><span class="lbl">Check-in / out</span></a>
     <a class="tile" onclick="open_('equip')"><svg class="ico"><use href="#ico-trunk"/></svg><span class="lbl">Équipement</span></a>
+    <a class="tile" onclick="open_('guide')"><svg class="ico"><use href="#ico-bulb"/></svg><span class="lbl">Guide équipements</span></a>
     <a class="tile" onclick="open_('meteo')"><svg class="ico"><use href="#ico-sun"/></svg><span class="lbl">Météo</span></a>
     <a class="tile" onclick="open_('activites')"><svg class="ico"><use href="#ico-bag"/></svg><span class="lbl">Activités à Berck</span></a>
     <a class="tile" onclick="open_('probleme')"><svg class="ico"><use href="#ico-alert"/></svg><span class="lbl">Signaler un problème</span></a>
     <a class="tile" onclick="open_('urgence')"><svg class="ico"><use href="#ico-sos"/></svg><span class="lbl">Contact d'urgence</span></a>
     <a class="tile" onclick="open_('events')"><svg class="ico"><use href="#ico-event"/></svg><span class="lbl">Événements</span></a>
     <a class="tile" onclick="open_('adresses')"><svg class="ico"><use href="#ico-pin"/></svg><span class="lbl">Adresses utiles</span></a>
-    <a class="tile" onclick="open_('livredor')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Livre d'or</span></a>
-    <a class="tile" onclick="open_('guide')"><svg class="ico"><use href="#ico-bulb"/></svg><span class="lbl">Guide équipements</span></a>
     <a class="tile" onclick="open_('faq')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Questions fréquentes</span></a>
+    <a class="tile" onclick="open_('livredor')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Livre d'or</span></a>
     <a class="tile" onclick="open_('autres')"><svg class="ico"><use href="#logo-pod"/></svg><span class="lbl">Autres logements Princesse d'Opale</span></a>
   </div>
 </div>
@@ -798,7 +798,7 @@ const APPARTS = {
   balneo:     { nom:"Balnéo",           com:"Balnéo Garden",           adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
   cocon:      { nom:"Cocon Romantique", com:"Cocon Romantique",        adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
   terrasse:   { nom:"Terrasse",         com:"La Terrasse",             adr:"17 rue du Grand Hôtel, 62600 Berck-sur-Mer",   res:"Terrasse",    zone:"terrasse"  },
-  maisonnette:{ nom:"Maisonnette",      com:"Cœur de Berck",           adr:"2 rue des Sables, 62600 Berck-sur-Mer",        res:"Terrasse",    zone:"terrasse"  },
+  maisonnette:{ nom:"Maisonnette",      com:"Cœur des Sables",         adr:"2 rue des Sables, 62600 Berck-sur-Mer",        res:"Terrasse",    zone:"terrasse"  },
   facemer:    { nom:"Face Mer",         com:"Face Mer Esplanade",      adr:"1 rue de la Plage, 62600 Berck-sur-Mer",       res:"Face Mer",    zone:"esplanade" },
   grandlarge: { nom:"Grand Large",      com:"Hamac Face Mer",          adr:"45 Esplanade Parmentier, 62600 Berck-sur-Mer", res:"Grand Large", zone:"esplanade" },
   apolove:    { nom:"Apolove",          com:"Suite Romantique Face Mer", adr:"2 Avenue Marianne, 62600 Berck-sur-Mer",     res:"Apollo",      zone:"esplanade" },
@@ -808,7 +808,7 @@ const APPARTS = {
   albatros:   { nom:"Albatros",         com:"Hamac Chic Vue Mer",      adr:"10 Avenue Marianne, 62600 Berck-sur-Mer",      res:"Albatros",    zone:"esplanade" },
   miniloveroom:  { nom:"Mini Love Room",   com:"Balnéo Face Mer",      adr:"59 Esplanade Parmentier, 62600 Berck-sur-Mer", res:"Esplanade",   zone:"esplanade" },
   grandeloveroom:{ nom:"Grande Love Room", com:"Romantique Face Mer",  adr:"59 Esplanade Parmentier, 62600 Berck-sur-Mer", res:"Esplanade",   zone:"esplanade" },
-  jeanne:     { nom:"Jeanne",           com:"Cœur des Sables",         adr:"23 Rue Jeanne, 62600 Berck-sur-Mer",           res:"Rue Jeanne",  zone:"jeanne"    },
+  jeanne:     { nom:"Jeanne",           com:"Cœur de Berck",           adr:"23 Rue Jeanne, 62600 Berck-sur-Mer",           res:"Rue Jeanne",  zone:"jeanne"    },
   evasion:    { nom:"Évasion",          com:"L'Évasion Balnéo & Sauna",adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    },
   rotonde:    { nom:"Rotonde",          com:"La Rotonde du Bien-être", adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    },
   patio:      { nom:"Patio",            com:"Patio Romantique Chic",   adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    }
@@ -834,11 +834,13 @@ const apData = DATA[apKey] || {};
 const zone = ZONES[ap.zone];
 
 /* ----- Remplissage header + hero ------------------------- */
-$('apName').textContent = ap.nom;
-$('apCom').textContent = (ap.com && ap.com !== ap.nom) ? ap.com : '';
+// Affiche partout le nom commercial (du site / des plateformes), pas le slug interne
+const apTitre = ap.com || ap.nom;
+$('apName').textContent = apTitre;
+$('apCom').textContent = '';
 $('apAddr').textContent = ap.adr;
 $('hdrTitle').textContent = 'Princesse d\'Opale';
-$('hdrSub').textContent = ap.nom + ' · ' + ap.res;
+$('hdrSub').textContent = apTitre + ' · ' + ap.res;
 
 /* ----- Ouvrir / fermer une page -------------------------- */
 function open_(id){
@@ -1267,7 +1269,7 @@ function extractWifiFromFaq(){
   const w = WIFI_BY_SLUG[apKey] || apData.wifi || extractWifiFromFaq();
   let html = '';
   if (!w) {
-    html = TODO(`Renseigner le réseau WiFi et le mot de passe pour <strong>${ap.nom}</strong>.`);
+    html = TODO(`Renseigner le réseau WiFi et le mot de passe pour <strong>${apTitre}</strong>.`);
   } else {
     html = `
       <div class="field">
@@ -1300,7 +1302,7 @@ function copy(txt, btn){
   let rawText = apData.acces || (apBeds24 ? apBeds24.text : null);
 
   if (!rawText) {
-    $('acces-data').innerHTML = TODO(`Texte d'accès à compléter pour <strong>${ap.nom}</strong>.`);
+    $('acces-data').innerHTML = TODO(`Texte d'accès à compléter pour <strong>${apTitre}</strong>.`);
     return;
   }
 
@@ -1449,8 +1451,8 @@ function copy(txt, btn){
 
   // Génère un lien mailto pré-rempli pour commander une option
   const optionLink = (sujet, corps) => {
-    const s = encodeURIComponent(sujet + ' — ' + ap.nom);
-    const b = encodeURIComponent(`Bonjour,\n\n${corps}\n\nLogement : ${ap.nom}\nAdresse : ${ap.adr}\n\nMerci !`);
+    const s = encodeURIComponent(sujet + ' — ' + apTitre);
+    const b = encodeURIComponent(`Bonjour,\n\n${corps}\n\nLogement : ${apTitre}\nAdresse : ${ap.adr}\n\nMerci !`);
     return `mailto:princessedopale@gmail.com?subject=${s}&body=${b}`;
   };
   const btnStyle = 'display:inline-block;margin-top:8px;padding:7px 14px;background:var(--gold);color:var(--bg);text-decoration:none;border-radius:7px;font-family:Cinzel,serif;font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase';
@@ -1586,16 +1588,22 @@ function copy(txt, btn){
       </ul>
     `).join('');
   } else {
-    html += TODO(`Fiche détaillée (surface, étage, équipements…) à compléter pour <strong>${ap.nom}</strong>. Claudine, envoie-moi le résumé Albert SAV et je l'intègre !`);
+    html += TODO(`Fiche détaillée (surface, étage, équipements…) à compléter pour <strong>${apTitre}</strong>. Claudine, envoie-moi le résumé Albert SAV et je l'intègre !`);
   }
 
   // Bloc commun : liste des équipements (sans mode d'emploi — les modes d'emploi sont dans l'item "Guide équipements")
   // Balnéo + Apollo (Panoramique 2 Chambres) ont un frigo américain (frigo + congélateur intégrés)
   // → les autres apparts ont un frigo + un congélateur séparé
+  // Frigo & congélation :
+  //  • Balnéo + Apollo : frigo américain (avec congélateur intégré)
+  //  • Face Mer + Kingston + Terrasse + Famille + Jeanne : frigo + vrai congélateur séparé
+  //  • Tous les autres : frigo avec compartiment freezer (petit congélateur en haut)
   const frigoAmericain = ['balneo','apollo'].includes(apKey);
-  const frigoLine = frigoAmericain
-    ? '<li><strong>Frigo américain</strong> (avec congélateur intégré) ❄️</li>'
-    : '<li>Frigo</li><li>Congélateur ❄️</li>';
+  const congelateurReel = ['facemer','kingston','terrasse','famille','jeanne'].includes(apKey);
+  let frigoLine;
+  if (frigoAmericain)      frigoLine = '<li><strong>Frigo américain</strong> (avec congélateur intégré) ❄️</li>';
+  else if (congelateurReel) frigoLine = '<li>Frigo</li><li>Congélateur ❄️</li>';
+  else                      frigoLine = '<li>Frigo avec compartiment freezer ❄️ <span style="color:var(--muted);font-size:13px">(petit congélateur intégré au frigo)</span></li>';
   html += `
     <h3>🔥 Cuisine</h3>
     <div class="card">
@@ -1835,8 +1843,8 @@ async function loadMeteo(){
 /* ----- SIGNALER UN PROBLÈME ------------------------------ */
 (function renderProbleme(){
   const email = 'princessedopale@gmail.com';
-  const subject = encodeURIComponent('Problème — ' + ap.nom);
-  const body = encodeURIComponent(`Bonjour,\n\nLogement : ${ap.nom}\nAdresse : ${ap.adr}\n\nDescription du problème :\n`);
+  const subject = encodeURIComponent('Problème — ' + apTitre);
+  const body = encodeURIComponent(`Bonjour,\n\nLogement : ${apTitre}\nAdresse : ${ap.adr}\n\nDescription du problème :\n`);
   $('probleme-data').innerHTML = `
     <p style="font-size:14px;line-height:1.5">Un souci dans votre logement ? Écrivez-nous, on s'en occupe vite.</p>
     <div class="card" style="border-color:var(--gold);margin-top:12px">
@@ -1901,7 +1909,7 @@ async function loadMeteo(){
 (function renderAdresses(){
   const z = zone;
   const box = $('adresses-data');
-  let html = `<p style="color:var(--muted);font-size:14px">📍 Adresses proches de <strong>${esc(ap.nom)}</strong> — quartier ${esc(z.nom)}</p>`;
+  let html = `<p style="color:var(--muted);font-size:14px">📍 Adresses proches de <strong>${esc(apTitre)}</strong> — quartier ${esc(z.nom)}</p>`;
 
   function cardList(title, emoji, arr, urg=false){
     let out = `<h3>${emoji} ${title}</h3>`;
@@ -2148,8 +2156,19 @@ async function loadMeteo(){
     { id:'linge',   em:'🧺', titre:'Linge & Équipement',        test: n => /linge|taille.*lit|lit|prise|porte|fenêtre|fenetre|enedis|linky|horloge|radiateur|ballon|placard/i.test(n) }
   ];
 
-  /* Exclusion : cartes déjà utilisées ailleurs ou internes */
-  const EXCLUDE = n => /code.*boite|code.*boîte|code.*clé|check-?in.*check-?out.*rib|photo de claudine/i.test(n);
+  /* Exclusion : cartes déjà utilisées ailleurs OU réservées aux prestataires de ménage (pas pour les voyageurs) */
+  const EXCLUDE = n => {
+    if (!n) return true;
+    // Cartes contenant des infos sensibles déjà gérées ailleurs
+    if (/code.*boite|code.*boîte|code.*clé|check-?in.*check-?out.*rib|photo de claudine/i.test(n)) return true;
+    // Cartes opérationnelles destinées aux prestataires de ménage (Rémi, Clara, Christelle)
+    if (/rester plus longtemps|prolong/i.test(n)) return true; // questions parking staff
+    if (/tapis|torchon|panier d'accueil|panier accueil|plateau d'accueil|plateau accueil|d[ée]pliant|placard m[ée]nage|placard linge|linge sale|consommables|machine de lavettes|prestataire|m[ée]nage g[ée]n[ée]ral|sac m[ée]nage|kit accueil|paniers? voyageurs?/i.test(n)) return true;
+    if (/^code\b|^codes\b/i.test(n)) return true;
+    // Apolove : carte avec mauvaise info parking (place 502) — bonne info dans 'Apollo Parking souterrain (parking APOLOVE)' → 206
+    if (apKey === 'apolove' && /^apolove\s*\(parking\s*apolo\)/i.test(n)) return true;
+    return false;
+  };
 
   /* Filtrage cartes WiFi (déjà dans l'item WiFi) pour ne pas dupliquer */
   const wifiCards = apFaq.filter(c => /^wi.?fi(\s|$)|^wifi\s*\d/i.test(c.name));
@@ -2210,13 +2229,19 @@ async function loadMeteo(){
   const apHasAscenseur = (APPART_INFO[apKey] && APPART_INFO[apKey].ascenseur) ? true : false;
   const apHasParkingPrive = APPART_INFO[apKey] && /parking.*inclus|✅/i.test(APPART_INFO[apKey].parking || '');
   const lingeInclus = !LINGE_NON_FOURNI.includes(apKey);
+  // Apparts qui n'acceptent pas les chiens
+  const NO_DOGS = ['apollo','apolove','grandeloveroom'];
+  // Apparts avec lit bébé / chaise haute disponibles
+  const BABY_GEAR = ['facemer','terrasse'];
+  const dogsAllowed = !NO_DOGS.includes(apKey);
+  const hasBabyGear = BABY_GEAR.includes(apKey);
 
   const QR = [
     {
       em:'🛏️', q:'Le linge de lit et les serviettes sont-ils fournis ?',
       r: lingeInclus
-        ? `Oui ! Dans <strong>${esc(ap.nom)}</strong>, draps et serviettes sont <strong>inclus</strong>. Si vous êtes 2 et préférez des lits séparés, c'est possible (+10 € de blanchisserie) — voir l'item Check-in / Check-out.`
-        : `Dans <strong>${esc(ap.nom)}</strong>, le linge n'est pas inclus, mais vous pouvez commander un <strong>pack à 15 €</strong> (draps + couette + 2 serviettes par personne). Voir l'item Check-in / Check-out pour commander.`
+        ? `Oui ! Dans votre logement, draps et serviettes sont <strong>inclus</strong>. Si vous êtes 2 et préférez des lits séparés, c'est possible (+10 € de blanchisserie) — voir l'item Check-in / Check-out.`
+        : `Dans votre logement, le linge n'est pas inclus, mais vous pouvez commander un <strong>pack à 15 €</strong> (draps + couette + 2 serviettes par personne). Voir l'item Check-in / Check-out pour commander.`
     },
     {
       em:'🚗', q:'Y a-t-il un parking ?',
@@ -2234,11 +2259,15 @@ async function loadMeteo(){
     },
     {
       em:'🐶', q:'Peut-on venir avec son chien ?',
-      r:`Sur demande au moment de la réservation. Précisez-le-nous, certains logements sont plus adaptés que d'autres aux animaux. Un supplément ménage peut être demandé pour les races qui perdent beaucoup de poils.`
+      r: dogsAllowed
+        ? `Sur demande au moment de la réservation. Précisez-le-nous, certains logements sont plus adaptés que d'autres aux animaux. Un supplément ménage peut être demandé pour les races qui perdent beaucoup de poils.`
+        : `❌ Désolée, <strong>les chiens ne sont pas acceptés</strong> dans ce logement. Pour un séjour avec votre animal, nous avons d'autres appartements adaptés — n'hésitez pas à nous demander la liste !`
     },
     {
       em:'👶', q:'Je voyage avec un bébé — y a-t-il un lit / une chaise haute ?',
-      r:`Sur demande, nous pouvons vous prêter un <strong>lit parapluie</strong> et/ou une <strong>chaise haute</strong>. Faites-en la demande au moins 24 h avant votre arrivée par mail. La plaque de cuisson dispose d'une <strong>sécurité enfant</strong> activée par défaut (voir Guide équipements).`
+      r: hasBabyGear
+        ? `Oui ! Dans ce logement, une <strong>chaise haute</strong> et un <strong>lit bébé</strong> sont disponibles. Faites-en la demande au moins 24 h avant votre arrivée par mail. La plaque de cuisson dispose d'une <strong>sécurité enfant</strong> activée par défaut (voir Guide équipements).`
+        : `Le matériel bébé (lit, chaise haute) n'est pas disponible dans ce logement. <strong>Notre Face Mer Esplanade et notre grande Terrasse</strong> en sont équipés — n'hésitez pas à nous demander si l'un d'eux peut vous accueillir. La plaque de cuisson dispose d'une <strong>sécurité enfant</strong> activée par défaut (voir Guide équipements).`
     },
     {
       em:'🕐', q:'Puis-je arriver plus tôt ou partir plus tard ?',
@@ -2309,7 +2338,7 @@ async function loadMeteo(){
 
   // Note spéciale palier Le 23 si l'appart courant en fait partie
   if (PALIER_LE_23.includes(apKey)) {
-    const autres = PALIER_LE_23.filter(k => k !== apKey).map(k => APPARTS[k]?.nom).join(' · ');
+    const autres = PALIER_LE_23.filter(k => k !== apKey).map(k => APPARTS[k]?.com || APPARTS[k]?.nom).join(' · ');
     html += `
       <div class="card" style="border-color:var(--gold);background:linear-gradient(160deg, rgba(212,175,94,.1) 0%, transparent 100%);margin-bottom:14px">
         <div class="name">👨‍👩‍👧‍👦 Voyager à plusieurs familles ?</div>
@@ -2335,10 +2364,10 @@ async function loadMeteo(){
     html += `<h3>${esc(resName)}</h3>`;
     for (const appt of groups[resName]) {
       const url = '?a=' + appt.key;
-      const nomCom = (appt.com && appt.com !== appt.nom) ? `<span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-weight:400"> · ${esc(appt.com)}</span>` : '';
+      const titre = appt.com || appt.nom;
       html += `
         <div class="card">
-          <div class="name">${esc(appt.nom)}${nomCom}</div>
+          <div class="name">${esc(titre)}</div>
           <div class="meta">${esc(appt.adr)}</div>
           ${photoStrip(appt.key)}
           <div class="actions">
@@ -2357,7 +2386,7 @@ async function loadMeteo(){
   const url = 'https://enquete-berck.netlify.app/?appart=' + encodeURIComponent(apKey);
   $('livredorBtn').href = url;
   // Lien générique Google (à personnaliser par appart plus tard)
-  $('gmbBtn').href = 'https://www.google.com/search?q=appart-hotel+berck+' + encodeURIComponent(ap.nom);
+  $('gmbBtn').href = 'https://www.google.com/search?q=appart-hotel+berck+' + encodeURIComponent(apTitre);
 })();
 
 /* ----- Retour bouton natif Android ----------------------- */
