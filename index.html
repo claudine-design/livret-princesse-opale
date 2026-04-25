@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -945,7 +945,7 @@ const APPART_INFO = {
     videoAcces: 'https://drive.google.com/file/d/1UGxYQjz06UbgdcJZw5Zn0lZ0a_AmTa0j/view?usp=drive_link',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
     chauffage: 'Électrique',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','🧖 Sauna','🛁 Balnéo Spalina Cetana (2 places côte à côte)'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','🧖 Sauna','🛁 Balnéo Spalina Cetana (2 places face à face)'],
     fournis: ['Serviettes','Café','Thé','Eau','Draps de lit','Gels douche / shampoings'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '5 min à pied de la gare routière'
@@ -974,7 +974,7 @@ const APPART_INFO = {
     parking: '✅ Parking sécurisé inclus.',
     videoAcces: 'https://drive.google.com/file/d/1tc8QjWR0X3tYzfez82oHtJ4DMdQ2uLhw/view?usp=drive_link',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🛁 Balnéo Spalina Cetana (2 places côte à côte)','🔥 Brasero (extérieur)'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🛁 Balnéo Spalina Cetana (2 places face à face)','🔥 Brasero (extérieur)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1041,7 +1041,7 @@ const APPART_INFO = {
     ascenseur: false,
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🧖 Sauna','🛁 Balnéo Spalina Cetana (2 places côte à côte)','🔥 Brasero (extérieur)'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🧖 Sauna','🛁 Balnéo Spalina Cetana (2 places face à face)','🔥 Brasero (extérieur)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1151,7 +1151,7 @@ const APPART_INFO = {
     ascenseur: false,
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité.',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','🧖 Sauna (max 65°)','🛁 Balnéo Spalina Cetana (2 places côte à côte)'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','🧖 Sauna (max 65°)','🛁 Balnéo Spalina Cetana (2 places face à face)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '5 min à pied de la gare routière'
   },
@@ -1164,7 +1164,7 @@ const APPART_INFO = {
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité.',
     videoAcces: 'https://drive.google.com/file/d/1DcKUvgC95o72FmCf8Wc-KeCE-chpgV4I/view?usp=drive_link',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🛁 Balnéo Spalina Cetana (2 places côte à côte)','🔥 Brasero (extérieur)'],
+    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Balcon / terrasse','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🛁 Balnéo Spalina Cetana (2 places face à face)','🔥 Brasero (extérieur)'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -2036,14 +2036,14 @@ async function loadMeteo(){
   `;
 
   // ----- Balnéo Spalina (Cetana ou Duo Wave selon appart)
-  // Cetana = 2 places côte à côte · Duo Wave = 2 personnes face à face
+  // Cetana = 2 places face à face · Duo Wave = 2 personnes face à face
   const BALNEO_CETANA = ['balneo','cocon','rotonde','patio','evasion'];
   const BALNEO_DUOWAVE = ['apolove','miniloveroom','grandeloveroom'];
   let balneoCard = '';
   if (BALNEO_CETANA.includes(apKey) || BALNEO_DUOWAVE.includes(apKey)) {
     const modele = BALNEO_CETANA.includes(apKey) ? 'Cetana' : 'Duo Wave';
     const places = BALNEO_CETANA.includes(apKey)
-      ? '2 places côte à côte'
+      ? '2 places face à face'
       : '2 personnes face à face';
     balneoCard = `
       <div class="faq-group">
