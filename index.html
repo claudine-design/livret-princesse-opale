@@ -1590,10 +1590,17 @@ function copy(txt, btn){
   }
 
   // Bloc commun : liste des équipements (sans mode d'emploi — les modes d'emploi sont dans l'item "Guide équipements")
+  // Balnéo + Apollo (Panoramique 2 Chambres) ont un frigo américain (frigo + congélateur intégrés)
+  // → les autres apparts ont un frigo + un congélateur séparé
+  const frigoAmericain = ['balneo','apollo'].includes(apKey);
+  const frigoLine = frigoAmericain
+    ? '<li><strong>Frigo américain</strong> (avec congélateur intégré) ❄️</li>'
+    : '<li>Frigo</li><li>Congélateur ❄️</li>';
   html += `
     <h3>🔥 Cuisine</h3>
     <div class="card">
       <ul style="margin:0;padding-left:20px">
+        ${frigoLine}
         <li>${plaqueType}</li>
         <li>Cafetière Senseo</li>
         <li>Cafetière à filtre (dans la plupart des logements)</li>
