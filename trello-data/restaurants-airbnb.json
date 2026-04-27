@@ -1,0 +1,35 @@
+{
+  "guidebook_id": "5781243",
+  "title": "Les restaurants sur Berck.",
+  "auteur": "Claudine",
+  "items": [
+    {
+      "nom": "L'Avenue",
+      "tag": "Gastronomie",
+      "description": "Excellent restaurant sur Berck. Ambiance chic. Il faut réserver en avance!",
+      "recommandations": 14,
+      "type": "Restaurant français"
+    },
+    {
+      "nom": "Sunset",
+      "tag": "Magnifique",
+      "description": "Restaurant très belle vue mer. Possibilité de boire un verre les pieds dans le sable.",
+      "recommandations": 45,
+      "type": "Front de mer"
+    },
+    {
+      "nom": "La Grignote",
+      "tag": "Familiale",
+      "description": "Très bon et familiale",
+      "recommandations": 16,
+      "type": "Bistrot local"
+    },
+    {
+      "nom": "L'Alaska",
+      "tag": "Spécialité poisson",
+      "description": "",
+      "recommandations": null,
+      "type": "Fruits de mer"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "guidebook_id": "5781268",
+  "title": "Visites sur Berck et alentours",
+  "auteur": "Claudine",
+  "items": [
+    {
+      "nom": "Plage des phoques",
+      "tag": "Incroyable animaux sauvages",
+      "description": "Spectacle incroyable, venez admirer ces animaux sauvages. Les phoques se reposent à 10m de vous. Seul le fleuve l'Authie vous sépare. En fonction des marées, ils se reposent sur le sable, ou vont dans l'eau pour chasser.",
+      "recommandations": 39,
+      "type": "Nature / animaux"
+    },
+    {
+      "nom": "Parc du Marquenterre",
+      "tag": "Parc ornithologique",
+      "description": "Parc ornithologique situé en bordure nord de la baie de Somme, dans le département de la Somme, en région des Hauts-de-France. Il est d'ailleurs inclus dans la réserve naturelle nationale de la baie de Somme.",
+      "recommandations": 300,
+      "type": "Nature / parc"
+    },
+    {
+      "nom": "Les Jardins De Valloires",
+      "tag": "Jardin sublime",
+      "description": "Les jardins de Valloires sont réputés pour leur beauté.",
+      "recommandations": 32,
+      "type": "Jardin"
+    },
+    {
+      "nom": "Remparts de Montreuil-sur-Mer",
+      "tag": "Lieux emblématiques",
+      "description": "Les remparts de Montreuil nous plonge dans le passé. Les ruelles de la ville avec ses pavés et ses vieilles boutiques sont magnifiques",
+      "recommandations": 47,
+      "type": "Patrimoine / ville"
+    },
+    {
+      "nom": "Sentier dunaire",
+      "tag": "Promenade",
+      "description": "Sentier qui alterne passage sous la pinède et dune. L'observatoire permet de regarder toute la baie!",
+      "recommandations": null,
+      "type": "Nature / promenade"
+    }
+  ]
+}

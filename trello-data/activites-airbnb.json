@@ -1,0 +1,49 @@
+{
+  "guidebook_id": "5783109",
+  "title": "Activités dynamiques extérieures 🔆",
+  "auteur": "Claudine",
+  "items": [
+    {
+      "nom": "Laby'parc du Touquet",
+      "tag": "Parc d'attraction",
+      "description": "Parc familial pour les enfants de 6 à 15 ans à environ 25 minutes de Berck. Pleins d'activités possibles : labyrinthe dans un champ de maïs, glissade sur des pantalys, accrobranche avec filet, voiture à pédale, snack….",
+      "recommandations": 39,
+      "type": "Parc d'attraction"
+    },
+    {
+      "nom": "Parc Bagatelle",
+      "tag": "Parc d'attraction",
+      "description": "Parc d'attraction avec multiples manèges.",
+      "recommandations": 208,
+      "type": "Parc d'attraction"
+    },
+    {
+      "nom": "Opale Laser Game Outdoor",
+      "tag": "Laser game extérieur",
+      "description": "Parc extérieur pour faire des parties avec des pistolets lazers.",
+      "recommandations": 13,
+      "type": "Sport / loisir"
+    },
+    {
+      "nom": "Opale Karting",
+      "tag": "Piste de kart",
+      "description": "Belle piste pour faire du karting seul ou à plusieurs.",
+      "recommandations": 27,
+      "type": "Sport / loisir"
+    },
+    {
+      "nom": "GOLF DE BERCK SUR MER",
+      "tag": "Golf",
+      "description": "Golf 9 trous possibilité de faire un practice.",
+      "recommandations": null,
+      "type": "Sport / loisir"
+    },
+    {
+      "nom": "Sentier Dunaire",
+      "tag": "Lieux emblématiques",
+      "description": "Ce sentier dunaire vous permettra de découvrir les paysages variés comme : la dune avec vue sur la baie d'Authie et les sous-bois qui se retrouvent protégés par la dune.",
+      "recommandations": null,
+      "type": "Nature / promenade"
+    }
+  ]
+}

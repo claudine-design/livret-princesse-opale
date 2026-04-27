@@ -1796,7 +1796,23 @@ async function loadMeteo(){
       actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-blanc-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Blanc+Nez']]},
     { cats:['exterieur-alentours'], titre:'🏞️ Cap Gris-Nez',
       meta:["Audinghen — 1h15 de Berck en voiture","Falaises emblématiques de la Côte d'Opale, le point de France le plus proche de l'Angleterre (28 km). Randonnées, phare, panoramas spectaculaires."],
-      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-gris-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Gris+Nez']]}
+      actions:[['🔗 En savoir +','https://www.pas-de-calais-tourisme.com/villes/cap-gris-nez/'],['📍 Y aller','https://maps.google.com/?q=Cap+Gris+Nez']]},
+    /* ─── ACTIVITÉS du guidebook Airbnb de Claudine ─── */
+    { cats:['exterieur-alentours','decouverte'], titre:'🦭 Plage des phoques ⭐',
+      meta:["<strong>Coup de cœur de votre hôte</strong> 💛 (39 voyageurs recommandent)","<em>« Spectacle incroyable, venez admirer ces animaux sauvages. Les phoques se reposent à 10 m de vous. Seul le fleuve l'Authie vous sépare. En fonction des marées, ils se reposent sur le sable, ou vont dans l'eau pour chasser. »</em>","🌊 À voir à <strong>marée basse</strong> de préférence."],
+      actions:[['🔗 En savoir +','https://www.berck-tourisme.com/fr/decouvrir/incontournables/les-phoques-de-la-baie-d-authie'],['📍 Y aller','https://maps.google.com/?q=Plage+des+phoques+Berck+baie+Authie']]},
+    { cats:['exterieur-alentours','decouverte'], titre:'🦅 Parc du Marquenterre',
+      meta:["Parc ornithologique en bordure nord de la baie de Somme — <strong>réserve naturelle nationale</strong> (300 voyageurs recommandent).","Sentiers d'observation, oiseaux migrateurs, ambiance nature préservée."],
+      actions:[['🔗 parcdumarquenterre.fr','https://www.parcdumarquenterre.fr/'],['📍 Y aller','https://maps.google.com/?q=Parc+du+Marquenterre']]},
+    { cats:['exterieur-alentours','decouverte'], titre:'🌷 Les Jardins de Valloires',
+      meta:["<em>« Les jardins de Valloires sont réputés pour leur beauté. »</em> (32 voyageurs recommandent)","Roseraie, jardin floral et abbatiale cistercienne du XII<sup>e</sup> siècle."],
+      actions:[['🔗 jardinsdevalloires.com','https://www.jardinsdevalloires.com/'],['📍 Y aller','https://maps.google.com/?q=Jardins+de+Valloires']]},
+    { cats:['exterieur-alentours','decouverte'], titre:'🏰 Remparts de Montreuil-sur-Mer',
+      meta:["Lieu emblématique (47 voyageurs recommandent).","<em>« Les remparts de Montreuil nous plongent dans le passé. Les ruelles de la ville avec ses pavés et ses vieilles boutiques sont magnifiques. »</em>"],
+      actions:[['🔗 Tourisme Montreuil','https://www.tourisme-montreuillois.com/'],['📍 Y aller','https://maps.google.com/?q=Remparts+Montreuil-sur-Mer']]},
+    { cats:['sport-berck','decouverte'], titre:'🌾 Sentier dunaire (Berck)',
+      meta:["<em>« Sentier qui alterne passage sous la pinède et dune. L'observatoire permet de regarder toute la baie ! »</em>","Vue sur la <strong>baie d'Authie</strong>, sous-bois protégés par la dune."],
+      actions:[['📍 Y aller','https://maps.google.com/?q=Sentier+dunaire+Berck']]}
   ];
 
   // Bibliothèque de guides PDF/DOCX par slug/résidence
@@ -1884,34 +1900,36 @@ async function loadMeteo(){
 (function renderOuManger(){
   // Liste de base — sera enrichie via le guidebook Airbnb 5781243 quand dispo
   // Format : { nom, adresse, type, note, tel, gmaps?, claudine? }
+  // Restaurants validés par Claudine (guidebook Airbnb 5781243 « Les restaurants sur Berck »)
   const RESTOS = window.RESTAURANTS_AIRBNB || [
     {
       nom: "L'Avenue",
-      adresse: '37 Rue de l\'Impératrice, 62600 Berck',
-      type: 'Restaurant français · Coup de cœur',
-      note: '⭐ Notre meilleure adresse à Berck — cuisine raffinée et accueil chaleureux.',
-      tel: '0321094844',
+      adresse: 'Berck-sur-Mer',
+      type: 'Gastronomie',
+      note: '⭐ « Excellent restaurant sur Berck. Ambiance chic. Il faut réserver en avance ! » <em>(14 voyageurs recommandent)</em>',
+      tel: '',
       claudine: true
     },
     {
-      nom: 'Sunset Beach',
+      nom: 'Sunset',
       adresse: 'Esplanade Parmentier, 62600 Berck',
-      type: 'Restaurant front de mer',
-      note: 'Vue mer panoramique, idéal pour un déjeuner pieds dans le sable.',
+      type: 'Front de mer · Magnifique',
+      note: '🌅 « Restaurant très belle vue mer. Possibilité de boire un verre les pieds dans le sable. » <em>(45 voyageurs recommandent)</em>',
+      tel: '',
+      claudine: true
+    },
+    {
+      nom: 'La Grignote',
+      adresse: 'Berck-sur-Mer',
+      type: 'Bistrot local · Familial',
+      note: '👨‍👩‍👧 « Très bon et familial. » <em>(16 voyageurs recommandent)</em>',
       tel: ''
     },
     {
       nom: "L'Alaska",
       adresse: 'Berck-sur-Mer',
-      type: 'Fruits de mer & poissons',
-      note: 'Spécialités fruits de mer fraîches.',
-      tel: ''
-    },
-    {
-      nom: 'La Grignote',
-      adresse: 'Berck-sur-Mer',
-      type: 'Bistrot local',
-      note: 'Une bonne adresse de quartier, ambiance conviviale.',
+      type: 'Spécialité poisson',
+      note: '🐟 Spécialités fruits de mer & poissons frais.',
       tel: ''
     }
   ];
