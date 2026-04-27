@@ -480,6 +480,10 @@
     <path d="M9.5 19 L14.5 19 M10 21 L14 21"/>
     <path d="M10.5 13 L13.5 13" opacity="0.6"/>
   </symbol>
+  <symbol id="ico-fork" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <path d="M7 3 L7 9 M5 3 L5 8 Q5 9.5 7 9.5 Q9 9.5 9 8 L9 3 M7 9.5 L7 21"/>
+    <path d="M16 3 Q14 3 14 7 Q14 11 16 11 L16 21"/>
+  </symbol>
 
   <!-- Cartouche art-déco (4 coins réutilisables) -->
   <symbol id="corner-tl" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
@@ -534,6 +538,7 @@
     <a class="tile" onclick="open_('equip-menu')"><svg class="ico"><use href="#ico-trunk"/></svg><span class="lbl">Équipement</span></a>
     <a class="tile" onclick="open_('meteo')"><svg class="ico"><use href="#ico-sun"/></svg><span class="lbl">Météo</span></a>
     <a class="tile" onclick="open_('activites')"><svg class="ico"><use href="#ico-bag"/></svg><span class="lbl">Activités à Berck</span></a>
+    <a class="tile" onclick="open_('ou-manger')"><svg class="ico"><use href="#ico-fork"/></svg><span class="lbl">Où manger</span></a>
     <a class="tile" onclick="open_('probleme')"><svg class="ico"><use href="#ico-alert"/></svg><span class="lbl">Signaler un problème</span></a>
     <a class="tile" onclick="open_('urgence')"><svg class="ico"><use href="#ico-sos"/></svg><span class="lbl">Contact d'urgence</span></a>
     <a class="tile" onclick="open_('events')"><svg class="ico"><use href="#ico-event"/></svg><span class="lbl">Événements</span></a>
@@ -595,6 +600,12 @@
 <div class="page" id="p-activites">
   <h2>🎯 Activités à Berck</h2>
   <div id="activites-data"></div>
+</div>
+
+<div class="page" id="p-ou-manger">
+  <h2>🍽️ Où manger à Berck</h2>
+  <p style="font-size:14px;text-align:center;color:var(--muted);margin-bottom:16px;font-style:italic">Mes restaurants coup de cœur — sélectionnés par votre hôte 💛</p>
+  <div id="ou-manger-data"></div>
 </div>
 
 <div class="page" id="p-probleme">
@@ -1867,6 +1878,79 @@ async function loadMeteo(){
       c.style.display = (filter === 'all' || c.dataset.cats.includes(filter)) ? '' : 'none';
     });
   }));
+})();
+
+/* ----- OÙ MANGER À BERCK --------------------------------- */
+(function renderOuManger(){
+  // Liste de base — sera enrichie via le guidebook Airbnb 5781243 quand dispo
+  // Format : { nom, adresse, type, note, tel, gmaps?, claudine? }
+  const RESTOS = window.RESTAURANTS_AIRBNB || [
+    {
+      nom: "L'Avenue",
+      adresse: '37 Rue de l\'Impératrice, 62600 Berck',
+      type: 'Restaurant français · Coup de cœur',
+      note: '⭐ Notre meilleure adresse à Berck — cuisine raffinée et accueil chaleureux.',
+      tel: '0321094844',
+      claudine: true
+    },
+    {
+      nom: 'Sunset Beach',
+      adresse: 'Esplanade Parmentier, 62600 Berck',
+      type: 'Restaurant front de mer',
+      note: 'Vue mer panoramique, idéal pour un déjeuner pieds dans le sable.',
+      tel: ''
+    },
+    {
+      nom: "L'Alaska",
+      adresse: 'Berck-sur-Mer',
+      type: 'Fruits de mer & poissons',
+      note: 'Spécialités fruits de mer fraîches.',
+      tel: ''
+    },
+    {
+      nom: 'La Grignote',
+      adresse: 'Berck-sur-Mer',
+      type: 'Bistrot local',
+      note: 'Une bonne adresse de quartier, ambiance conviviale.',
+      tel: ''
+    }
+  ];
+
+  const box = $('ou-manger-data');
+  if (!box) return;
+
+  let html = '';
+  RESTOS.forEach(r => {
+    const dest = encodeURIComponent(r.gmaps || (r.nom + ' ' + (r.adresse || 'Berck')));
+    const itinUrl = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(ap.adr)}&destination=${dest}&travelmode=walking`;
+    const coupCoeur = r.claudine
+      ? '<div class="meta" style="color:var(--gold-light);font-style:italic;margin-bottom:6px">⭐ <strong>Coup de cœur de votre hôte</strong></div>'
+      : '';
+    const noteHtml = r.note ? `<div class="meta" style="margin-top:6px">${esc(r.note)}</div>` : '';
+    const adrHtml = r.adresse ? `<div class="meta">📍 ${esc(r.adresse)}</div>` : '';
+    const typeHtml = r.type ? `<div class="meta" style="font-style:italic;color:var(--gold-light)">${esc(r.type)}</div>` : '';
+    const photoHtml = r.photo ? `<img src="${esc(r.photo)}" alt="" style="width:100%;max-height:180px;object-fit:cover;border-radius:6px;margin:8px 0" loading="lazy" onerror="this.style.display='none'">` : '';
+    const actions = [];
+    if (r.tel) actions.push(`<a href="tel:${r.tel}">📞 ${r.tel.replace(/(\d{2})(?=\d)/g,'$1 ').trim()}</a>`);
+    actions.push(`<a href="${itinUrl}" target="_blank" rel="noopener">🗺️ Itinéraire à pied</a>`);
+    if (r.gmaps) actions.push(`<a href="${r.gmaps}" target="_blank" rel="noopener">🔗 Google Maps</a>`);
+
+    html += `
+      <div class="card">
+        <div class="name">🍽️ ${esc(r.nom)}</div>
+        ${typeHtml}
+        ${coupCoeur}
+        ${adrHtml}
+        ${photoHtml}
+        ${noteHtml}
+        <div class="actions">${actions.join('')}</div>
+      </div>
+    `;
+  });
+
+  html += `<p style="font-size:12px;color:var(--muted);margin-top:16px;text-align:center;font-style:italic">Sélection mise à jour régulièrement par Claudine — n'hésitez pas à nous écrire si vous voulez d'autres recommandations !</p>`;
+
+  box.innerHTML = html;
 })();
 
 /* renderServices retiré — les options check-in/out + pack linge sont maintenant dans renderCheckin */
