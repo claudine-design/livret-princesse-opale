@@ -1904,10 +1904,12 @@ async function loadMeteo(){
   const RESTOS = window.RESTAURANTS_AIRBNB || [
     {
       nom: "L'Avenue",
-      adresse: 'Berck-sur-Mer',
+      adresse: '18 Avenue du Docteur Quettier, 62600 Berck',
       type: 'Gastronomie',
       note: '⭐ « Excellent restaurant sur Berck. Ambiance chic. Il faut réserver en avance ! » <em>(14 voyageurs recommandent)</em>',
       tel: '',
+      site: 'https://www.restaurant-lavenue-berck.fr/',
+      photo: '/photos/restos/avenue.jpg',
       claudine: true
     },
     {
@@ -1915,7 +1917,9 @@ async function loadMeteo(){
       adresse: 'Esplanade Parmentier, 62600 Berck',
       type: 'Front de mer · Magnifique',
       note: '🌅 « Restaurant très belle vue mer. Possibilité de boire un verre les pieds dans le sable. » <em>(45 voyageurs recommandent)</em>',
-      tel: '',
+      tel: '0788870598',
+      site: 'https://www.sunset-berck.com/',
+      photo: '/photos/restos/sunset.jpg',
       claudine: true
     },
     {
@@ -1923,14 +1927,16 @@ async function loadMeteo(){
       adresse: 'Berck-sur-Mer',
       type: 'Bistrot local · Familial',
       note: '👨‍👩‍👧 « Très bon et familial. » <em>(16 voyageurs recommandent)</em>',
-      tel: ''
+      tel: '',
+      photo: '/photos/restos/grignote.jpg'
     },
     {
       nom: "L'Alaska",
       adresse: 'Berck-sur-Mer',
       type: 'Spécialité poisson',
       note: '🐟 Spécialités fruits de mer & poissons frais.',
-      tel: ''
+      tel: '',
+      photo: '/photos/restos/alaska.jpg'
     }
   ];
 
@@ -1951,6 +1957,7 @@ async function loadMeteo(){
     const actions = [];
     if (r.tel) actions.push(`<a href="tel:${r.tel}">📞 ${r.tel.replace(/(\d{2})(?=\d)/g,'$1 ').trim()}</a>`);
     actions.push(`<a href="${itinUrl}" target="_blank" rel="noopener">🗺️ Itinéraire à pied</a>`);
+    if (r.site) actions.push(`<a href="${r.site}" target="_blank" rel="noopener">🔗 Site officiel</a>`);
     if (r.gmaps) actions.push(`<a href="${r.gmaps}" target="_blank" rel="noopener">🔗 Google Maps</a>`);
 
     html += `
