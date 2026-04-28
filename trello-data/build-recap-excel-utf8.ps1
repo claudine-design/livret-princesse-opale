@@ -27,7 +27,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='2';
-     wifiSsid='BBOX-4DA61D'; wifiPwd='9LMRXwLjC3qRxMLU93';
+     wifiSsid='TP LINK E2E4'; wifiPwd='40803500';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Non (lit double + canapé-lit)';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Oui';
      prestataire='Rémi'; entite='LMP'; photos=0 },
@@ -40,7 +40,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='2';
-     wifiSsid='BBOX-39A25D'; wifiPwd='Twuy7AjqMpFAY3bSTM';
+     wifiSsid='BBOX - 4929C743'; wifiPwd='KXv9 DNH2 uDd5 n165 1u';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Oui';
      prestataire='Rémi'; entite='LMP'; photos=0 },
@@ -53,7 +53,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='2';
-     wifiSsid='BBOX-1A4DA8'; wifiPwd='To check';
+     wifiSsid='SURF'; wifiPwd='Marechal';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Rémi'; entite='LMP'; photos=0 },
@@ -66,7 +66,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Non'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='2';
-     wifiSsid='Famille-Berck'; wifiPwd='To check';
+     wifiSsid='A préciser'; wifiPwd='To check';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Rémi'; entite='LMP'; photos=6 },
@@ -80,7 +80,7 @@ $apparts = @(
      balneo='Cetana (2 places face à face)'; sauna='Non';
      balcon='Oui'; brasero='Oui'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='BBOX-CE0F6E'; wifiPwd='To check';
+     wifiSsid='XXX_63B8'; wifiPwd='89tnbr3bqk33pwkp8tjj';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Clara'; entite='LMP'; photos=6 },
@@ -93,7 +93,7 @@ $apparts = @(
      balneo='Cetana (2 places face à face)'; sauna='Oui';
      balcon='Non'; brasero='Oui'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='Cocon-Berck'; wifiPwd='To check';
+     wifiSsid='XXX_63B8'; wifiPwd='89tnbr3bqk33pwkp8tjj';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Clara'; entite='LMP'; photos=6 },
@@ -107,7 +107,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui'; brasero='Non'; bbq='Oui';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='Terrasse-Berck'; wifiPwd='To check';
+     wifiSsid='xxxx_5ACO'; wifiPwd='qpvr6qkj76bhcb6uyw25';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='✅ Lit bébé + chaise haute'; palier23='Non';
      prestataire='Christelle'; entite='LMP'; photos=0 },
@@ -134,7 +134,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui (vue mer)'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='FaceMer-Berck'; wifiPwd='To check';
+     wifiSsid='SFR_39E8'; wifiPwd='facemercentreesplanade';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='✅ Lit bébé + chaise haute'; palier23='Non';
      prestataire='Christelle'; entite='LMP'; photos=6 },
@@ -148,7 +148,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui (hamac)'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='GrandLarge-Berck'; wifiPwd='To check';
+     wifiSsid='TP link D1EE'; wifiPwd='74817733';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=0 },
@@ -175,7 +175,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui (vue panoramique)'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='Apollo-Berck'; wifiPwd='To check';
+     wifiSsid='TP link DODO'; wifiPwd='15246653';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='❌ Interdits'; bebe='Non'; palier23='Non';
      prestataire='Clara'; entite='SAS Maréchal Invest'; photos=0 },
@@ -188,7 +188,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='Kingston-Berck'; wifiPwd='To check';
+     wifiSsid='TP-LINK -B2A5'; wifiPwd='82562328';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Clara'; entite='SCI'; photos=1 },
@@ -215,7 +215,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Non (local à vélos)'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='Albatros-Berck'; wifiPwd='To check';
+     wifiSsid='TP link D1E8'; wifiPwd='66436003';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Clara'; entite='SAS Maréchal Invest'; photos=0 },
@@ -229,7 +229,7 @@ $apparts = @(
      balneo='Indra Wave (compact, 2 personnes face à face)'; sauna='Non';
      balcon='Non'; brasero='Non'; bbq='Non';
      tv='Vidéoprojecteur + Molotov Premium'; remotes='1';
-     wifiSsid='MiniLove-Berck'; wifiPwd='To check';
+     wifiSsid='Romance'; wifiPwd='58Facemer';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=6 },
@@ -242,7 +242,7 @@ $apparts = @(
      balneo='Indra Wave (compact, 2 personnes face à face)'; sauna='Non';
      balcon='Non'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='GrandeLove-Berck'; wifiPwd='To check';
+     wifiSsid='Romance'; wifiPwd='58Facemer';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='❌ Interdits'; bebe='Non'; palier23='Non';
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=6 },
@@ -255,7 +255,7 @@ $apparts = @(
      ll='Oui'; lv='Non'; baignoire='Non'; douche='Oui';
      balneo='Non'; sauna='Non';
      balcon='Non'; brasero='Non'; bbq='Non';
-     tv='Molotov standard'; remotes='1';
+     tv='Antenne hertzienne (TNT)'; remotes='1';
      wifiSsid='TP-LINK _6322'; wifiPwd='83968280';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
@@ -268,8 +268,8 @@ $apparts = @(
      ll='Oui'; lv='Oui'; baignoire='Oui'; douche='Oui';
      balneo='Cetana (2 places face à face)'; sauna='Oui';
      balcon='Non'; brasero='Non'; bbq='Non';
-     tv='Molotov standard'; remotes='1';
-     wifiSsid='Evasion-Berck'; wifiPwd='To check';
+     tv='Antenne hertzienne (TNT)'; remotes='1';
+     wifiSsid='TP-LINK _6322'; wifiPwd='83968280';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=0 },
@@ -282,7 +282,7 @@ $apparts = @(
      balneo='Cetana (2 places face à face)'; sauna='Oui (max 65°)';
      balcon='Non'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='Rotonde-Berck'; wifiPwd='To check';
+     wifiSsid='Patio23'; wifiPwd='23Patio23';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=0 },
@@ -295,7 +295,7 @@ $apparts = @(
      balneo='Cetana (2 places face à face)'; sauna='Non';
      balcon='Oui (patio)'; brasero='Oui'; bbq='Non';
      tv='Molotov standard'; remotes='1';
-     wifiSsid='Patio-Berck'; wifiPwd='To check';
+     wifiSsid='Patio23'; wifiPwd='23Patio23';
      tarifOption='20 €'; lingeInclus='Oui'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Non';
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=6 }

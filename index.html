@@ -2247,8 +2247,26 @@ async function loadMeteo(){
     `;
   }
 
+  // TV antenne hertzienne (pas de Molotov) : Jeanne + Évasion
+  const TV_ANTENNE = ['jeanne','evasion'];
   let molotovCard = '';
-  if (hasMolotov) {
+  if (TV_ANTENNE.includes(apKey)) {
+    molotovCard = `
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="em">📺</span> Télévision — Antenne hertzienne</div>
+        <div class="card">
+          <div class="name">Comment regarder la télé</div>
+          <div class="meta">Votre télévision est branchée sur une <strong>antenne hertzienne TNT classique</strong>. Pas d'application Molotov dans cet appartement.</div>
+          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+            <li>Allumez la télé avec la télécommande (bouton <strong>POWER</strong>).</li>
+            <li>Choisissez votre chaîne avec les boutons <strong>+ / −</strong> ou les <strong>chiffres</strong>.</li>
+            <li>Toutes les chaînes <strong>TNT classiques</strong> sont disponibles (TF1, France 2, France 3, M6, etc.).</li>
+          </ol>
+          <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 Si la télé ne capte pas, vérifiez que le câble d'antenne est bien branché à l'arrière de la télé.</div>
+        </div>
+      </div>
+    `;
+  } else if (hasMolotov) {
     const remoteTxt = twoRemotes
       ? 'Votre appartement dispose de <strong>deux télécommandes</strong> : une grande (pour allumer la télé) et une petite (pour naviguer dans le menu).'
       : 'Votre appartement dispose d\'<strong>une seule télécommande</strong>.';
