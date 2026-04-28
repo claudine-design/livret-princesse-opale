@@ -7,7 +7,7 @@ $ErrorActionPreference = 'Stop'
 $apparts = @(
   # === Le 23 Maréchal Juin ===
   @{ slug='kitesurf'; nom='Kitesurf'; com='Kitesurf'; adr='23 rue Maréchal Juin, 62600 Berck'; res='Le 23'; zone='marechal';
-     type='Appartement'; surface='34 m²'; lits='4 couchages · chambre 160×200 · canapé gigogne 2×(90×190)'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
+     type='T2'; surface='34 m²'; lits='4 couchages · chambre 160×200 · canapé gigogne 2×(90×190)'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
      videoAcces='https://drive.google.com/file/d/1yoVLVnDSSuuU90lgiMc3-EHvn3vVVqLv/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -20,7 +20,7 @@ $apparts = @(
      prestataire='Rémi'; entite='LMP'; photos=2 },
 
   @{ slug='hamac'; nom='Hamac'; com='Hamac'; adr='23 rue Maréchal Juin, 62600 Berck'; res='Le 23'; zone='marechal';
-     type='Appartement'; surface='35 m²'; lits='4 couchages · chambre 160×200 · canapé convertible 140×190'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
+     type='T2'; surface='35 m²'; lits='4 couchages · chambre 160×200 · canapé convertible 140×190'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
      videoAcces='https://drive.google.com/file/d/1FsKU-XGly3eeHe0fYpDQ3sFK3GM3jpBg/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -33,7 +33,7 @@ $apparts = @(
      prestataire='Rémi'; entite='LMP'; photos=0 },
 
   @{ slug='paddle'; nom='Paddle'; com='Paddle'; adr='23 rue Maréchal Juin, 62600 Berck'; res='Le 23'; zone='marechal';
-     type='Appartement'; surface='30 m²'; lits='4 couchages · chambre 160×200 · canapé gigogne 2×(90×190)'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
+     type='T2'; surface='30 m²'; lits='4 couchages · chambre 160×200 · canapé gigogne 2×(90×190)'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
      videoAcces='https://drive.google.com/file/d/1lRwnNiII1xYEauzS5ddg6J4jKLQm9uum/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -46,7 +46,7 @@ $apparts = @(
      prestataire='Rémi'; entite='LMP'; photos=0 },
 
   @{ slug='surf'; nom='Surf'; com='Surf'; adr='23 rue Maréchal Juin, 62600 Berck'; res='Le 23'; zone='marechal';
-     type='Appartement'; surface='30 m²'; lits='4 couchages · chambre 160×200 · canapé gigogne 2×(90×190)'; etage='1er étage'; ascenseur='Non'; parking='Dans la rue';
+     type='T2'; surface='30 m²'; lits='4 couchages · chambre 160×200 · canapé gigogne 2×(90×190)'; etage='1er étage'; ascenseur='Non'; parking='Dans la rue';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -59,7 +59,7 @@ $apparts = @(
      prestataire='Rémi'; entite='LMP'; photos=0 },
 
   @{ slug='famille'; nom='Famille'; com='3 Chambres 100m Plage'; adr='23 rue Maréchal Juin, 62600 Berck'; res='Le 23'; zone='marechal';
-     type='Grand appartement 3 chambres'; surface='70 m²'; lits='6+ couchages · 3 chambres'; etage='À préciser'; ascenseur='Non'; parking='Dans la rue';
+     type='T4'; surface='70 m²'; lits='6+ couchages · 3 chambres'; etage='À préciser'; ascenseur='Non'; parking='Dans la rue';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Induction'; frigo='Frigo + congélateur séparé'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -73,7 +73,7 @@ $apparts = @(
 
   # === Le 25 Maréchal Juin ===
   @{ slug='balneo'; nom='Balnéo'; com='Balnéo Garden'; adr='25 rue Maréchal Juin, 62600 Berck'; res='Le 25'; zone='marechal';
-     type='Appartement'; surface='53 m²'; lits='6 couchages · chambre 1: 160×200 · chambre 2: 2×(90×190) · canapé 140×190'; etage='RDC'; ascenseur='Non'; parking='✅ Parking sécurisé inclus';
+     type='T3'; surface='53 m²'; lits='6 couchages · chambre 1: 160×200 · chambre 2: 2×(90×190) · canapé 140×190'; etage='RDC'; ascenseur='Non'; parking='✅ Parking sécurisé inclus';
      videoAcces='https://drive.google.com/file/d/1tc8QjWR0X3tYzfez82oHtJ4DMdQ2uLhw/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Frigo américain (congélateur intégré)'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Oui'; douche='Oui';
@@ -86,7 +86,7 @@ $apparts = @(
      prestataire='Clara'; entite='LMP'; photos=6 },
 
   @{ slug='cocon'; nom='Cocon Romantique'; com='Cocon Romantique'; adr='25 rue Maréchal Juin, 62600 Berck'; res='Le 25'; zone='marechal';
-     type='Appartement'; surface='40 m²'; lits='2 couchages · chambre 160×200'; etage='RDC'; ascenseur='Non'; parking='Dans la rue';
+     type='T2'; surface='40 m²'; lits='2 couchages · chambre 160×200'; etage='RDC'; ascenseur='Non'; parking='Dans la rue';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Oui'; douche='Oui';
@@ -100,7 +100,7 @@ $apparts = @(
 
   # === Terrasse / rue des Sables ===
   @{ slug='terrasse'; nom='Terrasse'; com='La Terrasse'; adr='17 rue du Grand Hôtel, 62600 Berck'; res='Terrasse'; zone='terrasse';
-     type='Grand appartement'; surface='63 m²'; lits='8 couchages · chambre 1: 160×200 · chambre 2: 140×200 + 2×(90×190) · canapé 140×190'; etage='RDC'; ascenseur='Non'; parking='Dans la rue';
+     type='T3'; surface='63 m²'; lits='8 couchages · chambre 1: 160×200 · chambre 2: 140×200 + 2×(90×190) · canapé 140×190'; etage='RDC'; ascenseur='Non'; parking='Dans la rue';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Frigo + congélateur séparé'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Oui'; douche='Oui';
@@ -127,7 +127,7 @@ $apparts = @(
 
   # === Face Mer ===
   @{ slug='facemer'; nom='Face Mer'; com='Face Mer Esplanade'; adr='1 rue de la Plage, 62600 Berck'; res='Face Mer'; zone='esplanade';
-     type='Appartement'; surface='À préciser'; lits='À préciser'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
+     type='T2'; surface='À préciser'; lits='À préciser'; etage='2e étage'; ascenseur='Non'; parking='Dans la rue';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Frigo + congélateur séparé'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -141,7 +141,7 @@ $apparts = @(
 
   # === Grand Large ===
   @{ slug='grandlarge'; nom='Grand Large'; com='Hamac Face Mer'; adr='45 Esplanade Parmentier, 62600 Berck'; res='Grand Large'; zone='esplanade';
-     type='Appartement'; surface='38 m²'; lits='4 couchages · chambre 160×200 · canapé convertible 140×190'; etage='3e étage'; ascenseur='Non'; parking='Dans la rue';
+     type='T2'; surface='38 m²'; lits='4 couchages · chambre 160×200 · canapé convertible 140×190'; etage='3e étage'; ascenseur='Non'; parking='Dans la rue';
      videoAcces='https://drive.google.com/file/d/1yT8uTNvdaBE5eM7y-VJIBBW5zskDZLfD/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -168,7 +168,7 @@ $apparts = @(
      prestataire='Clara'; entite='SAS Maréchal Invest'; photos=6 },
 
   @{ slug='apollo'; nom='Apollo'; com='Panoramique 2 Chambres'; adr='2 Avenue Marianne (T3), 62600 Berck'; res='Apollo'; zone='esplanade';
-     type='Appartement'; surface='53 m²'; lits='6 couchages · 2 chambres 160×200 · canapé 140×190'; etage='1er étage'; ascenseur='Oui'; parking='✅ Parking n°502 inclus (portail avec bip)';
+     type='T3'; surface='53 m²'; lits='6 couchages · 2 chambres 160×200 · canapé 140×190'; etage='1er étage'; ascenseur='Oui'; parking='✅ Parking n°502 inclus (portail avec bip)';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Frigo américain (congélateur intégré)'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -181,7 +181,7 @@ $apparts = @(
      prestataire='Clara'; entite='SAS Maréchal Invest'; photos=0 },
 
   @{ slug='kingston'; nom='Kingston'; com='Face Mer Exceptionnel'; adr='2 Avenue Marianne (appt 16, RDC), 62600 Berck'; res='Apollo'; zone='esplanade';
-     type='Appartement'; surface='47 m²'; lits='4 couchages · canapé lit 160'; etage='RDC'; ascenseur='Non'; parking='✅ Parking n°16 inclus (juste devant)';
+     type='Studio'; surface='47 m²'; lits='4 couchages · canapé lit 160'; etage='RDC'; ascenseur='Non'; parking='✅ Parking n°16 inclus (juste devant)';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Frigo + congélateur séparé'; cafetiere='Senseo';
      ll='Oui'; lv='Non'; baignoire='Oui'; douche='Non';
@@ -208,7 +208,7 @@ $apparts = @(
 
   # === Albatros ===
   @{ slug='albatros'; nom='Albatros'; com='Hamac Chic Vue Mer'; adr='10 Avenue Marianne, 62600 Berck'; res='Albatros'; zone='esplanade';
-     type='Appartement'; surface='25 m²'; lits='4 couchages · chambre 140×200 · canapé convertible 140×190'; etage='3e étage'; ascenseur='Oui'; parking='Dans la rue';
+     type='T2'; surface='25 m²'; lits='4 couchages · chambre 140×200 · canapé convertible 140×190'; etage='3e étage'; ascenseur='Oui'; parking='Dans la rue';
      videoAcces='https://drive.google.com/file/d/1IBQUDOQNG4ENcgeAtUPYJInJFTUpWpgM/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Non'; douche='Oui';
@@ -249,7 +249,7 @@ $apparts = @(
 
   # === Rue Jeanne ===
   @{ slug='jeanne'; nom='Jeanne'; com='Cœur de Berck'; adr='23 Rue Jeanne, 62600 Berck'; res='Rue Jeanne'; zone='jeanne';
-     type='Appartement'; surface='48 m²'; lits='4 couchages · chambre 160×200 + canapé 140×190'; etage='1er étage · appartement 3'; ascenseur='Non'; parking='Dans la rue + parking stade gratuit';
+     type='T2'; surface='48 m²'; lits='4 couchages · chambre 160×200 + canapé 140×190'; etage='1er étage · appartement 3'; ascenseur='Non'; parking='Dans la rue + parking stade gratuit';
      videoAcces='https://drive.google.com/file/d/1cQR6Hv6br1B7-VEVXDFCPFT_Z3H7OL75/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Gaz'; frigo='Frigo + congélateur séparé'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Non'; baignoire='Non'; douche='Oui';
@@ -262,7 +262,7 @@ $apparts = @(
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=6 },
 
   @{ slug='evasion'; nom='Évasion'; com="L'Évasion Balnéo & Sauna"; adr='Rue Jeanne, 62600 Berck'; res='Rue Jeanne'; zone='jeanne';
-     type='Appartement'; surface='38 m²'; lits='4 couchages · chambre 160×200 + canapé 140×190'; etage='1er étage'; ascenseur='Non'; parking='Dans la rue + parking stade gratuit';
+     type='T2'; surface='38 m²'; lits='4 couchages · chambre 160×200 + canapé 140×190'; etage='1er étage'; ascenseur='Non'; parking='Dans la rue + parking stade gratuit';
      videoAcces='https://drive.google.com/file/d/1UGxYQjz06UbgdcJZw5Zn0lZ0a_AmTa0j/view'; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Oui'; douche='Oui';
@@ -275,7 +275,7 @@ $apparts = @(
      prestataire='Christelle'; entite='SAS Maréchal Invest'; photos=0 },
 
   @{ slug='rotonde'; nom='Rotonde'; com='La Rotonde du Bien-être'; adr='Rue Jeanne, 62600 Berck'; res='Rue Jeanne'; zone='jeanne';
-     type='Appartement'; surface='55 m²'; lits='5 couchages · chambre 1: 160×200 · chambre 2: 2×(90×190) · canapé 140×190'; etage='RDC'; ascenseur='Non'; parking='Dans la rue + parking stade gratuit';
+     type='T3'; surface='55 m²'; lits='5 couchages · chambre 1: 160×200 · chambre 2: 2×(90×190) · canapé 140×190'; etage='RDC'; ascenseur='Non'; parking='Dans la rue + parking stade gratuit';
      videoAcces=''; videoParking='https://www.youtube.com/watch?v=HVP1-x_L478';
      plaque='Vitro-céramique'; frigo='Compartiment freezer'; cafetiere='Senseo + filtre';
      ll='Oui'; lv='Oui'; baignoire='Oui'; douche='Oui';
