@@ -366,6 +366,26 @@ for ($i = 0; $i -lt $apparts.Count; $i++) {
   }
 }
 
+# ==== Coloration des cellules Oui (vert) / Non (rose) ====
+# RGB en hex inversé pour Excel COM (BBGGRR)
+$colorVert  = 0xC8E6C9  # vert pastel
+$colorRose  = 0xC8C8FF  # rose clair
+$colorOrange = 0xB8E0FF # orange clair pour "À préciser"
+
+for ($r = 2; $r -le $apparts.Count + 1; $r++) {
+  for ($c = 1; $c -le $cols.Count; $c++) {
+    $cell = $ws.Cells.Item($r, $c)
+    $val = "$($cell.Value2)".Trim()
+    if ($val -match '^Oui') {
+      $cell.Interior.Color = $colorVert
+    } elseif ($val -match '^Non' -or $val -match '^❌') {
+      $cell.Interior.Color = $colorRose
+    } elseif ($val -match 'pr[ée]ciser' -or $val -eq 'À préciser') {
+      $cell.Interior.Color = $colorOrange
+    }
+  }
+}
+
 # Largeurs colonnes auto
 $ws.Range($ws.Cells.Item(1,1), $ws.Cells.Item($apparts.Count+1, $cols.Count)).EntireColumn.AutoFit() | Out-Null
 
