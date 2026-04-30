@@ -264,6 +264,37 @@
     font-family:'Montserrat',sans-serif;
   }
 
+  /* POUBELLES & TRI — carte structurée par appart */
+  .poubelles-row{margin:6px 0;font-size:14px;line-height:1.55}
+  .poubelles-row strong{color:var(--gold-light)}
+  .poubelles-bacs{margin:10px 0 4px 0;padding-left:0;list-style:none}
+  .poubelles-bacs li{display:flex;align-items:center;gap:10px;margin-bottom:6px;font-size:14px}
+  .bac-puce{
+    display:inline-block;width:18px;height:18px;border-radius:50%;
+    border:1px solid var(--gold-line);flex-shrink:0;
+  }
+  .bac-puce.grise{background:#9aa0a6}
+  .bac-puce.jaune{background:#f4c948}
+  .bac-puce.noire{background:#1d1d1d;border-color:#3a3a3a}
+  .bac-puce.verte{background:#3f7d4f}
+  .poubelles-verre{
+    margin-top:10px;padding:10px 12px;border-radius:8px;
+    background:rgba(63,125,79,.12);border:1px solid rgba(63,125,79,.35);
+    font-size:13.5px;line-height:1.55;color:#cfe5d4;
+  }
+  .poubelles-verre strong{color:#9bd0a8}
+  .poubelles-alt{
+    margin-top:10px;padding:10px 12px;border-radius:8px;
+    background:rgba(212,175,94,.08);border:1px solid var(--gold-line);
+    font-size:13.5px;line-height:1.55;color:var(--ink);
+  }
+  .poubelles-alt strong{color:var(--gold-light)}
+  .poubelles-gps{
+    display:inline-block;margin-top:4px;font-size:12.5px;
+    color:var(--gold-light);text-decoration:underline;
+    text-decoration-color:var(--gold-dark);text-underline-offset:3px;
+  }
+
   /* MÉTÉO — nuit étoilée */
   .meteo{
     text-align:center;padding:24px 18px;
@@ -949,6 +980,215 @@ const WIFI_BY_SLUG = {
 };
 
 const LINGE_NON_FOURNI = ['kitesurf','hamac','paddle','surf','famille','terrasse','facemer','grandlarge','jeanne'];
+
+/* ----- POUBELLES & TRI : topo par appart (verbatim Claudine, 28-30 avril 2026) ------- */
+/* Schéma : { lieu, chemin?, distance?, gps?, bacs:[{couleur,note}], verre?, alternative? } */
+/* Mettre `null` pour les apparts dont on n'a pas encore le topo confirmé.                */
+const POUBELLES = {
+  // 58 Esplanade Parmentier — Mini + Grande Love Room (parking arrière, GPS confirmé)
+  miniloveroom: {
+    lieu: 'Containers au niveau des parkings derrière l’immeuble, un peu plus au sud',
+    chemin: 'À gauche en sortant de l’immeuble → 1ère à gauche → puis à droite',
+    gps: '50.409716, 1.562247',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+  grandeloveroom: {
+    lieu: 'Containers au niveau des parkings derrière l’immeuble, un peu plus au sud',
+    chemin: 'À gauche en sortant de l’immeuble → 1ère à gauche → puis à droite',
+    gps: '50.409716, 1.562247',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+
+  // Albatros (10 av Marianne) — cave de l'immeuble
+  albatros: {
+    lieu: 'Containers dans la cave de l’immeuble',
+    chemin: 'Ascenseur → descendre au moins 1 niveau → tourner à gauche → puis à gauche',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+
+  // Résidence Apollo (2 av Marianne) — Apolove + Apollo + Réserve : cour à l'arrière
+  // (Kingston : conteneurs municipaux, voir ci-dessous)
+  apolove: {
+    lieu: 'Containers dans la cour à l’arrière de l’immeuble',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+  apollo: {
+    lieu: 'Containers dans la cour à l’arrière de l’immeuble',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+  reserve: {
+    lieu: 'Containers dans la cour à l’arrière de l’immeuble',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+
+  // Grand Large (45 esplanade Parmentier) — containers municipaux à l'arrière
+  grandlarge: {
+    lieu: 'Containers municipaux à l’arrière de l’immeuble, au milieu du parking',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+
+  // Cœur des Sables (Maisonnette) — cour, bacs dédiés + verre déporté
+  maisonnette: {
+    lieu: 'Poubelles dans la cour de l’immeuble',
+    bacs: [
+      { couleur: 'Gris', note: '1 grande poubelle dédiée à votre appartement (ordures ménagères)' },
+      { couleur: 'Jaune', note: 'cartons et bouteilles plastiques uniquement' }
+    ],
+    verre: 'Conteneur à verre au parking, à la jonction du Dr Calot et du bd de Boulogne (~150 m). Prendre la rue des Sables le long de l’appart, au bout tourner à gauche.'
+  },
+
+  // Terrasse (17 rue du grand hôtel) — cour, bacs dédiés + verre déporté (idem Cœur)
+  terrasse: {
+    lieu: 'Poubelles dans la cour à l’arrière de l’appartement',
+    bacs: [
+      { couleur: 'Gris', note: '1 grande poubelle dédiée à votre appartement (ordures ménagères)' },
+      { couleur: 'Jaune', note: 'cartons et bouteilles plastiques uniquement' }
+    ],
+    verre: 'Conteneur à verre au parking, à la jonction du Dr Calot et du bd de Boulogne (~150 m).'
+  },
+
+  // 23 et 25 rue Maréchal-Juin — containers de rue (intersection av. Général de Gaulle / rue Dr Victor Ménard)
+  // 7 apparts : Balnéo, Cocon, Famille, Surf, Kitesurf, Hamac, Paddle
+  balneo: {
+    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
+    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
+    distance: '~250 m, 2-3 min à pied',
+    bacs: [
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Noir', note: 'ordures ménagères' }
+    ]
+  },
+  cocon: {
+    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
+    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
+    distance: '~250 m, 2-3 min à pied',
+    bacs: [
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Noir', note: 'ordures ménagères' }
+    ]
+  },
+  famille: {
+    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
+    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
+    distance: '~250 m, 2-3 min à pied',
+    bacs: [
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Noir', note: 'ordures ménagères' }
+    ]
+  },
+  surf: {
+    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
+    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
+    distance: '~250 m, 2-3 min à pied',
+    bacs: [
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Noir', note: 'ordures ménagères' }
+    ]
+  },
+  kitesurf: {
+    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
+    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
+    distance: '~250 m, 2-3 min à pied',
+    bacs: [
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Noir', note: 'ordures ménagères' }
+    ]
+  },
+  hamac: {
+    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
+    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
+    distance: '~250 m, 2-3 min à pied',
+    bacs: [
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Noir', note: 'ordures ménagères' }
+    ]
+  },
+  paddle: {
+    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
+    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
+    distance: '~250 m, 2-3 min à pied',
+    bacs: [
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Noir', note: 'ordures ménagères' }
+    ]
+  },
+
+  // 23 rue Jeanne — Jeanne, Évasion, Rotonde, Patio : poubelles juste en face de l'entrée
+  jeanne: {
+    lieu: 'Poubelles juste en face de l’entrée de l’immeuble',
+    chemin: 'En sortant de l’immeuble, traversez : les containers sont en face',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+  evasion: {
+    lieu: 'Poubelles juste en face de l’entrée de l’immeuble',
+    chemin: 'En sortant de l’immeuble, traversez : les containers sont en face',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+  rotonde: {
+    lieu: 'Poubelles juste en face de l’entrée de l’immeuble',
+    chemin: 'En sortant de l’immeuble, traversez : les containers sont en face',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+  patio: {
+    lieu: 'Poubelles juste en face de l’entrée de l’immeuble',
+    chemin: 'En sortant de l’immeuble, traversez : les containers sont en face',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  },
+
+  // Kingston (2 av Marianne, RCH parking 16) — accès cour via vigik + alternative containers enterrés
+  kingston: {
+    lieu: 'Cour à l’arrière de la résidence — containers gris et jaunes',
+    chemin: 'Prenez le petit vigik fixé à votre trousseau de clés, contournez le parking pour entrer dans l’immeuble de la résidence. La cour avec les containers se trouve à l’arrière.',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ],
+    alternative: 'Vous pouvez aussi simplement utiliser les containers enterrés sur l’esplanade, juste en face de l’appartement.'
+  },
+
+  // Face Mer — containers enterrés sur l'esplanade en face + cour observable depuis la chambre
+  facemer: {
+    lieu: 'Containers enterrés sur l’esplanade, juste en face de l’appartement',
+    chemin: 'En sortant de l’immeuble, les containers enterrés sont visibles directement en face. Pour vous repérer : la cour à l’arrière de l’appartement est observable depuis la fenêtre de votre chambre.',
+    bacs: [
+      { couleur: 'Gris', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' }
+    ]
+  }
+};
 
 /* ----- APPART_INFO : fiche détaillée par appart (format Albert SAV) ----- */
 /* Remplissable progressivement. Pour chaque appart : surface/lits/étage + équipements + vidéos + proximité */
@@ -1685,6 +1925,45 @@ function copy(txt, btn){
       </ul>
     </div>
   `;
+
+  // Bloc Poubelles & tri (par appart, depuis POUBELLES)
+  const pb = (typeof POUBELLES !== 'undefined') ? POUBELLES[apKey] : undefined;
+  html += `<h3>♻️ Poubelles &amp; tri</h3>`;
+  if (pb) {
+    const couleurClass = c => {
+      const k = (c||'').toLowerCase();
+      if (k.startsWith('gris')) return 'grise';
+      if (k.startsWith('jaun')) return 'jaune';
+      if (k.startsWith('noir')) return 'noire';
+      if (k.startsWith('vert')) return 'verte';
+      return '';
+    };
+    let inner = '';
+    inner += `<div class="poubelles-row"><strong>Lieu :</strong> ${esc(pb.lieu)}</div>`;
+    if (pb.chemin)   inner += `<div class="poubelles-row"><strong>Itinéraire :</strong> ${esc(pb.chemin)}</div>`;
+    if (pb.distance) inner += `<div class="poubelles-row"><strong>Distance :</strong> ${esc(pb.distance)}</div>`;
+    if (pb.gps) {
+      const gpsHref = `https://maps.google.com/?q=${encodeURIComponent(pb.gps)}`;
+      inner += `<div class="poubelles-row"><strong>GPS :</strong> <a class="poubelles-gps" href="${gpsHref}" target="_blank" rel="noopener">${esc(pb.gps)} ↗</a></div>`;
+    }
+    if (pb.bacs && pb.bacs.length) {
+      inner += `<ul class="poubelles-bacs">`;
+      pb.bacs.forEach(b => {
+        const cls = couleurClass(b.couleur);
+        inner += `<li><span class="bac-puce ${cls}" aria-hidden="true"></span><span><strong>Bac ${esc(b.couleur).toLowerCase()}</strong>${b.note ? ' — ' + esc(b.note) : ''}</span></li>`;
+      });
+      inner += `</ul>`;
+    }
+    if (pb.verre) {
+      inner += `<div class="poubelles-verre"><strong>🍾 Verre :</strong> ${esc(pb.verre)}</div>`;
+    }
+    if (pb.alternative) {
+      inner += `<div class="poubelles-alt"><strong>💡 Alternative :</strong> ${esc(pb.alternative)}</div>`;
+    }
+    html += `<div class="card">${inner}</div>`;
+  } else {
+    html += TODO(`Topo poubelles à confirmer avec Claudine pour <strong>${apTitre}</strong>.`);
+  }
 
   $('equip-data').innerHTML = html;
 })();
