@@ -80,9 +80,17 @@
 
 <div id="sheets"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="qrious.min.js"></script>
 <script>
 const BASE_URL = 'https://claudine-design.github.io/livret-princesse-opale/';
+
+if (typeof QRious === 'undefined') {
+  document.body.insertAdjacentHTML('afterbegin',
+    '<div style="background:#fee;color:#900;padding:16px;margin:10px;border:2px solid #900;border-radius:6px;font-family:sans-serif">' +
+    '⚠️ La librairie QR (qrious.min.js) n’a pas pu être chargée. Vérifiez que le fichier est bien à côté de qrcodes.html.' +
+    '</div>'
+  );
+}
 const APPARTS = [
   ['kitesurf',      'Kitesurf',         'Kitesurf'],
   ['hamac',         'Hamac',            'Hamac'],
@@ -140,15 +148,26 @@ for (let i = 0; i < APPARTS.length; i += 4) {
       </div>
     `;
     sheet.appendChild(card);
-    // Générer QR
-    const url = BASE_URL + '?a=' + slug;
-    QRCode.toCanvas(document.createElement('canvas'), url, { width: 500, margin: 1, color: { dark: '#1a1610', light: '#ffffff' } }, (err, canvas) => {
-      if (!err) {
+    // Générer QR (QRious — bibliothèque self-hostée)
+    if (typeof QRious !== 'undefined') {
+      try {
+        const canvas = document.createElement('canvas');
+        new QRious({
+          element: canvas,
+          value: BASE_URL + '?a=' + slug,
+          size: 500,
+          foreground: '#1a1610',
+          background: '#ffffff',
+          padding: 8,
+          level: 'M'
+        });
         const img = new Image();
         img.src = canvas.toDataURL('image/png');
         card.querySelector(`#qr-${slug}`).appendChild(img);
+      } catch(e) {
+        card.querySelector(`#qr-${slug}`).textContent = 'QR ' + slug;
       }
-    });
+    }
   }
   host.appendChild(sheet);
 }
