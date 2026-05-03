@@ -338,9 +338,15 @@
     content:"";position:absolute;top:0;left:15%;right:15%;height:1px;
     background:linear-gradient(90deg,transparent,var(--gold),transparent);
   }
-  .cv-title{font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);margin-bottom:10px}
-  .chers-voyageurs p{margin:0 0 8px;font-style:italic}
+  .cv-title{font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);margin-bottom:10px;text-align:center}
+  .chers-voyageurs p{margin:0 0 10px;font-style:italic}
   .chers-voyageurs em{color:var(--gold-light);font-style:italic}
+  .cv-photo{
+    display:block;width:130px;height:130px;object-fit:cover;
+    border-radius:50%;border:2px solid var(--gold);
+    box-shadow:0 4px 14px rgba(212,175,94,.25);
+    margin:6px auto 16px;
+  }
   .cv-signoff{text-align:right;margin-top:12px;font-size:14px;font-style:italic;color:var(--muted)}
   .cv-signature{font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);display:inline-block;margin-top:4px}
 
@@ -585,8 +591,11 @@
 
   <div class="chers-voyageurs">
     <div class="cv-title">Chers Voyageurs,</div>
-    <p>J'ai mis tout mon cœur dans l'installation et la décoration de ce logement et je souhaite que vous vous y sentiez <em>comme chez vous</em>.</p>
-    <p>Sachez que la « Team » qui m'épaule au quotidien, ainsi que mes enfants qui m'aident également, se joignent à moi pour vous souhaiter de passer d'excellents moments et de profiter pleinement de votre séjour.</p>
+    <img src="/assets/claudine-portrait.jpg" alt="Claudine" class="cv-photo" onerror="this.style.display='none'">
+    <p>Je m'appelle Claudine et cela fait <strong>25 ans</strong> que je vis à Berck-sur-Mer. Originaire de la région parisienne, j'ai posé mes valises ici, séduite par cette plage parfaite pour mon sport de cœur&nbsp;: le <em>kitesurf</em>.</p>
+    <p>Cette passion m'a menée jusqu'à des podiums en <em>Coupe du Monde</em> de kitesurf et un titre de <em>championne du monde de landkite</em>. Avec l'arrivée de mes deux enfants, je me suis tournée vers la course à pied et le triathlon — depuis 8 ans, je sillonne dunes, sentiers et chemins six jours sur sept.</p>
+    <p>Autant dire que je connais Berck et ses alentours <em>par cœur</em>&nbsp;: les meilleurs spots nautiques, les sentiers de promenade, les sorties à vélo, et même mon coin secret pour ramasser le bois flotté avec mes enfants.</p>
+    <p>J'ai mis tout mon cœur dans l'installation et la décoration de ce logement&nbsp;; je souhaite que vous vous y sentiez <em>comme chez vous</em>. Avec la «&nbsp;Team&nbsp;» qui m'épaule au quotidien et mes enfants, nous vous souhaitons de profiter pleinement de votre séjour — et, qui sait, peut-être d'apercevoir le <em>rayon vert</em> sur la mer au coucher du soleil 🌅</p>
     <div class="cv-signoff">Votre Hôte,<br><span class="cv-signature">Claudine</span></div>
   </div>
 
