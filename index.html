@@ -1309,12 +1309,12 @@ const APPART_INFO = {
   cocon: {
     typeLogement: 'T2',
     surface: '40 m²',
-    lits: '2 couchages · chambre 160 × 200',
+    lits: '1 lit double 160 × 200 · 2 personnes',
     etage: 'Rez-de-chaussée',
     ascenseur: false,
     parking: 'Dans la rue (payant 1er mai → 30 sept + vacances Toussaint — 1re heure gratuite).',
     videoParking: 'https://www.youtube.com/watch?v=HVP1-x_L478',
-    equipements: ['Machine à laver','Lave-vaisselle','Baignoire','Douche','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🧖 Sauna','🛁 Balnéo Spalina Cetana (2 places face à face)','🔥 Brasero (extérieur)'],
+    equipements: ['Machine à laver','Lave-vaisselle','Douche','Machine à café (1 Senseo + 1 à filtre)','Ventilateur','🧖 Sauna + douche en sous-sol (petit escalier privé, gain de place)','🛁 Balnéo Spalina Cetana (2 places face à face)','🔥 Brasero (extérieur)','🌞 Transats dans le jardin'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
     transport: '15 min à pied de la gare routière'
   },
@@ -1732,6 +1732,16 @@ function copy(txt, btn){
   const noPackSimple = ['hamac'].includes(apKey);
   const packSimpleHTML = noPackSimple ? '' : `<div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — 10 €</strong><br>Draps + housse de couette + taie d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>`;
   const packSimpleMail = noPackSimple ? '' : '\n- Pack lit simple (10 €) : ___';
+  // Apparts où l'option « lits séparés » n'a pas de sens :
+  // - 1 seul lit double, pas de séparation possible (cocon, apolove, miniloveroom)
+  // - logement 2 personnes max où la question ne se pose pas (maisonnette)
+  const noLitsSepares = ['cocon','apolove','miniloveroom','maisonnette'].includes(apKey);
+  const litsSeparesBlock = noLitsSepares ? '' : `
+      <div class="meta" style="color:var(--gold-light);margin-top:10px">
+        ✨ <strong>Vous êtes 2 et souhaitez dormir en lits séparés&nbsp;?</strong><br>
+        Supplément blanchisserie&nbsp;: <strong>10 €</strong>.
+      </div>
+      <a href="${optionLink('Demande lits séparés', "Nous sommes 2 voyageurs et souhaitons dormir dans des lits séparés plutôt qu'un lit double (supplément blanchisserie 10 €).")}" style="${btnStyle}">📩 Demander l'option</a>`;
   const lingeCard = lingeEnOption ? `
     <h3>🛏️ Pack linge — option</h3>
     <div class="card" style="border-color:var(--gold)">
@@ -1745,12 +1755,7 @@ function copy(txt, btn){
     <h3>🛏️ Linge</h3>
     <div class="card">
       <div class="name">Linge fourni</div>
-      <div class="meta">Draps et serviettes sont <strong>inclus</strong> dans votre séjour.</div>
-      <div class="meta" style="color:var(--gold-light);margin-top:10px">
-        ✨ <strong>Vous êtes 2 et souhaitez dormir en lits séparés&nbsp;?</strong><br>
-        Supplément blanchisserie&nbsp;: <strong>10 €</strong>.
-      </div>
-      <a href="${optionLink('Demande lits séparés', "Nous sommes 2 voyageurs et souhaitons dormir dans des lits séparés plutôt qu'un lit double (supplément blanchisserie 10 €).")}" style="${btnStyle}">📩 Demander l'option</a>
+      <div class="meta">Draps et serviettes sont <strong>inclus</strong> dans votre séjour.</div>${litsSeparesBlock}
     </div>
   `;
 
@@ -2670,14 +2675,17 @@ async function loadMeteo(){
   const NO_DOGS = ['apollo','apolove','grandeloveroom'];
   // Apparts avec lit bébé / chaise haute disponibles
   const BABY_GEAR = ['facemer','terrasse'];
+  // Apparts sans option « lits séparés » (1 seul lit double, ou 2 personnes max)
+  const NO_LITS_SEPARES_FAQ = ['cocon','apolove','miniloveroom','maisonnette'];
   const dogsAllowed = !NO_DOGS.includes(apKey);
   const hasBabyGear = BABY_GEAR.includes(apKey);
+  const hasLitsSepares = !NO_LITS_SEPARES_FAQ.includes(apKey);
 
   const QR = [
     {
       em:'🛏️', q:'Le linge de lit et les serviettes sont-ils fournis ?',
       r: lingeInclus
-        ? `Oui ! Dans votre logement, draps et serviettes sont <strong>inclus</strong>. Si vous êtes 2 et préférez des lits séparés, c'est possible (+10 € de blanchisserie) — voir l'item Check-in / Check-out.`
+        ? `Oui ! Dans votre logement, draps et serviettes sont <strong>inclus</strong>.${hasLitsSepares ? ` Si vous êtes 2 et préférez des lits séparés, c'est possible (+10 € de blanchisserie) — voir l'item Check-in / Check-out.` : ''}`
         : `Dans votre logement, le linge n'est pas inclus, mais vous pouvez commander un <strong>pack à 15 €</strong> (draps + couette + 2 serviettes par personne). Voir l'item Check-in / Check-out pour commander.`
     },
     {
