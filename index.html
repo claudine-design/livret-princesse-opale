@@ -591,11 +591,9 @@
 
   <div class="chers-voyageurs">
     <div class="cv-title">Chers Voyageurs,</div>
-    <img src="/assets/claudine-portrait.jpg" alt="Claudine" class="cv-photo" onerror="this.style.display='none'">
-    <p>Je m'appelle Claudine et cela fait <strong>25 ans</strong> que je vis à Berck-sur-Mer. Originaire de la région parisienne, j'ai posé mes valises ici, séduite par cette plage parfaite pour mon sport de cœur&nbsp;: le <em>kitesurf</em>.</p>
-    <p>Cette passion m'a menée jusqu'à des podiums en <em>Coupe du Monde</em> de kitesurf et un titre de <em>championne du monde de landkite</em>. Avec l'arrivée de mes deux enfants, je me suis tournée vers la course à pied et le triathlon — depuis 8 ans, je sillonne dunes, sentiers et chemins six jours sur sept.</p>
-    <p>Autant dire que je connais Berck et ses alentours <em>par cœur</em>&nbsp;: les meilleurs spots nautiques, les sentiers de promenade, les sorties à vélo, et même mon coin secret pour ramasser le bois flotté avec mes enfants.</p>
-    <p>J'ai mis tout mon cœur dans l'installation et la décoration de ce logement&nbsp;; je souhaite que vous vous y sentiez <em>comme chez vous</em>. Avec la «&nbsp;Team&nbsp;» qui m'épaule au quotidien et mes enfants, nous vous souhaitons de profiter pleinement de votre séjour — et, qui sait, peut-être d'apercevoir le <em>rayon vert</em> sur la mer au coucher du soleil 🌅</p>
+    <img src="assets/claudine-portrait.jpg" alt="Claudine" class="cv-photo" onerror="this.style.display='none'">
+    <p>Je m'appelle Claudine et je vis à Berck-sur-Mer depuis <strong>25 ans</strong>. Originaire de la région parisienne, j'y ai posé mes valises pour le <em>kitesurf</em> — podiums en Coupe du Monde et titre de <em>championne du monde de landkite</em>.</p>
+    <p>Reconvertie au triathlon depuis l'arrivée de mes deux enfants, je sillonne dunes et sentiers six jours sur sept&nbsp;: je connais Berck <em>par cœur</em>. J'ai mis le mien dans ce logement — sentez-vous <em>comme chez vous</em>, et qui sait, peut-être apercevrez-vous le <em>rayon vert</em> au coucher du soleil 🌅</p>
     <div class="cv-signoff">Votre Hôte,<br><span class="cv-signature">Claudine</span></div>
   </div>
 
@@ -1115,7 +1113,7 @@ const POUBELLES = {
       { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
       { couleur: 'Noir', note: 'ordures ménagères' }
     ],
-    carte: '/assets/poubelles-marechal-juin.jpg'
+    carte: 'assets/poubelles-marechal-juin.jpg'
   },
   cocon: {
     lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
@@ -1125,7 +1123,7 @@ const POUBELLES = {
       { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
       { couleur: 'Noir', note: 'ordures ménagères' }
     ],
-    carte: '/assets/poubelles-marechal-juin.jpg'
+    carte: 'assets/poubelles-marechal-juin.jpg'
   },
   famille: {
     lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
@@ -1135,7 +1133,7 @@ const POUBELLES = {
       { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
       { couleur: 'Noir', note: 'ordures ménagères' }
     ],
-    carte: '/assets/poubelles-marechal-juin.jpg'
+    carte: 'assets/poubelles-marechal-juin.jpg'
   },
   surf: {
     lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
@@ -1145,7 +1143,7 @@ const POUBELLES = {
       { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
       { couleur: 'Noir', note: 'ordures ménagères' }
     ],
-    carte: '/assets/poubelles-marechal-juin.jpg'
+    carte: 'assets/poubelles-marechal-juin.jpg'
   },
   kitesurf: {
     lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
@@ -1155,7 +1153,7 @@ const POUBELLES = {
       { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
       { couleur: 'Noir', note: 'ordures ménagères' }
     ],
-    carte: '/assets/poubelles-marechal-juin.jpg'
+    carte: 'assets/poubelles-marechal-juin.jpg'
   },
   hamac: {
     lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
@@ -1165,7 +1163,7 @@ const POUBELLES = {
       { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
       { couleur: 'Noir', note: 'ordures ménagères' }
     ],
-    carte: '/assets/poubelles-marechal-juin.jpg'
+    carte: 'assets/poubelles-marechal-juin.jpg'
   },
   paddle: {
     lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
@@ -1175,7 +1173,7 @@ const POUBELLES = {
       { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
       { couleur: 'Noir', note: 'ordures ménagères' }
     ],
-    carte: '/assets/poubelles-marechal-juin.jpg'
+    carte: 'assets/poubelles-marechal-juin.jpg'
   },
 
   // 23 rue Jeanne — Jeanne, Évasion, Rotonde, Patio : poubelles juste en face de l'entrée
@@ -2157,7 +2155,7 @@ async function loadMeteo(){
   // Bibliothèque de guides PDF/DOCX par slug/résidence
   const docBase = '/visites-berck/docs/';
   const GUIDES_COMMUNS = [
-    { nom:'🗺️ Plan de Berck 2024 (PDF)', file:'/assets/plan-berck-2024.pdf' },
+    { nom:'🗺️ Plan de Berck 2024 (PDF)', file:'assets/plan-berck-2024.pdf' },
     { nom:'🗺️ Plans &amp; brochures — Office de tourisme', file:'https://www.berck-tourisme.com/fr/pratique/nos-brochures' },
     { nom:'🚗 Balades hors de Berck', file: docBase + encodeURIComponent('Balade hors de Berck (1).pdf') },
     { nom:'☀️ Activités sportives hors été', file: docBase + encodeURIComponent('Activités sportives et loisirs à Berck hors été -.pdf') }
@@ -2582,7 +2580,7 @@ async function loadMeteo(){
     if (isIndra) {
       posterHtml = `
         <div style="margin:14px 0 6px 0;text-align:center">
-          <img src="/assets/balneo-spalina-guide.png" alt="Mode d'emploi de la balnéo Spalina Indra Wave" style="max-width:100%;border-radius:8px;border:1px solid var(--gold);box-shadow:0 2px 12px rgba(212,175,94,.15)" />
+          <img src="assets/balneo-spalina-guide.png" alt="Mode d'emploi de la balnéo Spalina Indra Wave" style="max-width:100%;border-radius:8px;border:1px solid var(--gold);box-shadow:0 2px 12px rgba(212,175,94,.15)" />
         </div>`;
     } else {
       // Poster HTML pour Cetana — même esthétique que le Canva Indra
@@ -2667,7 +2665,7 @@ async function loadMeteo(){
           <div class="meta">${remoteTxt}</div>
           ${steps}
           <div class="actions" style="margin-top:10px">
-            <a href="/assets/molotov-2-telecommandes.pdf" target="_blank" rel="noopener">📄 Voir le guide illustré (PDF)</a>
+            <a href="assets/molotov-2-telecommandes.pdf" target="_blank" rel="noopener">📄 Voir le guide illustré (PDF)</a>
           </div>
         </div>
       </div>
