@@ -1,4 +1,4 @@
-﻿// Auto-genere depuis Trello via build-faq.ps1
+// Auto-genere depuis Trello via build-faq.ps1
 // NE PAS EDITER MANUELLEMENT - relancer le script pour regenerer
 window.TRELLO_FAQ = {
     "apollo":  [
@@ -175,20 +175,8 @@ window.TRELLO_FAQ = {
                       "desc":  "Avez-vous bien suivi tout le descriptif ?\n\nPouvez-vous essayer une autre HDMI ? Normalement sur cette télé là c\u0027est la HDMI 3."
                   },
                   {
-                      "name":  "SPA error E90",
-                      "desc":  "Bonjour:-)\n\n Merci pour votre message 🙏 \nLe signal E90 signifie que le filtre est à changer. Il y a en à un sous le lavabo si ça vous dérange pas en quelques manipulations ça peut être changé?!:-)\n\n1- Tout d\u0027abord éteignez le Spa par l\u0027interrupteur étanche situé sur le fil électrique.\n\n2- Ensuite, dans le Spa sous l\u0027eau, dévissez le capot de la boîte à filtre (c\u0027est la boîte la plus profonde).\nEnlevez le filtre usagé et remettez le filtre neuf :-)\n\n3- Après avoir refermé le capot vous pouvez rallumer l\u0027électricité du moteur.\n\n4- appuyer sur le bouton avec le dessin du filtre. Le moteur doit constamment fonctionner pour filtrer et chauffer l\u0027eau.\n\n5- vérifier la température éventuellement : appuyez sur l\u0027icône flamme puis remontez la température si besoin.\n\nMerci à vous,  profitez bien 🙏"
-                  },
-                  {
                       "name":  "Télé consigne de base",
                       "desc":  "Si c\u0027est noté aucun signal :\n\nAppuyer sur la petite maison \nAvec le paddle sélectionnez l\u0027application Molotov"
-                  },
-                  {
-                      "name":  "Aspirateur spa tuto vidéo",
-                      "desc":  "https://drive.google.com/file/d/1ZiL8QP9OqI4eTJz8C4_cOoKd3CnGD0IB/view?usp=drivesdk"
-                  },
-                  {
-                      "name":  "Aspirateur spa Intex",
-                      "desc":  "https://drive.google.com/file/d/1ZiL8QP9OqI4eTJz8C4_cOoKd3CnGD0IB/view?usp=drivesdk"
                   },
                   {
                       "name":  "La plaque ne marche plus rien de marque LO",
@@ -197,18 +185,6 @@ window.TRELLO_FAQ = {
                   {
                       "name":  "WiFi",
                       "desc":  "BOX:\n\n XXX_63B8\n\net \n\nXXX_63B8_5GHZ\n\n\nCode:\n\n89tnbr3bqk33pwkp8tjj"
-                  },
-                  {
-                      "name":  "Temps pour changer l\u0027eau du Spa",
-                      "desc":  "2h10"
-                  },
-                  {
-                      "name":  "Pas j\u0027ai changé le filtre mais le moteur ne tourne pas",
-                      "desc":  "Merci pour votre message et avez-vous bien suivi toutes les consignes sur tous les dernières ?\n\nInvite à revenir aux étapes que je vous ai donné et à repartir à Étaples numéro 3"
-                  },
-                  {
-                      "name":  "SPA nettoyage",
-                      "desc":  "Vidage 25\u0027\nNettoyage 10 minutes \nRemplissage une heure \nTotal 1 h35"
                   },
                   {
                       "name":  "Je ne trouve pas la boîte à clé",
@@ -643,5 +619,4 @@ window.TRELLO_FAQ = {
                         "desc":  "- Allumer la télé avec le bouton POWER en haut haut à gauche sur la télécommande \n\n- Attendre un petit peu puis  appuyer sur le bouton source c\u0027est le bouton tout en haut à droite un carré avec une flèche.\n\n- déplacer le curseur vers la droite jusqu\u0027à atteindre l\u0027application Molotov TV elle est jaune et écrite en noir. \n\n- il n\u0027y a plus qu\u0027à sélectionner la chaîne en direct."
                     }
                 ]
-}
-;
+};
