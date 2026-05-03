@@ -363,16 +363,44 @@
   .photo-strip img:active{transform:scale(.96)}
 
   /* TABS (Activités) */
-  .tabs{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .tabs{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
   .tab{
     background:transparent;border:1px solid var(--gold-line);color:var(--muted);
-    padding:7px 12px;border-radius:999px;
-    font-family:'Cinzel',serif;font-size:10px;font-weight:500;
+    padding:10px 16px;border-radius:999px;
+    font-family:'Cinzel',serif;font-size:12px;font-weight:500;
     letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
     flex-shrink:0;white-space:nowrap;transition:all .2s;
   }
   .tab:hover{border-color:var(--gold);color:var(--gold-light)}
   .tab.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+
+  /* ===== Page Activités : items plus visibles + recherche ===== */
+  #p-activites .card .name{ font-size:17px; line-height:1.3; margin-bottom:8px }
+  #p-activites .card .meta{ font-size:14px; line-height:1.5 }
+  #p-activites .card .actions a{ font-size:12px }
+  #p-activites .tabs{
+    position:sticky; top:0; z-index:5;
+    background:linear-gradient(180deg, var(--bg) 60%, rgba(20,16,12,0.85) 100%);
+    padding-top:6px; margin-bottom:10px;
+  }
+  .activ-search{
+    width:100%; padding:11px 14px; margin-bottom:10px;
+    background:rgba(255,255,255,.04); border:1px solid var(--gold-line);
+    border-radius:8px; color:var(--gold-light); font-family:'Cinzel',serif;
+    font-size:13px; letter-spacing:.05em;
+  }
+  .activ-search::placeholder{ color:var(--muted); letter-spacing:.08em; text-transform:uppercase; font-size:11px }
+  .activ-search:focus{ outline:none; border-color:var(--gold); background:rgba(212,175,94,.06) }
+  .activ-empty{
+    padding:18px; text-align:center; color:var(--muted);
+    border:1px dashed var(--gold-line); border-radius:8px; font-style:italic;
+  }
+  .activ-cats{ display:flex; flex-wrap:wrap; gap:5px; margin-top:6px }
+  .activ-cats .pill{
+    font-family:'Cinzel',serif; font-size:10px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--gold); background:rgba(212,175,94,.08);
+    border:1px solid var(--gold-line); border-radius:999px; padding:3px 9px;
+  }
 
   /* ACCORDÉON Guide pratique */
   .faq-group{margin-bottom:22px}
@@ -2136,27 +2164,44 @@ async function loadMeteo(){
     jeanne:    GUIDES_PAR_RESIDENCE.zone_jeanne
   }[ap.zone] || [];
 
-  // Rendu carte activité
-  const renderCard = a => `
-    <div class="card" data-cats="${a.cats.join(' ')}">
-      <div class="name">${a.titre}</div>
-      ${a.meta.map(m => `<div class="meta">${m}</div>`).join('')}
-      <div class="actions">
-        ${a.actions.map(([lbl,url]) => `<a href="${url}" target="_blank" rel="noopener">${lbl}</a>`).join('')}
+  // Étiquettes lisibles pour les pills de catégorie sur chaque carte
+  const CAT_LABELS = {
+    'sport-berck':         '🏃 Sport',
+    'interieur-berck':     '🏠 Intérieur',
+    'exterieur-alentours': '🚗 Alentours',
+    'enfants':             '👶 Enfants',
+    'decouverte':          '✨ Découverte'
+  };
+
+  // Rendu carte activité — titre plus gros + pills catégories visibles
+  const renderCard = a => {
+    const pills = a.cats.map(c => CAT_LABELS[c] ? `<span class="pill">${CAT_LABELS[c]}</span>` : '').join('');
+    const searchKey = (a.titre + ' ' + a.meta.join(' ')).toLowerCase();
+    return `
+      <div class="card" data-cats="${a.cats.join(' ')}" data-search="${searchKey.replace(/"/g,'&quot;')}">
+        <div class="name">${a.titre}</div>
+        ${pills ? `<div class="activ-cats">${pills}</div>` : ''}
+        ${a.meta.map(m => `<div class="meta">${m}</div>`).join('')}
+        <div class="actions">
+          ${a.actions.map(([lbl,url]) => `<a href="${url}" target="_blank" rel="noopener">${lbl}</a>`).join('')}
+        </div>
       </div>
-    </div>
-  `;
+    `;
+  };
 
   $('activites-data').innerHTML = `
+    <input type="search" class="activ-search" id="activ-search-input" placeholder="🔍 Rechercher une activité…" autocomplete="off">
     <div class="tabs">
-      <button class="tab active" data-filter="all">Tout</button>
-      <button class="tab" data-filter="sport-berck">🏃 Sportives à Berck</button>
-      <button class="tab" data-filter="interieur-berck">🏠 Intérieur à Berck</button>
-      <button class="tab" data-filter="exterieur-alentours">🚗 Aux alentours</button>
-      <button class="tab" data-filter="enfants">👶 Avec enfants</button>
+      <button class="tab active" data-filter="all">Tout (${ACTIVITES.length})</button>
+      <button class="tab" data-filter="sport-berck">🏃 Sport</button>
+      <button class="tab" data-filter="interieur-berck">🏠 Intérieur</button>
+      <button class="tab" data-filter="exterieur-alentours">🚗 Alentours</button>
+      <button class="tab" data-filter="enfants">👶 Enfants</button>
+      <button class="tab" data-filter="decouverte">✨ Découverte</button>
     </div>
     <div id="activites-list">
       ${ACTIVITES.map(renderCard).join('')}
+      <div id="activ-empty" class="activ-empty" style="display:none">Aucune activité ne correspond à votre recherche.</div>
     </div>
 
     <h3>📖 Vos guides — à télécharger</h3>
@@ -2168,16 +2213,35 @@ async function loadMeteo(){
     `).join('')}
   `;
 
-  // Gestion des tabs
+  // État courant du filtre + recherche → on applique les deux
+  let currentFilter = 'all';
+  let currentSearch = '';
+  const cards = $('activites-data').querySelectorAll('#activites-list [data-cats]');
+  const emptyMsg = $('activ-empty');
+  const applyFilter = () => {
+    let visible = 0;
+    cards.forEach(c => {
+      const okCat = currentFilter === 'all' || c.dataset.cats.includes(currentFilter);
+      const okSearch = !currentSearch || c.dataset.search.includes(currentSearch);
+      const show = okCat && okSearch;
+      c.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    emptyMsg.style.display = visible === 0 ? '' : 'none';
+  };
+
   const tabs = $('activites-data').querySelectorAll('.tab');
   tabs.forEach(t => t.addEventListener('click', () => {
     tabs.forEach(x => x.classList.remove('active'));
     t.classList.add('active');
-    const filter = t.dataset.filter;
-    $('activites-data').querySelectorAll('[data-cats]').forEach(c => {
-      c.style.display = (filter === 'all' || c.dataset.cats.includes(filter)) ? '' : 'none';
-    });
+    currentFilter = t.dataset.filter;
+    applyFilter();
   }));
+
+  $('activ-search-input').addEventListener('input', e => {
+    currentSearch = e.target.value.trim().toLowerCase();
+    applyFilter();
+  });
 })();
 
 /* ----- OÙ MANGER À BERCK --------------------------------- */
