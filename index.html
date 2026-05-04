@@ -350,7 +350,24 @@
   .cv-signoff{text-align:right;margin-top:12px;font-size:14px;font-style:italic;color:var(--muted)}
   .cv-signature{font-family:'Allura',cursive;font-size:26px;color:var(--gold-light);display:inline-block;margin-top:4px}
 
-  /* PHOTO STRIP (Autres logements — mini carrousel horizontal) */
+  /* AUTRES LOGEMENTS — photo héro par appart + carrousel optionnel */
+  .appart-hero{
+    display:block; width:100%; height:200px; object-fit:cover;
+    border-radius:10px; border:1px solid var(--gold-line);
+    margin:10px 0 12px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    cursor:pointer; transition:transform .2s, box-shadow .2s;
+  }
+  .appart-hero:hover{ transform:translateY(-2px); box-shadow:0 6px 18px rgba(212,175,94,.3) }
+  .appart-livret-btn{
+    display:inline-block; margin-top:6px;
+    padding:10px 18px; background:var(--gold); color:var(--bg);
+    border-radius:8px; text-decoration:none;
+    font-family:'Cinzel',serif; font-size:12px; font-weight:600;
+    letter-spacing:.12em; text-transform:uppercase;
+    transition:all .2s;
+  }
+  .appart-livret-btn:hover{ background:var(--gold-light); transform:translateY(-1px) }
   .photo-strip{
     display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;
     margin:10px -2px 4px;padding:2px;
@@ -2882,15 +2899,11 @@ async function loadMeteo(){
     `;
   }
 
-  function photoStrip(slug){
+  // Photo principale (01.jpg) — chemin relatif (sinon cassé sur GitHub Pages projet)
+  function heroPhoto(slug, url){
     const n = APPART_PHOTOS[slug] || 0;
     if (!n) return '';
-    let imgs = '';
-    for (let i = 1; i <= n; i++) {
-      const num = String(i).padStart(2, '0');
-      imgs += `<img src="/photos/${slug}/${num}.jpg" alt="" loading="lazy" onerror="this.style.display='none'">`;
-    }
-    return `<div class="photo-strip">${imgs}</div>`;
+    return `<a href="${url}" aria-label="Voir le livret"><img class="appart-hero" src="photos/${slug}/01.jpg" alt="" loading="lazy" onerror="this.style.display='none'"></a>`;
   }
 
   for (const resName of ordered) {
@@ -2902,10 +2915,10 @@ async function loadMeteo(){
       html += `
         <div class="card">
           <div class="name">${esc(titre)}</div>
-          <div class="meta">${esc(appt.adr)}</div>
-          ${photoStrip(appt.key)}
+          <div class="meta">📍 ${esc(appt.adr)}</div>
+          ${heroPhoto(appt.key, url)}
           <div class="actions">
-            <a href="${url}">Voir le livret</a>
+            <a class="appart-livret-btn" href="${url}">📖 Voir le livret</a>
           </div>
         </div>
       `;
