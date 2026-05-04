@@ -2864,10 +2864,14 @@ async function loadMeteo(){
 /* ----- AUTRES LOGEMENTS ---------------------------------- */
 (function renderAutres(){
   // Mapping slug → nombre de photos disponibles dans /photos/<slug>/
+  // (un cover.jpg est aussi présent — récupéré depuis la 1re photo de la page
+  // appart correspondante sur appart-hotel-berck.com)
   const APPART_PHOTOS = {
-    apolove: 6, balneo: 6, cocon: 6, facemer: 6, famille: 6,
-    grandeloveroom: 6, jeanne: 6, kingston: 1, kitesurf: 2,
-    maisonnette: 6, miniloveroom: 6, patio: 6, reserve: 6
+    albatros: 1, apollo: 1, apolove: 6, balneo: 6, cocon: 6,
+    evasion: 1, facemer: 6, famille: 6, grandeloveroom: 6,
+    grandlarge: 1, hamac: 1, jeanne: 6, kingston: 1, kitesurf: 2,
+    maisonnette: 6, miniloveroom: 6, paddle: 1, patio: 6,
+    reserve: 6, rotonde: 1, surf: 1, terrasse: 1
   };
 
   // Apparts sur le même palier au Le 23 (possibilité de louer plusieurs logements ensemble)
@@ -2907,10 +2911,11 @@ async function loadMeteo(){
     const n = APPART_PHOTOS[slug] || 0;
     if (!n) return '';
     // <object> tente cover.jpg ; en fallback charge 01.jpg.
+    // Double fallback : cover.jpg → 01.jpg → masque l'image si rien
     return `
       <a href="${url}" aria-label="Voir le livret">
         <img class="appart-hero" src="photos/${slug}/cover.jpg" alt="" loading="lazy"
-             onerror="this.onerror=null;this.src='photos/${slug}/01.jpg';">
+             onerror="this.onerror=function(){this.parentNode.style.display='none'};this.src='photos/${slug}/01.jpg';">
       </a>`;
   }
 
