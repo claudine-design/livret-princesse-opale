@@ -3005,8 +3005,21 @@ async function loadMeteo(){
 
 /* ----- LIVRE D'OR ---------------------------------------- */
 (function renderLivreDor(){
+  // Mapping slug livret (lowercase) → slug questionnaire (Capitalized)
+  // Le questionnaire utilise des clés Capitalized strictes ("Hamac", "Balnéo", "Évasion"…)
+  const SLUG_LIVRET_VERS_QUESTIONNAIRE = {
+    'kitesurf':'Kitesurf','hamac':'Hamac','paddle':'Paddle','surf':'Surf','famille':'Famille',
+    'balneo':'Balnéo','cocon':'Cocon Romantique',
+    'reserve':'La Réserve','kingston':'Kingston','apolove':'Apolove','apollo':'Apollo',
+    'albatros':'Albatros',
+    'facemer':'Face Mer','grandlarge':'Grand Large',
+    'miniloveroom':'Mini Love Room','grandeloveroom':'Grande Love Room',
+    'jeanne':'Jeanne','evasion':'Évasion','rotonde':'Rotonde','patio':'Patio',
+    'terrasse':'Terrasse','maisonnette':'Maisonnette'
+  };
+  const slugQuestionnaire = SLUG_LIVRET_VERS_QUESTIONNAIRE[apKey] || apKey;
   // URL du questionnaire voyageurs (skill questionnaire-berck) — GitHub Pages stable
-  const url = 'https://claudine-design.github.io/enquete-berck/?appart=' + encodeURIComponent(apKey);
+  const url = 'https://claudine-design.github.io/enquete-berck/?appart=' + encodeURIComponent(slugQuestionnaire);
   $('livredorBtn').href = url;
   const cta = $('enqueteHomeBtn');
   if (cta) cta.href = url;
