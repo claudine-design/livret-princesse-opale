@@ -1073,8 +1073,8 @@ const WIFI_BY_SLUG = {
   evasion:   { reseau:'TP-LINK _6322', password:'83968280' },
   jeanne:    { reseau:'TP-LINK _6322', password:'83968280' },
   // 25 rue maréchal juin (Balnéo + Cocon — même immeuble, même WiFi)
-  balneo:    { reseau:'XXX_63B8', password:'89tnbr3bqk33pwkp8tjj' },
-  cocon:     { reseau:'XXX_63B8', password:'89tnbr3bqk33pwkp8tjj' },
+  balneo:    { reseau:'SFR_63B8', password:'89tnbr3bqk33pwkp8tjj' },
+  cocon:     { reseau:'SFR_63B8', password:'89tnbr3bqk33pwkp8tjj' },
   // 58 Esplanade Parmentier (Mini + Grande Love Room — même immeuble, même WiFi)
   miniloveroom:   { reseau:'Romance', password:'58Facemer' },
   grandeloveroom: { reseau:'Romance', password:'58Facemer' },
@@ -2694,6 +2694,10 @@ async function loadMeteo(){
         <div class="card">
           <div class="name">Mode d'emploi des boutons</div>
           <div class="meta">Votre baignoire balnéo est un modèle <strong>Spalina ${modele}</strong> (${places}).</div>
+          <div style="background:#fff4e6;border:1px solid #e8a44a;border-left:4px solid #d4781f;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.5;color:#5c3a0e">
+            <strong style="color:#a85a14">⚠️ Important — Si un bouton se bloque :</strong><br>
+            <strong>Ne forcez surtout pas</strong> en tournant le bouton. Les boutons sont sensibles et risquent de casser. Laissez-le tel quel et signalez-le-nous, nous nous en occupons.
+          </div>
           ${posterHtml}
         </div>
       </div>
@@ -2737,6 +2741,23 @@ async function loadMeteo(){
           <li>Naviguez vers <strong>Molotov</strong>.</li>
           <li>Cliquez sur l'onglet <strong>« Direct »</strong> pour voir les chaînes en direct.</li>
         </ol>`;
+    // Carte spécifique Cocon + Balnéo (même immeuble 25 Maréchal Juin, même WiFi) :
+    // reset WiFi sur la télé si un voyageur précédent l'a déconnectée
+    const coconWifiResetCard = ['cocon','balneo'].includes(apKey) ? `
+        <div class="card">
+          <div class="name">📡 Si la télé ne semble pas connectée</div>
+          <div class="meta">Les voyageurs précédents ont parfois connecté leur propre téléphone à la télé. Si Molotov ne se lance pas, il faut rebrancher le WiFi de l'appart :</div>
+          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+            <li>Appuyez sur le bouton avec le <strong>dessin d'une maison</strong> 🏠.</li>
+            <li>Appuyez sur le bouton <strong>Réglages</strong> (roue crantée ⚙️).</li>
+            <li>Sélectionnez <strong>Réseau</strong>.</li>
+            <li><strong>Rechercher un réseau sans fil</strong>.</li>
+            <li>Choisissez le réseau <strong>SFR_63B8</strong> (terminaison <code>63B8</code>, version 5 GHz).</li>
+            <li>Entrez le mot de passe : <code>89tnbr3bqk33pwkp8tjj</code>.</li>
+          </ol>
+          <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 Puis revenez à l'application <strong>Molotov</strong> comme expliqué ci-dessus.</div>
+        </div>
+    ` : '';
     molotovCard = `
       <div class="faq-group">
         <div class="faq-group-title"><span class="em">📺</span> Télévision — Molotov</div>
@@ -2748,6 +2769,7 @@ async function loadMeteo(){
             <a href="assets/molotov-2-telecommandes.pdf" target="_blank" rel="noopener">📄 Voir le guide illustré (PDF)</a>
           </div>
         </div>
+        ${coconWifiResetCard}
       </div>
     `;
   }
