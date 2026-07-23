@@ -15,3 +15,10 @@ trello-data/access-templates.json
 trello-data/appart-faq.json
 visites-berck/
 *.log
+.gdrive/
+*.bak-*.xlsx
+recap-apparts*.xlsx
+deploy-pod.ps1
+deploy-zip-only.*
+generate_contracts.py
+.claude/

@@ -611,6 +611,9 @@
     <path d="M9.5 19 L14.5 19 M10 21 L14 21"/>
     <path d="M10.5 13 L13.5 13" opacity="0.6"/>
   </symbol>
+  <symbol id="ico-train" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
+    <rect x="5" y="3" width="14" height="13" rx="2"/><path d="M5 10h14"/><path d="M9 3v7"/><circle cx="8.5" cy="13" r=".6"/><circle cx="15.5" cy="13" r=".6"/><path d="M7 19l-2 2M17 19l2 2"/>
+  </symbol>
   <symbol id="ico-fork" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4">
     <path d="M7 3 L7 9 M5 3 L5 8 Q5 9.5 7 9.5 Q9 9.5 9 8 L9 3 M7 9.5 L7 21"/>
     <path d="M16 3 Q14 3 14 7 Q14 11 16 11 L16 21"/>
@@ -655,6 +658,26 @@
     <div class="signature">— Claudine</div>
   </div>
 
+  <style>
+    .home-live{margin:18px 16px 2px;animation:hlFade .7s ease both}
+    @keyframes hlFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .hl-card{position:relative;display:flex;align-items:stretch;
+      background:radial-gradient(120% 150% at 0% 0%, rgba(212,175,94,.10), transparent 58%), linear-gradient(180deg,#161208,#0d0b07);
+      border:1px solid var(--gold-line);border-radius:14px;overflow:hidden;
+      box-shadow:0 6px 20px rgba(0,0,0,.45), inset 0 1px 0 rgba(240,217,138,.07)}
+    .hl-temp{display:flex;align-items:center;gap:11px;padding:13px 16px 13px 18px;flex-shrink:0}
+    .hl-ico{font-size:23px;filter:saturate(.8) brightness(1.05)}
+    .hl-deg{font-family:'Cinzel',serif;font-size:26px;font-weight:600;color:var(--gold-light);line-height:1;letter-spacing:.01em}
+    .hl-over{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+    .hl-sep{width:1px;background:linear-gradient(var(--gold-line),rgba(212,175,94,.06));margin:11px 0}
+    .hl-maree{display:flex;align-items:center;gap:11px;padding:11px 18px 11px 16px;flex:1;min-width:0}
+    .hl-arrow{font-size:19px;line-height:1;color:var(--gold);flex-shrink:0;text-shadow:0 0 9px rgba(212,175,94,.45)}
+    .hl-mt{font-size:13px;font-weight:600;color:var(--ink);line-height:1.3}
+    .hl-ms{font-size:11px;color:var(--muted);margin-top:1px}
+    .hl-loading,.hl-err{font-size:12px;color:var(--muted);padding:14px 18px;font-style:italic}
+  </style>
+  <div id="home-live" class="home-live"><div class="hl-card"><div class="hl-loading">Berck-sur-Mer — météo &amp; marées…</div></div></div>
+
   <div class="chers-voyageurs">
     <div class="cv-title">Chers Voyageurs,</div>
     <img src="assets/claudine-portrait.jpg" alt="Claudine" class="cv-photo" onerror="this.style.display='none'">
@@ -666,9 +689,9 @@
   <div class="grid">
     <a class="tile" onclick="open_('wifi')"><svg class="ico"><use href="#ico-wifi"/></svg><span class="lbl">WiFi</span></a>
     <a class="tile" onclick="open_('acces')"><svg class="ico"><use href="#ico-key"/></svg><span class="lbl">Accès</span></a>
+    <a class="tile" onclick="open_('venir')"><svg class="ico"><use href="#ico-train"/></svg><span class="lbl">Venir &amp; repartir</span></a>
     <a class="tile" onclick="open_('checkin')"><svg class="ico"><use href="#ico-clock"/></svg><span class="lbl">Check-in / out</span></a>
     <a class="tile" onclick="open_('equip-menu')"><svg class="ico"><use href="#ico-trunk"/></svg><span class="lbl">Équipement</span></a>
-    <a class="tile" onclick="open_('meteo')"><svg class="ico"><use href="#ico-sun"/></svg><span class="lbl">Météo</span></a>
     <a class="tile" onclick="open_('activites')"><svg class="ico"><use href="#ico-bag"/></svg><span class="lbl">Activités à Berck</span></a>
     <a class="tile" onclick="open_('ou-manger')"><svg class="ico"><use href="#ico-fork"/></svg><span class="lbl">Où manger</span></a>
     <a class="tile" onclick="open_('contact')"><svg class="ico"><use href="#ico-sos"/></svg><span class="lbl">Problème / Urgence</span></a>
@@ -698,6 +721,39 @@
 <div class="page" id="p-acces">
   <h2>🔑 Accès au logement</h2>
   <div id="acces-data"></div>
+</div>
+
+<div class="page" id="p-venir">
+  <h2>🚆 Venir &amp; repartir</h2>
+  <p style="font-size:14px;color:var(--muted);text-align:center;margin-bottom:16px;font-style:italic">Surtout utile si vous voyagez en train 🚉</p>
+  <div class="card">
+    <div class="name">🚆 En train</div>
+    <div class="meta">Gare la plus proche : <b>Rang-du-Fliers – Verton – Berck</b> (~7 km). Ligne Paris-Nord ↔ Lille / Boulogne. Depuis Paris : 2h30 à 3h.</div>
+    <div class="actions">
+      <a href="https://www.sncf-connect.com/gares/rang-du-fliers-verton-berck" target="_blank" rel="noopener">🔗 Horaires SNCF</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="name">🚌🚕 De la gare jusqu'ici</div>
+    <div class="meta"><b>Bus Ligne 2</b> (gare ↔ Berck, solution économique) ou <b>taxi</b> (le plus simple avec des bagages).</div>
+  </div>
+  <div class="card">
+    <div class="name">🚕 Taxis de Berck</div>
+    <div class="meta">
+      • Taxi D2B — <a href="tel:+33618575680">06 18 57 56 80</a><br>
+      • Taxi Cartier — <a href="tel:+33680136226">06 80 13 62 26</a><br>
+      • Stef Taxi Berckois — <a href="tel:+33607433534">06 07 43 35 34</a><br>
+      • Valentin Taxi — <a href="tel:+33670858858">06 70 85 88 58</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="name">🚗 En voiture</div>
+    <div class="meta">Autoroute <b>A16</b>, sortie Berck-sur-Mer. Paris ≈ 2h30 · Lille ≈ 1h30. Stationnement : voir l'onglet « Accès ».</div>
+  </div>
+  <div class="card" style="border-left:3px solid var(--gold)">
+    <div class="name">🧳 Le jour du départ</div>
+    <div class="meta">Si vous repartez en train, <b>réservez votre taxi la veille</b> (trajet ~15-20 min jusqu'à la gare), surtout pour un train tôt le matin. Et pourquoi pas un dernier coucher de soleil sur la digue avant de partir 🌅</div>
+  </div>
 </div>
 
 <div class="page" id="p-checkin">
@@ -761,6 +817,20 @@
 <div class="page" id="p-events">
   <h2>🎉 Événements à Berck</h2>
   <p style="font-size:14px;color:var(--muted);text-align:center;margin-bottom:14px">Berck-sur-Mer vibre toute l'année : cerfs-volants, marchés, concerts, sports…</p>
+
+  <style>
+    .agenda-live{margin:2px 0 22px}
+    .ag-src-head{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+    .ag-ev{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--gold-line)}
+    .ag-ev:last-child{border-bottom:none}
+    .ag-date{flex:0 0 100px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:.03em;color:var(--gold);line-height:1.45}
+    .ag-body{flex:1;min-width:0}
+    .ag-titre{font-size:13.5px;color:var(--ink);font-weight:600;line-height:1.35}
+    .ag-meta{font-size:11px;color:var(--muted);margin-top:3px}
+    .ag-link{color:var(--gold-light);text-decoration:none;white-space:nowrap}
+    .agenda-loading{color:var(--muted);font-style:italic;font-size:13px;text-align:center;padding:12px}
+  </style>
+  <div id="agenda-live" class="agenda-live"><div class="agenda-loading">Chargement de l'agenda…</div></div>
 
   <h3>📅 Agendas officiels</h3>
   <div class="card">
@@ -982,7 +1052,8 @@ const APPARTS = {
   jeanne:     { nom:"Jeanne",           com:"Cœur de Berck",           adr:"23 Rue Jeanne, 62600 Berck-sur-Mer",           res:"Rue Jeanne",  zone:"jeanne"    },
   evasion:    { nom:"Évasion",          com:"L'Évasion Balnéo & Sauna",adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    },
   rotonde:    { nom:"Rotonde",          com:"La Rotonde du Bien-être", adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    },
-  patio:      { nom:"Patio",            com:"Patio Romantique Chic",   adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    }
+  patio:      { nom:"Patio",            com:"Patio Romantique Chic",   adr:"Rue Jeanne, 62600 Berck-sur-Mer",              res:"Rue Jeanne",  zone:"jeanne"    },
+  helene:     { nom:"Studio Hélène",    com:"Repos et détente 150 mètres plage",           adr:"42 rue du Docteur Victor Ménard, 62600 Berck-sur-Mer", res:"Berck-sur-Mer", zone:"marechal" }
 };
 
 /* --- DONNÉES SPÉCIFIQUES (WiFi / Accès / Équipement)
@@ -991,6 +1062,17 @@ const APPARTS = {
 -----------------------------------------------------------*/
 const DATA = {
   // Plus d'entrée hardcodée ici : tout passe par APPART_INFO + blocs communs (linge, plaque, cafetières, radiateur)
+  helene: {
+    acces: "Accès par boîte à clés — voir le détail ci-dessous.",
+    checkoutConsignes: [
+      'Emporter vos déchets — containers enterrés au bout du parking (tri sélectif)',
+      'Rendre la cuisine rangée et propre comme à votre arrivée — elle ne fait pas partie du ménage (frais de 50 € en cas de saleté excessive)',
+      'Option linge & serviettes : regrouper le tout au sol devant le canapé',
+      'Rentrer le mobilier du salon de jardin',
+      'Signaler toute casse afin que nous puissions la remplacer',
+      'Éteindre les lumières, refermer la porte, remettre la clé dans le boîtier et brouiller le code'
+    ]
+  }
 };
 
 /* =========================================================
@@ -1013,6 +1095,18 @@ $('apAddr').textContent = ap.adr;
 $('hdrTitle').textContent = 'Princesse d\'Opale';
 $('hdrSub').textContent = apTitre + ' · ' + ap.res;
 
+/* Présentation adaptée pour les logements gérés en conciergerie (ex : Studio Hélène) */
+if (apKey === 'helene') {
+  const cv = document.querySelector('.chers-voyageurs');
+  if (cv) cv.innerHTML = `
+    <div class="cv-title">Chers Voyageurs,</div>
+    <img src="assets/claudine-portrait.jpg" alt="Claudine" class="cv-photo" onerror="this.style.display='none'">
+    <p>Je m'appelle Claudine, et je vis à Berck-sur-Mer depuis <strong>25 ans</strong>. J'ai eu un vrai coup de cœur pour cette ville et son immense plage — au point d'en faire mon métier : accueillir des voyageurs est devenu ma plus grande passion.</p>
+    <p>Cette passion m'a menée à ouvrir ma propre <strong>conciergerie</strong>. Ici, je ne suis pas votre hôte : je suis la <strong>concierge</strong> qui veille sur l'appartement d'<strong>Hélène</strong>, où vous séjournez. Je m'occupe de tout pour que vous vous sentiez <em>comme chez vous</em> — n'hésitez jamais à me solliciter.</p>
+    <div class="cv-signoff">Votre concierge,<br><span class="cv-signature">Claudine</span></div>
+  `;
+}
+
 /* ----- Ouvrir / fermer une page -------------------------- */
 function open_(id){
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1021,6 +1115,7 @@ function open_(id){
   $('hdr').classList.add('sub');
   window.scrollTo(0,0);
   if (id === 'meteo') loadMeteo();
+  if (id === 'events') loadAgenda();
 }
 function goHome(){
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
@@ -1058,8 +1153,8 @@ const apBeds24 = BEDS24_ACCESS[apKey] || null;
 /* ----- WIFI manuel centralisé (priorité > Trello/Beds24 auto) -- */
 const WIFI_BY_SLUG = {
   // Le 23 Maréchal Juin — chaque appart a son propre WiFi
-  kitesurf:  { reseau:'BBOX - 4929C743', password:'KXv9 DNH2 uDd5 n165 1u' },
-  paddle:    { reseau:'BBOX - 4929C743', password:'KXv9 DNH2 uDd5 n165 1u' },
+  kitesurf:  { reseau:'BBOX - 4929C743', password:'KXv9DNH2uDd5n1651u' },
+  paddle:    { reseau:'BBOX - 4929C743', password:'KXv9DNH2uDd5n1651u' },
   hamac:     { reseau:'TP LINK E2E4', password:'40803500' },
   surf:      { reseau:'SURF', password:'Marechal' },
   // famille → à remplir depuis fiche Albert
@@ -1090,16 +1185,26 @@ const WIFI_BY_SLUG = {
   rotonde:   { reseau:'Patio23', password:'23Patio23' },
   patio:     { reseau:'Patio23', password:'23Patio23' },
   // Terrasse (17 rue du grand hôtel)
-  terrasse:  { reseau:'xxxx_5ACO', password:'qpvr6qkj76bhcb6uyw25' }
+  terrasse:  { reseau:'xxxx_5ACO', password:'qpvr6qkj76bhcb6uyw25' },
+  // Studio Hélène — mot de passe confirmé, nom du réseau (SSID) à confirmer
+  helene:    { reseau:'Livebox-E7CO', password:'efNurXt3uoukFRHdYy' }
   // ⚠️ À compléter : reserve
 };
 
-const LINGE_NON_FOURNI = ['kitesurf','hamac','paddle','surf','famille','terrasse','facemer','grandlarge','jeanne'];
+const LINGE_NON_FOURNI = ['kitesurf','hamac','paddle','surf','famille','terrasse','facemer','grandlarge','jeanne','helene'];
+const LINGE_PRIX = s => (({helene:{d:20,s:15}})[s] || {d:15,s:10});
 
 /* ----- POUBELLES & TRI : topo par appart (verbatim Claudine, 28-30 avril 2026) ------- */
 /* Schéma : { lieu, chemin?, distance?, gps?, bacs:[{couleur,note}], verre?, alternative? } */
 /* Mettre `null` pour les apparts dont on n'a pas encore le topo confirmé.                */
 const POUBELLES = {
+  helene: {
+    lieu: 'Containers enterrés au bout du parking',
+    bacs: [
+      { couleur: 'Tri sélectif', note: 'emballages, plastiques, papiers' },
+      { couleur: 'Ordures ménagères', note: '' }
+    ]
+  },
   // 58 Esplanade Parmentier — Mini + Grande Love Room (parking arrière, GPS confirmé)
   miniloveroom: {
     lieu: 'Containers au niveau des parkings derrière l’immeuble, un peu plus au sud',
@@ -1315,6 +1420,17 @@ const POUBELLES = {
 /* ----- APPART_INFO : fiche détaillée par appart (format Albert SAV) ----- */
 /* Remplissable progressivement. Pour chaque appart : surface/lits/étage + équipements + vidéos + proximité */
 const APPART_INFO = {
+  helene: {
+    typeLogement: 'Studio',
+    surface: '28 m²',
+    lits: '3 couchages · canapé convertible 140 × 190 + canapé 1 place 90 × 190',
+    etage: 'Rez-de-chaussée',
+    ascenseur: false,
+    parking: 'Stationnement interdit dans la cour intérieure. Stationnement payant dans la rue — 1re heure gratuite pour déposer vos affaires. Parking du stade gratuit à proximité, ou abonnement Prestopark 20 €/semaine.',
+    equipements: ['🍳 Cuisine équipée : réfrigérateur, four et surface de cuisson','🍽️ Équipements de cuisine de base : casseroles, poêles, huile, sel et poivre','Lave-linge petite contenance 3,5 kg — petit linge en dépannage (évitez les horaires de soir et de nuit, très bruyante)','📺 Télévision (sans Molotov)','📶 WiFi','🅿️ Stationnement payant sur place','🔥 Détecteur de fumée','🛟 Détecteur de monoxyde de carbone','🌿 Salon de jardin devant la porte d\'entrée (merci de rentrer le mobilier en fin de séjour)','📚 Quelques livres & documentations sur les activités du secteur'],
+    proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: 'À 5 min à pied de la gare routière'
+  },
   maisonnette: {
     typeLogement: 'Studio',
     surface: '23 m²',
@@ -1769,7 +1885,10 @@ function copy(txt, btn){
     return extract || text; // fallback
   }
 
-  const accessText = extractAccessOnly(rawText);
+  const ACCES_BY_SLUG = {
+    helene: "L'appartement est situé au 42 rue du Docteur Victor Ménard, à Berck.\nL'entrée se fait par l'arrière de l'immeuble : il vous faut entrer (à pied) sur le parking arrière de l'immeuble.\nEntrez par le portail blanc, puis sur votre droite vous trouverez les entrées avec les numéros affichés. 🙂\nSoulevez le volet roulant de l'appartement 42 : vous découvrirez la boîte à clés dans l'embrasure de la porte, côté gauche."
+  };
+  const accessText = ACCES_BY_SLUG[apKey] || extractAccessOnly(rawText);
 
   // Transforme liens Google Drive en lecteur intégré
   const body = esc(accessText)
@@ -1823,7 +1942,7 @@ function copy(txt, btn){
   // Apparts où le linge n'est PAS fourni par défaut (option payante)
   const LINGE_NON_FOURNI = [
     'kitesurf','hamac','paddle','surf','famille',
-    'terrasse','facemer','grandlarge','jeanne'
+    'terrasse','facemer','grandlarge','jeanne','helene'
   ];
   const lingeEnOption = LINGE_NON_FOURNI.includes(apKey);
 
@@ -1852,8 +1971,9 @@ function copy(txt, btn){
 
   // Hamac n'a que des lits doubles (chambre 160 + canapé-lit 140) → pas de pack simple
   const noPackSimple = ['hamac'].includes(apKey);
-  const packSimpleHTML = noPackSimple ? '' : `<div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — 10 €</strong><br>Draps + housse de couette + taie d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>`;
-  const packSimpleMail = noPackSimple ? '' : '\n- Pack lit simple (10 €) : ___';
+  const LP = LINGE_PRIX(apKey);
+  const packSimpleHTML = noPackSimple ? '' : `<div class="meta" style="color:var(--gold-light);margin-top:6px"><strong>Pack lit simple — ${LP.s} €</strong><br>Draps + housse de couette + taie d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>`;
+  const packSimpleMail = noPackSimple ? '' : '\n- Pack lit simple (' + LP.s + ' €) : ___';
   // Apparts où l'option « lits séparés » n'a pas de sens :
   // - 1 seul lit double, pas de séparation possible (cocon, apolove, miniloveroom)
   // - logement 2 personnes max où la question ne se pose pas (maisonnette)
@@ -1869,9 +1989,9 @@ function copy(txt, btn){
     <div class="card" style="border-color:var(--gold)">
       <div class="name">Dans cet appartement, le linge n'est pas inclus</div>
       <div class="meta">Vous pouvez commander un pack à l'avance (draps + serviettes) :</div>
-      <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>Pack lit double — 15 €</strong><br>Draps + housse de couette + taies d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>
+      <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>Pack lit double — ${LP.d} €</strong><br>Draps + housse de couette + taies d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>
       ${packSimpleHTML}
-      <a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (15 €) : ___' + packSimpleMail)}" style="${btnStyle}">📩 Commander le pack</a>
+      <a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (' + LP.d + ' €) : ___' + packSimpleMail)}" style="${btnStyle}">📩 Commander le pack</a>
     </div>
   ` : `
     <h3>🛏️ Linge</h3>
@@ -1938,7 +2058,7 @@ function copy(txt, btn){
       <div class="card" style="border-color:var(--gold)">
         <div class="name">⚠️ Linge non fourni</div>
         <div class="meta">Dans cet appartement, le linge de lit et de toilette <strong>n'est pas inclus</strong>. Vous pouvez le commander en option :</div>
-        <div class="meta" style="color:var(--gold-light);margin-top:6px">Pack lit double — 15 €&nbsp;&nbsp;·&nbsp;&nbsp;Pack lit simple — 10 €</div>
+        <div class="meta" style="color:var(--gold-light);margin-top:6px">Pack lit double — ${LINGE_PRIX(apKey).d} €&nbsp;&nbsp;·&nbsp;&nbsp;Pack lit simple — ${LINGE_PRIX(apKey).s} €</div>
         <div class="meta" style="color:var(--muted);font-size:13px;margin-top:6px">Voir l'item <strong>Check-in / Check-out</strong> pour commander.</div>
       </div>
     `;
@@ -2103,8 +2223,45 @@ function copy(txt, btn){
     html += TODO(`Topo poubelles à confirmer avec Claudine pour <strong>${apTitre}</strong>.`);
   }
 
+  if (apKey === 'helene') {
+    html += `
+      <h3>🗄️ Où trouver la vaisselle &amp; les ustensiles</h3>
+      <div class="card">
+        <div class="meta">Pour vous repérer dans la cuisine :</div>
+        <ul style="margin:8px 0 0;padding-left:20px">
+          <li><strong>Placards hauts (à gauche)</strong> : assiettes plates, assiettes creuses et bols.</li>
+          <li><strong>Placards hauts (au-dessus du plan de travail)</strong> : tasses, mugs et verres.</li>
+          <li><strong>Placard haut (à droite)</strong> : cafetière, bouilloire, grille-pain et verre doseur.</li>
+          <li><strong>Meubles bas</strong> : casseroles et poêles avec couvercles, plats en verre / Pyrex, saladier et essoreuse à salade.</li>
+        </ul>
+      </div>
+    `;
+  }
   $('equip-data').innerHTML = html;
 })();
+
+/* ----- AGENDA LIVE (robot Berck & 3 Baies, hébergé GitHub Pages) ----- */
+function loadAgenda(){
+  const box = $('agenda-live');
+  if (!box || box.dataset.loaded) return;
+  const esc = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  fetch('https://claudine-design.github.io/enquete-berck/agenda-events.json?' + Date.now())
+    .then(r => r.json())
+    .then(list => {
+      if (!Array.isArray(list) || !list.length) { box.innerHTML = ''; return; }
+      box.dataset.loaded = '1';
+      box.innerHTML = '<div class="ag-src-head">À venir près de chez vous</div>' +
+        list.slice(0, 25).map(e => `
+          <div class="ag-ev">
+            <div class="ag-date">${esc(e.date_label)}</div>
+            <div class="ag-body">
+              <div class="ag-titre">${esc(e.titre)}</div>
+              <div class="ag-meta">${esc((e.categories && e.categories.length) ? e.categories.join(' · ') : e.source)} · <a class="ag-link" href="${e.lien}" target="_blank" rel="noopener">+ d'infos →</a></div>
+            </div>
+          </div>`).join('');
+    })
+    .catch(() => { box.innerHTML = ''; });  // échec → on garde les liens officiels en dessous
+}
 
 /* ----- MÉTÉO (Open-Meteo, gratuit, sans clé) ------------- */
 function wmoToIcon(code){
@@ -2434,14 +2591,77 @@ async function loadMeteo(){
 /* renderServices retiré — les options check-in/out + pack linge sont maintenant dans renderCheckin */
 
 /* ----- SIGNALER UN PROBLÈME ------------------------------ */
+// Le formulaire cree un VRAI signalement dans le systeme de Claudine :
+// event rouge sur son calendrier + alerte dans l'agenda et le planning du
+// prestataire menage + zone rouge de la checklist QR code.
+const SIGNALEMENT_API = 'https://script.google.com/macros/s/AKfycbyZ50d01GyAOXi4LKQteCrGKkEcq4eKzLBMh3_G9hM4TI-5IAfjhrnxDZyKZO3-0IolBA/exec';
+// slugs livret -> slugs du systeme signalements (convention avec tirets)
+const SIG_SLUG_MAP = {
+  cocon: 'cocon-romantique', grandlarge: 'grand-large', facemer: 'face-mer',
+  miniloveroom: 'mini-love-room', grandeloveroom: 'grande-love-room'
+};
+
+async function envoyerSignalement(){
+  const el   = $('sig-element').value.trim();
+  const desc = $('sig-desc').value.trim();
+  const nom  = $('sig-nom').value.trim();
+  const btn  = $('sig-submit');
+  const stat = $('sig-status');
+  if (!el && !desc) { stat.textContent = 'Merci de décrire le problème 🙏'; return; }
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+  stat.textContent = '';
+  const sigSlug = SIG_SLUG_MAP[apKey] || apKey;
+  const params = new URLSearchParams({
+    action: 'addSignalement',
+    appart: sigSlug,
+    source: 'livret',
+    voyageur: nom || 'Voyageur (livret)',
+    element: el.substring(0, 80),
+    description: desc.substring(0, 480),
+    actionPresta: ''
+  });
+  try {
+    const r = await fetch(SIGNALEMENT_API + '?' + params.toString());
+    const d = await r.json();
+    if (!d.success) throw new Error(d.error || 'réponse inattendue');
+    $('sig-form').style.display = 'none';
+    $('sig-merci').style.display = 'block';
+  } catch (e) {
+    btn.disabled = false; btn.textContent = '📨 Envoyer le signalement';
+    stat.innerHTML = 'Oups, l\'envoi a échoué. Réessayez, ou utilisez l\'email ci-dessous. 🙏';
+  }
+}
+
 (function renderProbleme(){
   const email = 'princessedopale@gmail.com';
   const subject = encodeURIComponent('Problème — ' + apTitre);
   const body = encodeURIComponent(`Bonjour,\n\nLogement : ${apTitre}\nAdresse : ${ap.adr}\n\nDescription du problème :\n`);
+  const inputStyle = 'width:100%;box-sizing:border-box;background:rgba(255,255,255,0.06);border:1px solid var(--gold);border-radius:10px;color:inherit;padding:10px 12px;font-size:14px;font-family:inherit;margin-top:4px';
   $('probleme-data').innerHTML = `
-    <p style="font-size:14px;line-height:1.5">Un souci dans votre logement ? Écrivez-nous, on s'en occupe vite.</p>
+    <p style="font-size:14px;line-height:1.5">Un souci dans votre logement ? Dites-le-nous ici : votre signalement part <strong>directement</strong> chez Claudine et l'équipe d'entretien. 🧹</p>
     <div class="card" style="border-color:var(--gold);margin-top:12px">
-      <div class="name">✉️ Contactez la Conciergerie Princesse d'Opale</div>
+      <div id="sig-form">
+        <div class="name">⚠️ Signaler un problème — ${apTitre}</div>
+        <label style="display:block;margin-top:10px;font-size:12px;color:var(--muted)">Qu'est-ce qui pose problème ? <span style="opacity:.7">(ex : verre cassé, TV en panne, ampoule grillée)</span>
+          <input id="sig-element" maxlength="80" style="${inputStyle}" placeholder="Ex : verre cassé">
+        </label>
+        <label style="display:block;margin-top:10px;font-size:12px;color:var(--muted)">Quelques détails
+          <textarea id="sig-desc" rows="3" maxlength="480" style="${inputStyle};resize:vertical" placeholder="Où, quand, comment… tout ce qui peut nous aider"></textarea>
+        </label>
+        <label style="display:block;margin-top:10px;font-size:12px;color:var(--muted)">Votre nom <span style="opacity:.7">(facultatif)</span>
+          <input id="sig-nom" maxlength="60" style="${inputStyle}" placeholder="Prénom Nom">
+        </label>
+        <button id="sig-submit" class="btn full" style="margin-top:12px" onclick="envoyerSignalement()">📨 Envoyer le signalement</button>
+        <div id="sig-status" style="font-size:12px;color:var(--muted);margin-top:8px;min-height:16px"></div>
+      </div>
+      <div id="sig-merci" style="display:none;text-align:center;padding:14px 6px">
+        <div style="font-size:34px">💛</div>
+        <div class="name" style="margin-top:8px">Merci, c'est bien transmis !</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-top:6px">Claudine est prévenue sur son agenda et l'équipe d'entretien verra votre signalement avant le prochain ménage.</p>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px">
+      <div class="name">✉️ Vous préférez l'email ?</div>
       <div class="field" style="margin-top:10px">
         <div><div class="lab">Email</div><div class="val">${email}</div></div>
         <button onclick="copy('${email}',this)">Copier</button>
@@ -2588,9 +2808,10 @@ async function loadMeteo(){
 
   // ----- Molotov (TV) — apparts concernés ------------------
   // 2 télécommandes : Le 23 (kitesurf, hamac, paddle, surf, famille)
-  // 1 télécommande  : Le 25 (balneo, cocon) + patio, rotonde, miniloveroom, grandeloveroom, maisonnette
+  // 1 télécommande  : Le 25 (balneo, cocon) + patio, rotonde, miniloveroom, grandeloveroom
+  // Maisonnette : TV par applications (TF1 = chaîne 1, M6 = chaîne 6, Molotov = reste) — carte dédiée ci-dessous
   const MOLOTOV_2 = ['kitesurf','hamac','paddle','surf','famille'];
-  const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom','maisonnette'];
+  const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom'];
   const hasMolotov = MOLOTOV_2.includes(apKey) || MOLOTOV_1.includes(apKey);
   const twoRemotes = MOLOTOV_2.includes(apKey);
 
@@ -2720,6 +2941,27 @@ async function loadMeteo(){
             <li>Toutes les chaînes <strong>TNT classiques</strong> sont disponibles (TF1, France 2, France 3, M6, etc.).</li>
           </ol>
           <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 Si la télé ne capte pas, vérifiez que le câble d'antenne est bien branché à l'arrière de la télé.</div>
+        </div>
+      </div>
+    `;
+  } else if (apKey === 'maisonnette') {
+    molotovCard = `
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="em">📺</span> Télévision — Applications</div>
+        <div class="card">
+          <div class="name">Comment regarder la télé</div>
+          <div class="meta">La télévision de la Maisonnette fonctionne avec des <strong>applications</strong>. Selon la chaîne que vous souhaitez regarder, ouvrez la bonne application :</div>
+          <ul style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.7">
+            <li>📺 Pour <strong>TF1</strong> (la 1) : ouvrez l'application <strong>TF1</strong>.</li>
+            <li>📺 Pour <strong>M6</strong> (la 6) : ouvrez l'application <strong>M6</strong>.</li>
+            <li>📺 Pour <strong>toutes les autres chaînes</strong> : ouvrez l'application <strong>Molotov</strong>, puis l'onglet <strong>« Direct »</strong>.</li>
+          </ul>
+          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+            <li>Allumez la télé avec la télécommande.</li>
+            <li>Attendez que l'écran d'accueil apparaisse (avec les icônes des applications).</li>
+            <li>Ouvrez l'application correspondant à la chaîne souhaitée : <strong>TF1</strong>, <strong>M6</strong> ou <strong>Molotov</strong>.</li>
+          </ol>
+          <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 En résumé : TF1 pour la 1, M6 pour la 6, et Molotov pour toutes les autres chaînes.</div>
         </div>
       </div>
     `;
@@ -2877,7 +3119,7 @@ async function loadMeteo(){
       em:'🛏️', q:'Le linge de lit et les serviettes sont-ils fournis ?',
       r: lingeInclus
         ? `Oui ! Dans votre logement, draps et serviettes sont <strong>inclus</strong>.${hasLitsSepares ? ` Si vous êtes 2 et préférez des lits séparés, c'est possible (+10 € de blanchisserie) — voir l'item Check-in / Check-out.` : ''}`
-        : `Dans votre logement, le linge n'est pas inclus, mais vous pouvez commander un <strong>pack à 15 €</strong> (draps + couette + 2 serviettes par personne). Voir l'item Check-in / Check-out pour commander.`
+        : `Dans votre logement, le linge n'est pas inclus, mais vous pouvez commander un <strong>pack à ${LINGE_PRIX(apKey).d} € (lit double) ou ${LINGE_PRIX(apKey).s} € (lit simple)</strong> (draps + couette + 2 serviettes par personne). Voir l'item Check-in / Check-out pour commander.`
     },
     {
       em:'🚗', q:'Y a-t-il un parking ?',
@@ -2891,12 +3133,12 @@ async function loadMeteo(){
     },
     {
       em:'📺', q:'Comment regarder la télé ?',
-      r:`Toutes nos télés sont équipées de <strong>Molotov</strong> (chaînes en direct + replay). Voir l'item <strong>Guide équipements</strong> pour la procédure complète, et le <strong>guide PDF illustré</strong>.`
+      r: apKey==='helene' ? `La télévision de ce studio n'est pas équipée de Molotov. Allumez-la et utilisez les chaînes de la TNT avec la télécommande.` : `Toutes nos télés sont équipées de <strong>Molotov</strong> (chaînes en direct + replay). Voir l'item <strong>Guide équipements</strong> pour la procédure complète, et le <strong>guide PDF illustré</strong>.`
     },
     {
       em:'🐶', q:'Peut-on venir avec son chien ?',
       r: dogsAllowed
-        ? `Sur demande au moment de la réservation. Précisez-le-nous, certains logements sont plus adaptés que d'autres aux animaux. Un supplément ménage peut être demandé pour les races qui perdent beaucoup de poils.`
+        ? `${apKey==='helene' ? `Oui, chat ou chien sont acceptés 🐾 — supplément de 22 € par animal (à valider sur Airbnb). Merci d'annoncer la venue de votre compagnon à l'avance.` : `Sur demande au moment de la réservation. Précisez-le-nous, certains logements sont plus adaptés que d'autres aux animaux. Un supplément ménage peut être demandé pour les races qui perdent beaucoup de poils.`}`
         : `❌ Désolée, <strong>les chiens ne sont pas acceptés</strong> dans ce logement. Pour un séjour avec votre animal, nous avons d'autres appartements adaptés — n'hésitez pas à nous demander la liste !`
     },
     {
@@ -3047,6 +3289,64 @@ async function loadMeteo(){
   if (cta) cta.href = url;
   // Lien générique Google (à personnaliser par appart plus tard)
   $('gmbBtn').href = 'https://www.google.com/search?q=appart-hotel+berck+' + encodeURIComponent(apTitre);
+})();
+
+/* ----- ACCUEIL : température + marée EN DIRECT (Open-Meteo, sans clé) ----- */
+(async function loadHomeLive(){
+  const box = document.getElementById('home-live');
+  if (!box) return;
+  const LAT = 50.4083, LON = 1.5728;
+  const hhmm = ms => new Date(ms).toLocaleTimeString('fr-FR', { timeZone:'Europe/Paris', hour:'2-digit', minute:'2-digit' });
+  try {
+    const [w, m] = await Promise.all([
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current=temperature_2m,weather_code&timezone=Europe/Paris`).then(r=>r.json()),
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${LAT}&longitude=${LON}&hourly=sea_level_height_msl&timeformat=unixtime&forecast_days=3`).then(r=>r.json())
+    ]);
+    const c = w.current;
+    const [ico] = (typeof wmoToIcon === 'function') ? wmoToIcon(c.weather_code) : ['🌡️'];
+    // Marées : niveau de la mer horaire. timeformat=unixtime -> instants UTC fiables
+    // (zéro ambiguïté de fuseau). On affiche ensuite l'heure en Europe/Paris.
+    const times = m.hourly.time.map(t => t * 1000); // secondes -> ms (UTC)
+    const h = m.hourly.sea_level_height_msl;
+    const now = Date.now();
+    let i = times.findIndex(t => t > now); if (i < 1) i = 1;
+    const rising = h[i] >= h[i-1];
+    // Heure précise du pic par interpolation parabolique autour de l'heure extremum
+    const peak = k => {
+      const a = h[k-1], b = h[k], cc = h[k+1], d = a - 2*b + cc;
+      let f = d ? 0.5*(a - cc)/d : 0; f = Math.max(-0.5, Math.min(0.5, f));
+      return times[k] + f * 3600000;
+    };
+    let nextHigh = null, nextLow = null;
+    for (let k = 1; k < h.length - 1; k++){
+      if (times[k] < now - 1800000) continue;            // ignorer le passé (tolérance 30 min)
+      if (nextHigh === null && h[k] >= h[k-1] && h[k] >= h[k+1]) nextHigh = peak(k);
+      if (nextLow  === null && h[k] <= h[k-1] && h[k] <= h[k+1]) nextLow  = peak(k);
+      if (nextHigh && nextLow) break;
+    }
+    const mLine = rising ? (nextHigh ? 'Pleine mer vers ' + hhmm(nextHigh) : '—')
+                         : (nextLow  ? 'Basse mer vers '  + hhmm(nextLow)  : '—');
+    const mSub  = rising ? (nextLow  ? 'puis basse mer vers '  + hhmm(nextLow)  : '')
+                         : (nextHigh ? 'puis pleine mer vers ' + hhmm(nextHigh) : '');
+    box.innerHTML = `
+      <div class="hl-card">
+        <div class="hl-temp">
+          <span class="hl-ico">${ico}</span>
+          <div><div class="hl-over">Berck-sur-Mer</div><div class="hl-deg">${Math.round(c.temperature_2m)}°</div></div>
+        </div>
+        <div class="hl-sep"></div>
+        <div class="hl-maree">
+          <span class="hl-arrow">${rising ? '↑' : '↓'}</span>
+          <div>
+            <div class="hl-over">Marée ${rising ? 'montante' : 'descendante'}</div>
+            <div class="hl-mt">${mLine}</div>
+            <div class="hl-ms">${mSub}</div>
+          </div>
+        </div>
+      </div>`;
+  } catch(e){
+    box.innerHTML = `<div class="hl-card"><div class="hl-err">📍 Berck-sur-Mer — météo & marées momentanément indisponibles</div></div>`;
+  }
 })();
 
 /* ----- Retour bouton natif Android ----------------------- */
