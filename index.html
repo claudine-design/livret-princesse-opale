@@ -928,6 +928,13 @@
   <a class="btn full" id="livredorBtn" href="#" target="_blank" rel="noopener">✍️ Laisser un avis</a>
   <p style="font-size:13px;color:var(--muted);margin-top:12px">Vous pouvez aussi nous laisser un avis sur :</p>
   <a class="btn ghost full" id="gmbBtn" href="#" target="_blank" rel="noopener">⭐ Google</a>
+  <div style="border:1px solid #e3d9c6;background:#fdf9f0;border-radius:12px;padding:14px;margin-top:16px;font-size:14px;line-height:1.5">
+    <b>ℹ️ Bon à savoir sur les notes</b><br>
+    La notation ici ne fonctionne pas comme à l'hôtel : les plateformes considèrent tout ce qui est
+    en dessous de la note maximale comme le signal d'un problème pour un petit hébergeur indépendant.<br>
+    Alors si quoi que ce soit ne mérite pas le maximum à vos yeux, <b>dites-le-nous pendant votre
+    séjour</b> : nous le réglons tout de suite — c'est notre métier, et notre plaisir.
+  </div>
 </div>
 
 </main>
@@ -1288,77 +1295,115 @@ const POUBELLES = {
     verre: 'Conteneur à verre au parking, à la jonction du Dr Calot et du bd de Boulogne (~150 m).'
   },
 
-  // 23 et 25 rue Maréchal-Juin — containers de rue (intersection av. Général de Gaulle / rue Dr Victor Ménard)
-  // 7 apparts : Balnéo, Cocon, Famille, Surf, Kitesurf, Hamac, Paddle
+  // 23, 25 et 17 rue Maréchal-Juin — conteneurs municipaux (intersection av. Saint-Exupéry / bd Ménard)
+  // Texte validé Claudine 17/08/2026 — itinéraire identique pour les trois immeubles.
+  // 7 apparts : Balnéo, Cocon, Famille, Surf, Kitesurf, Hamac, Paddle (+ Grande Roue quand son livret existera)
   balneo: {
-    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
-    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
-    distance: '~250 m, 2-3 min à pied',
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
     bacs: [
-      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
-      { couleur: 'Noir', note: 'ordures ménagères' }
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
     ],
-    carte: 'assets/poubelles-marechal-juin.jpg'
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
   cocon: {
-    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
-    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
-    distance: '~250 m, 2-3 min à pied',
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
     bacs: [
-      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
-      { couleur: 'Noir', note: 'ordures ménagères' }
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
     ],
-    carte: 'assets/poubelles-marechal-juin.jpg'
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
   famille: {
-    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
-    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
-    distance: '~250 m, 2-3 min à pied',
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
     bacs: [
-      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
-      { couleur: 'Noir', note: 'ordures ménagères' }
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
     ],
-    carte: 'assets/poubelles-marechal-juin.jpg'
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
   surf: {
-    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
-    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
-    distance: '~250 m, 2-3 min à pied',
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
     bacs: [
-      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
-      { couleur: 'Noir', note: 'ordures ménagères' }
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
     ],
-    carte: 'assets/poubelles-marechal-juin.jpg'
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
   kitesurf: {
-    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
-    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
-    distance: '~250 m, 2-3 min à pied',
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
     bacs: [
-      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
-      { couleur: 'Noir', note: 'ordures ménagères' }
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
     ],
-    carte: 'assets/poubelles-marechal-juin.jpg'
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
   hamac: {
-    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
-    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
-    distance: '~250 m, 2-3 min à pied',
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
     bacs: [
-      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
-      { couleur: 'Noir', note: 'ordures ménagères' }
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
     ],
-    carte: 'assets/poubelles-marechal-juin.jpg'
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
   paddle: {
-    lieu: 'Containers de rue à l’intersection avec l’avenue du Général de Gaulle, juste à la sortie de l’Hôpital Maritime',
-    chemin: 'En sortant : à gauche → tout droit jusqu’au bout de la rue → 2ème à gauche (rue du Dr Victor Ménard)',
-    distance: '~250 m, 2-3 min à pied',
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
     bacs: [
-      { couleur: 'Jaune', note: 'emballages, plastiques, papiers' },
-      { couleur: 'Noir', note: 'ordures ménagères' }
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
     ],
-    carte: 'assets/poubelles-marechal-juin.jpg'
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
+  },
+
+  // 17 rue Maréchal-Juin — Grande Roue (le livret de cet appart n'existe pas encore ;
+  // entrée prête à l'avance — renommer la clé si le slug retenu diffère de « granderoue »)
+  granderoue: {
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
+    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
+    distance: '~150 m à pied',
+    bacs: [
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
+    ],
+    verre: 'Conteneur à verre au même endroit.',
+    carte: 'assets/poubelles-marechal-juin.jpg',
+    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
 
   // 23 rue Jeanne — Jeanne, Évasion, Rotonde, Patio : poubelles juste en face de l'entrée
@@ -2186,6 +2231,7 @@ function copy(txt, btn){
       return '';
     };
     let inner = '';
+    if (pb.note) inner += `<div class="poubelles-row"><strong>⚠️ ${esc(pb.note)}</strong></div>`;
     inner += `<div class="poubelles-row"><strong>Lieu :</strong> ${esc(pb.lieu)}</div>`;
     if (pb.chemin)   inner += `<div class="poubelles-row"><strong>Itinéraire :</strong> ${esc(pb.chemin)}</div>`;
     if (pb.distance) inner += `<div class="poubelles-row"><strong>Distance :</strong> ${esc(pb.distance)}</div>`;
@@ -2216,6 +2262,7 @@ function copy(txt, btn){
                  onerror="this.parentNode.parentNode.style.display='none'"
                  style="width:100%;max-width:420px;display:block;border-radius:8px;border:1px solid var(--gold-line);box-shadow:0 2px 10px rgba(0,0,0,.3)" />
           </a>
+          ${pb.legende ? `<div class="poubelles-row" style="max-width:420px;font-size:12.5px;font-style:italic;opacity:.85;margin-top:6px;text-align:center">${esc(pb.legende)}</div>` : ''}
         </div>`;
     }
     html += `<div class="card">${inner}</div>`;
