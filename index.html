@@ -2854,10 +2854,10 @@ async function envoyerSignalement(){
   const box = $('guide-data');
 
   // ----- Molotov (TV) — apparts concernés ------------------
-  // 2 télécommandes : Le 23 (kitesurf, hamac, paddle, surf, famille)
+  // 2 télécommandes : Le 23 (kitesurf, hamac, paddle, famille) — surf : applications TF1/M6/France TV (carte dédiée, 02/09/2026)
   // 1 télécommande  : Le 25 (balneo, cocon) + patio, rotonde, miniloveroom, grandeloveroom
   // Maisonnette : TV par applications (TF1 = chaîne 1, M6 = chaîne 6, Molotov = reste) — carte dédiée ci-dessous
-  const MOLOTOV_2 = ['kitesurf','hamac','paddle','surf','famille'];
+  const MOLOTOV_2 = ['kitesurf','hamac','paddle','famille'];
   const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom'];
   const hasMolotov = MOLOTOV_2.includes(apKey) || MOLOTOV_1.includes(apKey);
   const twoRemotes = MOLOTOV_2.includes(apKey);
@@ -3009,6 +3009,27 @@ async function envoyerSignalement(){
             <li>Ouvrez l'application correspondant à la chaîne souhaitée : <strong>TF1</strong>, <strong>M6</strong> ou <strong>Molotov</strong>.</li>
           </ol>
           <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 En résumé : TF1 pour la 1, M6 pour la 6, et Molotov pour toutes les autres chaînes.</div>
+        </div>
+      </div>
+    `;
+  } else if (apKey === 'surf') {
+    molotovCard = `
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="em">📺</span> Télévision — Applications</div>
+        <div class="card">
+          <div class="name">Comment regarder la télé</div>
+          <div class="meta">Votre appartement dispose de <strong>deux télécommandes</strong> : une grande (pour allumer la télé) et une petite (pour naviguer dans le menu). La télévision fonctionne avec des <strong>applications</strong> — selon la chaîne souhaitée, ouvrez la bonne application :</div>
+          <ul style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.7">
+            <li>📺 Pour <strong>TF1</strong> (la 1) : ouvrez l'application <strong>TF1</strong>.</li>
+            <li>📺 Pour <strong>M6</strong> (la 6) : ouvrez l'application <strong>M6</strong>.</li>
+            <li>📺 Pour <strong>France 2, 3, 4 et 5</strong> : ouvrez l'application <strong>France TV</strong>.</li>
+          </ul>
+          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+            <li>Allumez la télé avec la <strong>grande télécommande</strong>.</li>
+            <li>Attendez que l'écran d'accueil apparaisse (avec les icônes des applications) — cela peut prendre <strong>plusieurs minutes</strong>.</li>
+            <li>Avec la <strong>petite télécommande</strong>, ouvrez l'application correspondant à la chaîne souhaitée : <strong>TF1</strong>, <strong>M6</strong> ou <strong>France TV</strong>.</li>
+          </ol>
+          <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 En résumé : TF1 pour la 1, M6 pour la 6, et France TV pour les chaînes France 2, 3, 4 et 5.</div>
         </div>
       </div>
     `;
