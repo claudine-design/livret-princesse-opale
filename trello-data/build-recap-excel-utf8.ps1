@@ -14,7 +14,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Non'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='2';
-     wifiSsid='BBOX - 4929C743'; wifiPwd='KXv9 DNH2 uDd5 n165 1u';
+     wifiSsid='Livebox-5B80'; wifiPwd='JHpXmzKUYcpbbc5cx5';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Oui';
      prestataire='Rémi'; entite='LMP'; photos=2 },
@@ -40,7 +40,7 @@ $apparts = @(
      balneo='Non'; sauna='Non';
      balcon='Oui'; brasero='Non'; bbq='Non';
      tv='Molotov standard'; remotes='2';
-     wifiSsid='BBOX - 4929C743'; wifiPwd='KXv9 DNH2 uDd5 n165 1u';
+     wifiSsid='Livebox-5B80'; wifiPwd='JHpXmzKUYcpbbc5cx5';
      tarifOption='15 €'; lingeInclus='Non (en option)'; packLitSimple='Oui';
      chiens='Oui (sur demande)'; bebe='Non'; palier23='Oui';
      prestataire='Rémi'; entite='LMP'; photos=0 },

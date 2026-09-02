@@ -218,7 +218,7 @@ window.TRELLO_FAQ = {
                      },
                      {
                          "name":  "Wifi 23",
-                         "desc":  "WIFI\n\nBBOX - 4929C743\n\nCODE\n\nKXv9 DNH2 uDd5 n165 1u"
+                         "desc":  "WIFI\n\nLivebox-5B80\n\nCODE\n\nJHpXmzKUYcpbbc5cx5"
                      },
                      {
                          "name":  "Le frigo ne marche pas",
@@ -338,7 +338,7 @@ window.TRELLO_FAQ = {
                    },
                    {
                        "name":  "Wifi",
-                       "desc":  "WIFI\n\nBBOX - 4929C743\n\nCODE\n\nKXv9 DNH2 uDd5 n165 1u"
+                       "desc":  "WIFI\n\nLivebox-5B80\n\nCODE\n\nJHpXmzKUYcpbbc5cx5"
                    },
                    {
                        "name":  "Le frigo ne marche pas",
