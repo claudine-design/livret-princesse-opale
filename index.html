@@ -2918,21 +2918,16 @@ async function envoyerSignalement(){
     </div>
   `;
 
-  // ----- Balnéo Spalina (Cetana, Indra Wave ou Duo selon appart (marque Spalina))
-  // Cetana = 2 places face à face · Indra Wave = 2 personnes (modèle compact) · Duo = baignoire 2 places
-  const BALNEO_CETANA = ['balneo','cocon','rotonde','patio','evasion'];
+  // ----- Balnéo Spalina (Cetana ou Indra Wave selon appart (marque Spalina))
+  // Cetana = 2 places face à face · Indra Wave = 2 personnes (modèle compact)
+  const BALNEO_CETANA = ['balneo','cocon','rotonde','patio','evasion','granderoue']; // granderoue confirmé par Claudine le 23/09/2026
   const BALNEO_INDRAWAVE = ['apolove','miniloveroom','grandeloveroom'];
-  const BALNEO_DUO = ['granderoue']; // confirmé par Claudine le 23/09/2026
   let balneoCard = '';
-  if (BALNEO_CETANA.includes(apKey) || BALNEO_INDRAWAVE.includes(apKey) || BALNEO_DUO.includes(apKey)) {
-    const modele = BALNEO_CETANA.includes(apKey) ? 'Cetana'
-                 : BALNEO_INDRAWAVE.includes(apKey) ? 'Indra Wave'
-                 : 'Duo';
+  if (BALNEO_CETANA.includes(apKey) || BALNEO_INDRAWAVE.includes(apKey)) {
+    const modele = BALNEO_CETANA.includes(apKey) ? 'Cetana' : 'Indra Wave';
     const places = BALNEO_CETANA.includes(apKey)
       ? '2 places face à face (grand modèle)'
-      : BALNEO_INDRAWAVE.includes(apKey)
-        ? '2 personnes face à face (modèle compact)'
-        : '2 places';
+      : '2 personnes face à face (modèle compact)';
     const isIndra = BALNEO_INDRAWAVE.includes(apKey);
 
     // Style "poster" noir/or — même esthétique pour Indra (image Canva) et Cetana (HTML stylisé)
@@ -2950,7 +2945,7 @@ async function envoyerSignalement(){
           <img src="assets/balneo-spalina-guide.png" alt="Mode d'emploi de la balnéo Spalina Indra Wave" style="max-width:100%;border-radius:8px;border:1px solid var(--gold);box-shadow:0 2px 12px rgba(212,175,94,.15)" />
         </div>`;
     } else {
-      // Poster HTML pour Cetana et Duo — même esthétique que le Canva Indra
+      // Poster HTML pour Cetana — même esthétique que le Canva Indra
       posterHtml = `
         <div style="${posterStyle};margin:14px 0">
           <div style="${posterTitle}">Balnéo</div>
