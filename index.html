@@ -1045,6 +1045,7 @@ const APPARTS = {
   famille:    { nom:"Famille",          com:"3 Chambres 100m Plage",   adr:"23 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 23",       zone:"marechal"  },
   balneo:     { nom:"Balnéo",           com:"Balnéo Garden",           adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
   cocon:      { nom:"Cocon Romantique", com:"Cocon Romantique",        adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
+  granderoue: { nom:"Grande Roue",      com:"Vue Mer et Grande Roue Balnéo 5 pers", adr:"17 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 17", zone:"marechal" },
   terrasse:   { nom:"Terrasse",         com:"La Terrasse",             adr:"17 rue du Grand Hôtel, 62600 Berck-sur-Mer",   res:"Terrasse",    zone:"terrasse"  },
   maisonnette:{ nom:"Maisonnette",      com:"Cœur des Sables",         adr:"2 rue des Sables, 62600 Berck-sur-Mer",        res:"Terrasse",    zone:"terrasse"  },
   facemer:    { nom:"Face Mer",         com:"Face Mer Esplanade",      adr:"1 rue de la Plage, 62600 Berck-sur-Mer",       res:"Face Mer",    zone:"esplanade" },
@@ -1174,6 +1175,10 @@ const WIFI_BY_SLUG = {
   // 23 rue Jeanne (Évasion + Jeanne — même immeuble, même WiFi)
   evasion:   { reseau:'TP-LINK _6322', password:'83968280' },
   jeanne:    { reseau:'TP-LINK _6322', password:'83968280' },
+  // 17 rue Maréchal Juin — Grande Roue (réseau donné aux voyageurs dans les messages Beds24)
+  // ⚠️ L'appartement a aussi une Livebox Orange « Livebox-3700 » (carte WiFi photographiée sur Trello,
+  //    clé LduGum6GXnNnGzkWaa) : c'est la box, le TP-Link ci-dessous est ce que reçoivent les voyageurs.
+  granderoue:{ reseau:'TP-Link 81CA', password:'84519696' },
   // 25 rue maréchal juin (Balnéo + Cocon — même immeuble, même WiFi)
   balneo:    { reseau:'SFR_63B8', password:'89tnbr3bqk33pwkp8tjj' },
   cocon:     { reseau:'SFR_63B8', password:'89tnbr3bqk33pwkp8tjj' },
@@ -1390,20 +1395,17 @@ const POUBELLES = {
     legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
   },
 
-  // 17 rue Maréchal-Juin — Grande Roue (le livret de cet appart n'existe pas encore ;
-  // entrée prête à l'avance — renommer la clé si le slug retenu diffère de « granderoue »)
+  // 17 rue Maréchal-Juin — Grande Roue : conteneurs de la place de l'Entonnoir
+  // Consigne dictée par Claudine le 23/09/2026 (≠ des 7 autres apparts Maréchal Juin).
   granderoue: {
     note: 'La ville interdit de laisser des poubelles dans la rue.',
-    lieu: 'Conteneurs municipaux à l’intersection de l’avenue Saint-Exupéry et du boulevard Ménard, sur votre gauche',
-    chemin: 'En sortant de l’immeuble, tournez tout de suite à gauche, puis prenez la deuxième à gauche',
-    distance: '~150 m à pied',
+    lieu: 'Conteneurs de la ville, place de l’Entonnoir — de l’autre côté de la Grande Roue',
+    chemin: 'En sortant de l’immeuble, rejoignez le front de mer et traversez la place de l’Entonnoir : les conteneurs sont de l’autre côté de la Grande Roue',
     bacs: [
       { couleur: 'Noir', note: 'ordures ménagères' },
       { couleur: 'Jaune', note: 'emballages' }
     ],
-    verre: 'Conteneur à verre au même endroit.',
-    carte: 'assets/poubelles-marechal-juin.jpg',
-    legende: 'Le trajet jusqu’aux conteneurs (point rouge)'
+    verre: 'Conteneur à verre au même endroit.'
   },
 
   // 23 rue Jeanne — Jeanne, Évasion, Rotonde, Patio : poubelles juste en face de l'entrée
@@ -1519,6 +1521,18 @@ const APPART_INFO = {
     equipements: ['Machine à laver','Douche','Machine à café (1 Senseo + 1 à filtre)'],
     fournis: ['Café','Thé','Gels douche / shampoings','Draps de lit'],
     proximite: ['Casino','Plage grande roue (été)','Mini-golf','Golf','Visite des phoques'],
+    transport: '5 min à pied de la gare routière'
+  },
+  granderoue: {
+    typeLogement: 'T3',
+    lits: '5 couchages · chambre 1 : 160 × 200 · chambre 2 : 2 × (80 × 190) · canapé convertible salon : 140 × 200',
+    etage: '1er étage · première porte à gauche en haut de l’escalier',
+    ascenseur: false,
+    parking: 'Pas de parking sur place. Stationnement dans la rue (payant 1er mai → 30 sept + vacances de Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité, ou abonnement Prestopark 20 €/semaine.',
+    chauffage: 'Électrique — écran digital (voir le mode d’emploi du radiateur dans « Guide équipements »).',
+    equipements: ['🍳 Cuisine complète : plaque vitro-céramique, four, micro-ondes, réfrigérateur, lave-vaisselle','Machine à laver','Douche','🛁 Baignoire balnéo double (2 places)','Machine à café (1 Senseo + 1 à filtre) + bouilloire','📺 Télévision Molotov','🌿 Mini balcon','🌊 Vue mer à travers la Grande Roue'],
+    fournis: ['Draps de lit','Serviettes','Café','Thé','Gels douche / shampoings'],
+    proximite: ['Plage et Grande Roue','Casino','Mini-golf','Golf','Visite des phoques'],
     transport: '5 min à pied de la gare routière'
   },
   balneo: {
@@ -2858,7 +2872,7 @@ async function envoyerSignalement(){
   // 1 télécommande  : Le 25 (balneo, cocon) + patio, rotonde, miniloveroom, grandeloveroom
   // Maisonnette : TV par applications (TF1 = chaîne 1, M6 = chaîne 6, Molotov = reste) — carte dédiée ci-dessous
   const MOLOTOV_2 = ['kitesurf','hamac','paddle','famille'];
-  const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom'];
+  const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom','granderoue'];
   const hasMolotov = MOLOTOV_2.includes(apKey) || MOLOTOV_1.includes(apKey);
   const twoRemotes = MOLOTOV_2.includes(apKey);
 
@@ -3279,7 +3293,7 @@ async function envoyerSignalement(){
     if (!groups[a.res]) groups[a.res] = [];
     groups[a.res].push({ key, ...a });
   }
-  const resOrder = ['Le 23','Le 25','Apollo','Albatros','Rue Jeanne','Esplanade','Face Mer','Grand Large','Terrasse'];
+  const resOrder = ['Le 23','Le 25','Le 17','Apollo','Albatros','Rue Jeanne','Esplanade','Face Mer','Grand Large','Terrasse'];
   const currentRes = ap.res;
   const ordered = resOrder.filter(r => r !== currentRes);
   if (currentRes && !ordered.includes(currentRes)) ordered.push(currentRes);
@@ -3341,7 +3355,7 @@ async function envoyerSignalement(){
   // Le questionnaire utilise des clés Capitalized strictes ("Hamac", "Balnéo", "Évasion"…)
   const SLUG_LIVRET_VERS_QUESTIONNAIRE = {
     'kitesurf':'Kitesurf','hamac':'Hamac','paddle':'Paddle','surf':'Surf','famille':'Famille',
-    'balneo':'Balnéo','cocon':'Cocon Romantique',
+    'balneo':'Balnéo','cocon':'Cocon Romantique','granderoue':'Grande Roue',
     'reserve':'La Réserve','kingston':'Kingston','apolove':'Apolove','apollo':'Apollo',
     'albatros':'Albatros',
     'facemer':'Face Mer','grandlarge':'Grand Large',
