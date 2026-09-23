@@ -1046,6 +1046,7 @@ const APPARTS = {
   balneo:     { nom:"Balnéo",           com:"Balnéo Garden",           adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
   cocon:      { nom:"Cocon Romantique", com:"Cocon Romantique",        adr:"25 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 25",       zone:"marechal"  },
   granderoue: { nom:"Grande Roue",      com:"Vue Mer et Grande Roue Balnéo 5 pers", adr:"17 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 17", zone:"marechal" },
+  escapade:   { nom:"Escapade",         com:"Escapade",                adr:"17 rue du Maréchal Juin, 62600 Berck-sur-Mer", res:"Le 17", zone:"marechal" }, // nom provisoire (23/09/2026)
   terrasse:   { nom:"Terrasse",         com:"La Terrasse",             adr:"17 rue du Grand Hôtel, 62600 Berck-sur-Mer",   res:"Terrasse",    zone:"terrasse"  },
   maisonnette:{ nom:"Maisonnette",      com:"Cœur des Sables",         adr:"2 rue des Sables, 62600 Berck-sur-Mer",        res:"Terrasse",    zone:"terrasse"  },
   facemer:    { nom:"Face Mer",         com:"Face Mer Esplanade",      adr:"1 rue de la Plage, 62600 Berck-sur-Mer",       res:"Face Mer",    zone:"esplanade" },
@@ -1407,6 +1408,17 @@ const POUBELLES = {
     ],
     verre: 'Conteneur à verre au même endroit.'
   },
+  // 17 rue Maréchal-Juin — Escapade : même immeuble que Grande Roue, mêmes conteneurs
+  escapade: {
+    note: 'La ville interdit de laisser des poubelles dans la rue.',
+    lieu: 'Conteneurs de la ville, place de l’Entonnoir — de l’autre côté de la Grande Roue',
+    chemin: 'En sortant de l’immeuble, rejoignez le front de mer et traversez la place de l’Entonnoir : les conteneurs sont de l’autre côté de la Grande Roue',
+    bacs: [
+      { couleur: 'Noir', note: 'ordures ménagères' },
+      { couleur: 'Jaune', note: 'emballages' }
+    ],
+    verre: 'Conteneur à verre au même endroit.'
+  },
 
   // 23 rue Jeanne — Jeanne, Évasion, Rotonde, Patio : poubelles juste en face de l'entrée
   jeanne: {
@@ -1531,6 +1543,18 @@ const APPART_INFO = {
     parking: 'Pas de parking sur place. Stationnement dans la rue (payant 1er mai → 30 sept + vacances de Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité, ou abonnement Prestopark 20 €/semaine.',
     chauffage: 'Électrique — écran digital (voir le mode d’emploi du radiateur dans « Guide équipements »).',
     equipements: ['🍳 Cuisine complète : plaque vitro-céramique, four, micro-ondes, réfrigérateur, lave-vaisselle','Machine à laver','Douche','🛁 Baignoire balnéo double (2 places)','Machine à café (1 Senseo + 1 à filtre) + bouilloire','📺 Télévision Molotov','🌿 Mini balcon','🌊 Vue mer à travers la Grande Roue'],
+    fournis: ['Draps de lit','Serviettes','Café','Thé','Gels douche / shampoings'],
+    proximite: ['Plage et Grande Roue','Casino','Mini-golf','Golf','Visite des phoques'],
+    transport: '5 min à pied de la gare routière'
+  },
+  escapade: {
+    typeLogement: 'Love room 2 personnes',
+    lits: '2 couchages · lit double',
+    etage: '1er étage',
+    ascenseur: false,
+    parking: 'Pas de parking sur place. Stationnement dans la rue (payant 1er mai → 30 sept + vacances de Toussaint — 1re heure gratuite). Parking du stade gratuit à proximité, ou abonnement Prestopark 20 €/semaine.',
+    chauffage: 'Électrique.',
+    equipements: ['🧖 Sauna 2 places','🛁 Baignoire balnéo 2 places','🚿 Douche 80 × 140','🍳 Cuisine complète : lave-vaisselle, four, micro-ondes, réfrigérateur','Machine à café Senseo + bouilloire','Vaisselle et ustensiles pour manger','Machine à laver','📺 Télévision + vidéoprojecteur'],
     fournis: ['Draps de lit','Serviettes','Café','Thé','Gels douche / shampoings'],
     proximite: ['Plage et Grande Roue','Casino','Mini-golf','Golf','Visite des phoques'],
     transport: '5 min à pied de la gare routière'
@@ -3355,7 +3379,7 @@ async function envoyerSignalement(){
   // Le questionnaire utilise des clés Capitalized strictes ("Hamac", "Balnéo", "Évasion"…)
   const SLUG_LIVRET_VERS_QUESTIONNAIRE = {
     'kitesurf':'Kitesurf','hamac':'Hamac','paddle':'Paddle','surf':'Surf','famille':'Famille',
-    'balneo':'Balnéo','cocon':'Cocon Romantique','granderoue':'Grande Roue',
+    'balneo':'Balnéo','cocon':'Cocon Romantique','granderoue':'Grande Roue','escapade':'Escapade',
     'reserve':'La Réserve','kingston':'Kingston','apolove':'Apolove','apollo':'Apollo',
     'albatros':'Albatros',
     'facemer':'Face Mer','grandlarge':'Grand Large',
