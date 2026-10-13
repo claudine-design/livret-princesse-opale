@@ -1166,7 +1166,7 @@ const WIFI_BY_SLUG = {
   paddle:    { reseau:'Livebox-5B80', password:'JHpXmzKUYcpbbc5cx5' },
   hamac:     { reseau:'TP LINK E2E4', password:'40803500' },
   surf:      { reseau:'SURF', password:'Marechal' },
-  // famille → à remplir depuis fiche Albert
+  famille:  { reseau:'SFR_63B8', password:'89tnbr3bqk33pwkp8tjj' }, // même WiFi que Balnéo + Cocon (Claudine 13/10/2026)
   // Apolove + Apollo + Kingston (Le 25 + Apollo via Trello "suite2")
   apolove:   { reseau:'suite2', password:'2Avmarianne' },
   // Face Mer
@@ -3015,7 +3015,7 @@ async function envoyerSignalement(){
   // * Télé Molotov déconnectée (un voyageur précédent y a connecté son téléphone) :
   // reconnecter la télé au WiFi de l'appart — demande Claudine 13/10/2026, tous les apparts Molotov
   const wifiTv = WIFI_BY_SLUG[apKey];
-  const wifiTvNom = ['cocon','balneo'].includes(apKey)
+  const wifiTvNom = ['cocon','balneo','famille'].includes(apKey)
     ? '<strong>SFR_63B8</strong> (terminaison <code>63B8</code>, version 5 GHz)'
     : (wifiTv ? `<strong>${wifiTv.reseau}</strong>` : "de l'appartement (voir la tuile <strong>WiFi</strong>)");
   const wifiTvMdp = wifiTv ? ` : <code>${wifiTv.password}</code>` : ' (voir la tuile <strong>WiFi</strong>)';
