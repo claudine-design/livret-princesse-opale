@@ -3012,6 +3012,29 @@ async function envoyerSignalement(){
     `;
   }
 
+  // * Télé Molotov déconnectée (un voyageur précédent y a connecté son téléphone) :
+  // reconnecter la télé au WiFi de l'appart — demande Claudine 13/10/2026, tous les apparts Molotov
+  const wifiTv = WIFI_BY_SLUG[apKey];
+  const wifiTvNom = ['cocon','balneo'].includes(apKey)
+    ? '<strong>SFR_63B8</strong> (terminaison <code>63B8</code>, version 5 GHz)'
+    : (wifiTv ? `<strong>${wifiTv.reseau}</strong>` : "de l'appartement (voir la tuile <strong>WiFi</strong>)");
+  const wifiTvMdp = wifiTv ? ` : <code>${wifiTv.password}</code>` : ' (voir la tuile <strong>WiFi</strong>)';
+  const wifiResetCard = `
+        <div class="card">
+          <div class="name">* Si la télé ne semble pas connectée</div>
+          <div class="meta">C'est que les voyageurs précédents ont dû connecter leur propre téléphone sur la télé. Dans ce cas :</div>
+          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+            <li>Appuyez sur le bouton avec le <strong>dessin d'une maison</strong> 🏠.</li>
+            <li>Appuyez sur le bouton <strong>Réglages</strong> (dessin d'une roue crantée ⚙️).</li>
+            <li>Appuyez sur <strong>Réseau</strong>.</li>
+            <li>Cherchez <strong>Réseau sans fil</strong>.</li>
+            <li>Validez le nom du réseau WiFi ${wifiTvNom}.</li>
+            <li>Entrez le mot de passe WiFi${wifiTvMdp}.</li>
+          </ol>
+          <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 Ensuite, vous pouvez aller sur l'application ${apKey==='surf' ? '<strong>TF1</strong>, <strong>M6</strong> ou <strong>France TV</strong>' : '<strong>Molotov</strong>'} comme expliqué précédemment.</div>
+        </div>
+  `;
+
   // TV antenne hertzienne (pas de Molotov) : Jeanne + Évasion
   const TV_ANTENNE = ['jeanne','evasion'];
   let molotovCard = '';
@@ -3049,7 +3072,9 @@ async function envoyerSignalement(){
             <li>Ouvrez l'application correspondant à la chaîne souhaitée : <strong>TF1</strong>, <strong>M6</strong> ou <strong>Molotov</strong>.</li>
           </ol>
           <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 En résumé : TF1 pour la 1, M6 pour la 6, et Molotov pour toutes les autres chaînes.</div>
+          <div class="meta" style="margin-top:8px;font-style:italic">* Si la télé ne semble pas connectée, voir l'encadré ci-dessous.</div>
         </div>
+        ${wifiResetCard}
       </div>
     `;
   } else if (apKey === 'surf') {
@@ -3070,7 +3095,9 @@ async function envoyerSignalement(){
             <li>Ouvrez l'application correspondant à la chaîne souhaitée : <strong>TF1</strong>, <strong>M6</strong> ou <strong>France TV</strong>.</li>
           </ol>
           <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 En résumé : TF1 pour la 1, M6 pour la 6, et France TV pour les chaînes France 2, 3, 4 et 5.</div>
+          <div class="meta" style="margin-top:8px;font-style:italic">* Si la télé ne semble pas connectée, voir l'encadré ci-dessous.</div>
         </div>
+        ${wifiResetCard}
       </div>
     `;
   } else if (hasMolotov) {
@@ -3091,23 +3118,6 @@ async function envoyerSignalement(){
           <li>Naviguez vers <strong>Molotov</strong>.</li>
           <li>Cliquez sur l'onglet <strong>« Direct »</strong> pour voir les chaînes en direct.</li>
         </ol>`;
-    // Carte spécifique Cocon + Balnéo (même immeuble 25 Maréchal Juin, même WiFi) :
-    // reset WiFi sur la télé si un voyageur précédent l'a déconnectée
-    const coconWifiResetCard = ['cocon','balneo'].includes(apKey) ? `
-        <div class="card">
-          <div class="name">📡 Si la télé ne semble pas connectée</div>
-          <div class="meta">Les voyageurs précédents ont parfois connecté leur propre téléphone à la télé. Si Molotov ne se lance pas, il faut rebrancher le WiFi de l'appart :</div>
-          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
-            <li>Appuyez sur le bouton avec le <strong>dessin d'une maison</strong> 🏠.</li>
-            <li>Appuyez sur le bouton <strong>Réglages</strong> (roue crantée ⚙️).</li>
-            <li>Sélectionnez <strong>Réseau</strong>.</li>
-            <li><strong>Rechercher un réseau sans fil</strong>.</li>
-            <li>Choisissez le réseau <strong>SFR_63B8</strong> (terminaison <code>63B8</code>, version 5 GHz).</li>
-            <li>Entrez le mot de passe : <code>89tnbr3bqk33pwkp8tjj</code>.</li>
-          </ol>
-          <div class="meta" style="margin-top:8px;color:var(--gold-light);font-style:italic">💡 Puis revenez à l'application <strong>Molotov</strong> comme expliqué ci-dessus.</div>
-        </div>
-    ` : '';
     molotovCard = `
       <div class="faq-group">
         <div class="faq-group-title"><span class="em">📺</span> Télévision — Molotov</div>
@@ -3115,11 +3125,12 @@ async function envoyerSignalement(){
           <div class="name">Comment regarder la télé</div>
           <div class="meta">${remoteTxt}</div>
           ${steps}
+          <div class="meta" style="margin-top:8px;font-style:italic">* Si la télé ne semble pas connectée, voir l'encadré ci-dessous.</div>
           <div class="actions" style="margin-top:10px">
             <a href="assets/molotov-2-telecommandes.pdf" target="_blank" rel="noopener">📄 Voir le guide illustré (PDF)</a>
           </div>
         </div>
-        ${coconWifiResetCard}
+        ${wifiResetCard}
       </div>
     `;
   }
