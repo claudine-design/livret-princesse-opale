@@ -519,6 +519,8 @@
     padding:24px 16px;letter-spacing:.1em;text-transform:uppercase;font-family:'Cinzel',serif
   }
   footer a{color:var(--gold);text-decoration:none}
+  /* Version Airbnb (?src=airbnb) : masque tout ce qui sort de la plateforme */
+  body.airbnb .no-airbnb{display:none!important}
 
   /* Desktop uniquement (≥ 700px) : élargir à 3 colonnes */
   @media(min-width:700px){
@@ -698,11 +700,11 @@
     <a class="tile" onclick="open_('events')"><svg class="ico"><use href="#ico-event"/></svg><span class="lbl">Événements</span></a>
     <a class="tile" onclick="open_('adresses')"><svg class="ico"><use href="#ico-pin"/></svg><span class="lbl">Adresses utiles</span></a>
     <a class="tile" onclick="open_('faq')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Questions fréquentes</span></a>
-    <a class="tile" onclick="open_('livredor')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Livre d'or</span></a>
-    <a class="tile" onclick="open_('autres')"><svg class="ico"><use href="#logo-pod"/></svg><span class="lbl">Autres logements Princesse d'Opale</span></a>
+    <a class="tile no-airbnb" onclick="open_('livredor')"><svg class="ico"><use href="#ico-book"/></svg><span class="lbl">Livre d'or</span></a>
+    <a class="tile no-airbnb" onclick="open_('autres')"><svg class="ico"><use href="#logo-pod"/></svg><span class="lbl">Autres logements Princesse d'Opale</span></a>
   </div>
 
-  <a class="enquete-cta" id="enqueteHomeBtn" href="#" target="_blank" rel="noopener">
+  <a class="enquete-cta no-airbnb" id="enqueteHomeBtn" href="#" target="_blank" rel="noopener">
     <div class="eq-title">✍️ Faire l'enquête de satisfaction</div>
     <div class="eq-promo">
       🎁 <b>−10 %</b> sur votre prochain séjour<br>
@@ -909,7 +911,7 @@
   <div id="faq-data"></div>
 </div>
 
-<div class="page" id="p-autres">
+<div class="page no-airbnb" id="p-autres">
   <h2>🏛️ Autres logements gérés par la Conciergerie Princesse d'Opale</h2>
   <p style="font-size:14px;color:var(--muted);text-align:center;margin-bottom:14px">Vous aimez votre séjour ? La Conciergerie Princesse d'Opale gère <strong>22 appartements</strong> à Berck-sur-Mer — pensez-y pour revenir, ou pour recommander à vos proches.</p>
   <div class="card" style="background:linear-gradient(160deg, rgba(212,175,94,.08) 0%, transparent 100%);border-color:var(--gold);margin-bottom:18px">
@@ -922,7 +924,7 @@
   <div id="autres-data"></div>
 </div>
 
-<div class="page" id="p-livredor">
+<div class="page no-airbnb" id="p-livredor">
   <h2>📖 Livre d'or</h2>
   <p>Votre séjour vous a plu ? Partagez votre avis, il nous aide énormément !</p>
   <a class="btn full" id="livredorBtn" href="#" target="_blank" rel="noopener">✍️ Laisser un avis</a>
@@ -939,7 +941,7 @@
 
 </main>
 
-<footer>
+<footer class="no-airbnb">
   Appart-Hôtel Berck · <a href="https://appart-hotel-berck.com" style="color:var(--muted)">appart-hotel-berck.com</a>
 </footer>
 
@@ -1090,6 +1092,12 @@ const DATA = {
 
 const $ = id => document.getElementById(id);
 const qs = new URLSearchParams(location.search);
+// Version Airbnb : lien ?a=<appart>&src=airbnb → pas d'enquête, pas de parrainage,
+// pas d'avis hors Airbnb, pas de lien vers le site de réservation directe,
+// pas de paiement ni d'email hors Airbnb (politique hors plateforme Airbnb).
+const AIRBNB = ['airbnb','abnb'].includes((qs.get('src') || '').toLowerCase());
+if (AIRBNB) document.body.classList.add('airbnb');
+const AIRBNB_MSG = `<div class="meta" style="font-size:12px;margin-top:8px">📩 <strong>Faites votre demande dans la messagerie Airbnb</strong> : nous vous confirmons la disponibilité et les modalités.</div>`;
 const apKey = (qs.get('a') || 'kitesurf').toLowerCase();
 const ap = APPARTS[apKey] || APPARTS.kitesurf;
 const apData = DATA[apKey] || {};
@@ -2053,6 +2061,7 @@ function copy(txt, btn){
   };
   const compteStripe = STRIPE_LMP.includes(apKey) ? 'lmp' : STRIPE_SAS.includes(apKey) ? 'sas' : null;
   const optionBtn = (type, sujet, corps) => {
+    if (AIRBNB) return AIRBNB_MSG;
     const stripe = compteStripe ? STRIPE_LINKS[compteStripe][type][tarifOption] : '';
     return `<div class="meta" style="font-size:12px;margin-top:8px">⚠️ <strong>Pour le jour même</strong>, merci de nous faire
       <strong>d'abord une demande écrite</strong> et d'attendre notre accord avant de payer.</div>
@@ -2092,7 +2101,7 @@ function copy(txt, btn){
         ✨ <strong>Vous êtes 2 et souhaitez dormir en lits séparés&nbsp;?</strong><br>
         Supplément blanchisserie&nbsp;: <strong>10 €</strong>.
       </div>
-      <a href="${optionLink('Demande lits séparés', "Nous sommes 2 voyageurs et souhaitons dormir dans des lits séparés plutôt qu'un lit double (supplément blanchisserie 10 €).")}" style="${btnStyle}">📩 Demander l'option</a>`;
+      ${AIRBNB ? AIRBNB_MSG : `<a href="${optionLink('Demande lits séparés', "Nous sommes 2 voyageurs et souhaitons dormir dans des lits séparés plutôt qu'un lit double (supplément blanchisserie 10 €).")}" style="${btnStyle}">📩 Demander l'option</a>`}`;
   const lingeCard = lingeEnOption ? `
     <h3>🛏️ Pack linge — option</h3>
     <div class="card" style="border-color:var(--gold)">
@@ -2100,7 +2109,7 @@ function copy(txt, btn){
       <div class="meta">Vous pouvez commander un pack à l'avance (draps + serviettes) :</div>
       <div class="meta" style="color:var(--gold-light);margin-top:8px"><strong>Pack lit double — ${LP.d} €</strong><br>Draps + housse de couette + taies d'oreiller + <strong>2 serviettes par personne</strong> (1 grande + 1 petite)</div>
       ${packSimpleHTML}
-      <a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (' + LP.d + ' €) : ___' + packSimpleMail)}" style="${btnStyle}">📩 Commander le pack</a>
+      ${AIRBNB ? AIRBNB_MSG : `<a href="${optionLink('Commande pack linge', 'Je souhaite commander un pack linge :\n- Pack lit double (' + LP.d + ' €) : ___' + packSimpleMail)}" style="${btnStyle}">📩 Commander le pack</a>`}
     </div>
   ` : `
     <h3>🛏️ Linge</h3>
@@ -2739,7 +2748,7 @@ async function envoyerSignalement(){
     $('sig-merci').style.display = 'block';
   } catch (e) {
     btn.disabled = false; btn.textContent = '📨 Envoyer le signalement';
-    stat.innerHTML = 'Oups, l\'envoi a échoué. Réessayez, ou utilisez l\'email ci-dessous. 🙏';
+    stat.innerHTML = AIRBNB ? 'Oups, l\'envoi a échoué. Réessayez, ou écrivez-nous dans la messagerie Airbnb. 🙏' : 'Oups, l\'envoi a échoué. Réessayez, ou utilisez l\'email ci-dessous. 🙏';
   }
 }
 
@@ -2771,7 +2780,10 @@ async function envoyerSignalement(){
         <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-top:6px">Claudine est prévenue sur son agenda et l'équipe d'entretien verra votre signalement avant le prochain ménage.</p>
       </div>
     </div>
-    <div class="card" style="margin-top:12px">
+    ${AIRBNB ? `<div class="card" style="margin-top:12px">
+      <div class="name">💬 Vous préférez nous écrire ?</div>
+      <div class="meta" style="margin-top:6px">Envoyez-nous un message dans la <strong>messagerie Airbnb</strong> : nous vous répondons rapidement.</div>
+    </div>` : `    <div class="card" style="margin-top:12px">
       <div class="name">✉️ Vous préférez l'email ?</div>
       <div class="field" style="margin-top:10px">
         <div><div class="lab">Email</div><div class="val">${email}</div></div>
@@ -2779,7 +2791,7 @@ async function envoyerSignalement(){
       </div>
       <a class="btn full" href="mailto:${email}?subject=${subject}&body=${body}" style="margin-top:8px">✉️ Ouvrir mon appli mail</a>
       <a class="btn full ghost" href="https://mail.google.com/mail/?view=cm&to=${email}&su=${subject}&body=${body}" target="_blank" rel="noopener" style="margin-top:6px">📧 Écrire via Gmail (navigateur)</a>
-    </div>
+    </div>`}
     <p style="font-size:13px;color:var(--muted);margin-top:14px;font-style:italic">⚠️ Pour les urgences (fuite, panne électrique…), basculez sur l'onglet <strong>Contact d'urgence</strong> ci-dessus.</p>
   `;
 })();
@@ -2793,12 +2805,12 @@ async function envoyerSignalement(){
     <h3>🔑 Conciergerie Princesse d'Opale</h3>
     <div class="card" style="border-color:var(--gold)">
       <div class="name">Équipe d'accueil et maintenance</div>
-      <div class="field" style="margin-top:10px">
+      ${AIRBNB ? `<div class="meta" style="margin-top:6px">Écrivez-nous dans la <strong>messagerie Airbnb</strong>.</div>` : `      <div class="field" style="margin-top:10px">
         <div><div class="lab">Email</div><div class="val">${email}</div></div>
         <button onclick="copy('${email}',this)">Copier</button>
       </div>
       <a class="btn full" href="mailto:${email}" style="margin-top:8px">✉️ Ouvrir mon appli mail</a>
-      <a class="btn full ghost" href="https://mail.google.com/mail/?view=cm&to=${email}" target="_blank" rel="noopener" style="margin-top:6px">📧 Écrire via Gmail</a>
+      <a class="btn full ghost" href="https://mail.google.com/mail/?view=cm&to=${email}" target="_blank" rel="noopener" style="margin-top:6px">📧 Écrire via Gmail</a>`}
     </div>
     <h3>Urgences officielles</h3>
     <div class="card">
@@ -3272,7 +3284,7 @@ async function envoyerSignalement(){
     },
     {
       em:'🏥', q:'En cas de souci pendant le séjour, qui contacter ?',
-      r:`Écrivez-nous à <strong>princessedopale@gmail.com</strong> via l'item <strong>Signaler un problème</strong> — votre message arrive directement à notre Conciergerie. En cas d'urgence vitale, l'item <strong>Contact d'urgence</strong> regroupe tous les numéros : Pompiers <strong>18</strong>, SAMU <strong>15</strong>, Police <strong>17</strong>, hôpital de Berck.`
+      r: AIRBNB ? `Écrivez-nous dans la <strong>messagerie Airbnb</strong>, ou utilisez le formulaire de l'item <strong>Problème / Urgence</strong>. En cas d'urgence vitale, l'item <strong>Contact d'urgence</strong> regroupe tous les numéros : Pompiers <strong>18</strong>, SAMU <strong>15</strong>, Police <strong>17</strong>, numéro européen <strong>112</strong>.` : `Écrivez-nous à <strong>princessedopale@gmail.com</strong> via l'item <strong>Signaler un problème</strong> — votre message arrive directement à notre Conciergerie. En cas d'urgence vitale, l'item <strong>Contact d'urgence</strong> regroupe tous les numéros : Pompiers <strong>18</strong>, SAMU <strong>15</strong>, Police <strong>17</strong>, hôpital de Berck.`
     },
     {
       em:'📺', q:'Comment regarder la télé ?',
@@ -3316,7 +3328,9 @@ async function envoyerSignalement(){
     }
   ];
 
-  const html = QR.map(({em,q,r}) => `
+  // Version Airbnb : pas de renvoi vers la réservation directe
+  const QR_AFF = AIRBNB ? QR.filter(x => !x.q.startsWith('Je veux revenir')) : QR;
+  const html = QR_AFF.map(({em,q,r}) => `
     <div class="card">
       <div class="name">${em} ${q}</div>
       <div class="meta" style="margin-top:6px;line-height:1.5">${r}</div>
