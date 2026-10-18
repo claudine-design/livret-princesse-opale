@@ -2038,11 +2038,10 @@ function copy(txt, btn){
   ];
   const tarifOption = TARIF_15.includes(apKey) ? 15 : 20;
 
-  // Paiement des options : PayPal direct + Wero (validé par Claudine le 18/10/2026, pas de Stripe).
-  // Adresse PayPal et numéro Wero affichés volontairement. Paiement immédiat → remboursé si option refusée.
-  const paiementInfo = `<div class="meta" style="font-size:12px;margin-top:6px">Règlement de ${tarifOption}&nbsp;€ par
-    <strong>PayPal</strong> à <strong>claudine.podvin@gmail.com</strong> ou par <strong>Wero</strong> au <strong>06&nbsp;13&nbsp;65&nbsp;10&nbsp;77</strong>,
-    en indiquant le logement et la date. Remboursé si l'option n'est pas disponible.</div>`;
+  // Paiement des options : JAMAIS avant validation manuelle de Claudine (consigne 18/10/2026).
+  // Le livret n'affiche aucun moyen de paiement : Claudine envoie le lien (carte Stripe, PayPal ou Wero) dans sa réponse.
+  const paiementInfo = `<div class="meta" style="font-size:12px;margin-top:6px">Après notre accord, nous vous envoyons
+    le moyen de paiement (<strong>carte bancaire, PayPal ou Wero</strong>). Merci de ne rien régler avant notre confirmation.</div>`;
   const optionBtn = (sujet, corps) =>
     `<a href="${optionLink(sujet, corps)}" style="${btnStyle}">📩 Demander l'option</a>` + paiementInfo;
 
