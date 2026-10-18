@@ -2038,12 +2038,29 @@ function copy(txt, btn){
   ];
   const tarifOption = TARIF_15.includes(apKey) ? 15 : 20;
 
-  // Paiement des options : JAMAIS avant validation manuelle de Claudine (consigne 18/10/2026).
-  // Le livret n'affiche aucun moyen de paiement : Claudine envoie le lien (carte Stripe, PayPal ou Wero) dans sa réponse.
-  const paiementInfo = `<div class="meta" style="font-size:12px;margin-top:6px">Après notre accord, nous vous envoyons
-    le moyen de paiement (<strong>carte bancaire, PayPal ou Wero</strong>). Merci de ne rien régler avant notre confirmation.</div>`;
-  const optionBtn = (sujet, corps) =>
-    `<a href="${optionLink(sujet, corps)}" style="${btnStyle}">📩 Demander l'option</a>` + paiementInfo;
+  // Paiement des options (consigne Claudine 18/10/2026) : liens Stripe (carte) + PayPal + Wero affichés,
+  // MAIS pour le jour même → demande écrite obligatoire avant de payer.
+  // 1 lien Stripe par compte × option × tarif. Kingston (SCI, pas de Stripe) et Réserve → PayPal / Wero seulement.
+  const STRIPE_SAS = ['albatros','grandlarge','jeanne','evasion','miniloveroom','grandeloveroom',
+                      'rotonde','patio','apolove','apollo','granderoue'];
+  const STRIPE_LMP = ['kitesurf','hamac','paddle','surf','famille','facemer','maisonnette',
+                      'terrasse','cocon','balneo'];
+  const STRIPE_LINKS = {
+    lmp: { arrivee: { 15: 'https://buy.stripe.com/eVq14mbt93q3e5I4Vj0oM00', 20: 'https://buy.stripe.com/8x27sKeFl1hV1iW87v0oM01' },
+           depart:  { 15: 'https://buy.stripe.com/5kQ00i2WD7Gj8LofzX0oM02', 20: 'https://buy.stripe.com/eVq3cufJp0dRf9M9bz0oM03' } },
+    sas: { arrivee: { 15: 'https://buy.stripe.com/00w7sE1NrfyT1t96s3cMM02', 20: 'https://buy.stripe.com/4gM9AM63H4Uf7Rx03FcMM03' },
+           depart:  { 15: 'https://buy.stripe.com/3cI28k8bP5Yjgo3eYzcMM04', 20: 'https://buy.stripe.com/3cI6oA4ZDfyT7Rx17JcMM05' } }
+  };
+  const compteStripe = STRIPE_LMP.includes(apKey) ? 'lmp' : STRIPE_SAS.includes(apKey) ? 'sas' : null;
+  const optionBtn = (type, sujet, corps) => {
+    const stripe = compteStripe ? STRIPE_LINKS[compteStripe][type][tarifOption] : '';
+    return `<div class="meta" style="font-size:12px;margin-top:8px">⚠️ <strong>Pour le jour même</strong>, merci de nous faire
+      <strong>d'abord une demande écrite</strong> et d'attendre notre accord avant de payer.</div>
+      ${stripe ? `<a href="${stripe}" target="_blank" rel="noopener" style="${btnStyle}">💳 Payer par carte — ${tarifOption}&nbsp;€</a> ` : ''}
+      <a href="${optionLink(sujet, corps)}" style="${btnStyle}">📩 Demande écrite</a>
+      <div class="meta" style="font-size:12px;margin-top:6px">Ou par <strong>PayPal</strong> à <strong>claudine.podvin@gmail.com</strong>
+      ou par <strong>Wero</strong> au <strong>06&nbsp;13&nbsp;65&nbsp;10&nbsp;77</strong>, en indiquant le logement et la date.</div>`;
+  };
 
   const cons = apData.checkoutConsignes || [
     'Fermer les fenêtres',
@@ -2101,7 +2118,7 @@ function copy(txt, btn){
       <div class="meta" style="color:var(--gold-light);margin-top:8px">
         ✨ <strong>Check-in anticipé</strong> possible dès 14h sur demande.<br>Supplément&nbsp;: ${tarifOption} €.
       </div>
-      ${optionBtn('Demande check-in anticipé 14h', `Je souhaite un check-in anticipé à 14h (supplément ${tarifOption} €).\nDate d'arrivée : ___`)}
+      ${optionBtn('arrivee', 'Demande check-in anticipé 14h', `Je souhaite un check-in anticipé à 14h (supplément ${tarifOption} €).\nDate d'arrivée : ___`)}
     </div>
 
     <h3>🚪 Départ — check-out</h3>
@@ -2114,7 +2131,7 @@ function copy(txt, btn){
       <div class="meta" style="color:var(--gold-light);margin-top:12px">
         ✨ <strong>Check-out tardif</strong> possible jusqu'à 13h sur demande.<br>Supplément&nbsp;: ${tarifOption} €.
       </div>
-      ${optionBtn('Demande check-out tardif 13h', `Je souhaite un check-out tardif à 13h (supplément ${tarifOption} €).\nDate de départ : ___`)}
+      ${optionBtn('depart', 'Demande check-out tardif 13h', `Je souhaite un check-out tardif à 13h (supplément ${tarifOption} €).\nDate de départ : ___`)}
     </div>
 
     ${lingeCard}
