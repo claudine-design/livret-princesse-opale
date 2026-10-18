@@ -2038,6 +2038,14 @@ function copy(txt, btn){
   ];
   const tarifOption = TARIF_15.includes(apKey) ? 15 : 20;
 
+  // Paiement des options : PayPal direct + Wero (validé par Claudine le 18/10/2026, pas de Stripe).
+  // Adresse PayPal et numéro Wero affichés volontairement. Paiement immédiat → remboursé si option refusée.
+  const paiementInfo = `<div class="meta" style="font-size:12px;margin-top:6px">Règlement de ${tarifOption}&nbsp;€ par
+    <strong>PayPal</strong> à <strong>claudine.podvin@gmail.com</strong> ou par <strong>Wero</strong> au <strong>06&nbsp;13&nbsp;65&nbsp;10&nbsp;77</strong>,
+    en indiquant le logement et la date. Remboursé si l'option n'est pas disponible.</div>`;
+  const optionBtn = (sujet, corps) =>
+    `<a href="${optionLink(sujet, corps)}" style="${btnStyle}">📩 Demander l'option</a>` + paiementInfo;
+
   const cons = apData.checkoutConsignes || [
     'Fermer les fenêtres',
     'Éteindre les lumières et mettre le chauffage sur 12°',
@@ -2094,7 +2102,7 @@ function copy(txt, btn){
       <div class="meta" style="color:var(--gold-light);margin-top:8px">
         ✨ <strong>Check-in anticipé</strong> possible dès 14h sur demande.<br>Supplément&nbsp;: ${tarifOption} €.
       </div>
-      <a href="${optionLink('Demande check-in anticipé 14h', "Je souhaite un check-in anticipé à 14h (supplément ${tarifOption} €).\nDate d'arrivée : ___")}" style="${btnStyle}">📩 Demander l'option</a>
+      ${optionBtn('Demande check-in anticipé 14h', `Je souhaite un check-in anticipé à 14h (supplément ${tarifOption} €).\nDate d'arrivée : ___`)}
     </div>
 
     <h3>🚪 Départ — check-out</h3>
@@ -2107,7 +2115,7 @@ function copy(txt, btn){
       <div class="meta" style="color:var(--gold-light);margin-top:12px">
         ✨ <strong>Check-out tardif</strong> possible jusqu'à 13h sur demande.<br>Supplément&nbsp;: ${tarifOption} €.
       </div>
-      <a href="${optionLink('Demande check-out tardif 13h', 'Je souhaite un check-out tardif à 13h (supplément ${tarifOption} €).\nDate de départ : ___')}" style="${btnStyle}">📩 Demander l'option</a>
+      ${optionBtn('Demande check-out tardif 13h', `Je souhaite un check-out tardif à 13h (supplément ${tarifOption} €).\nDate de départ : ___`)}
     </div>
 
     ${lingeCard}
