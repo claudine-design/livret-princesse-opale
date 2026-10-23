@@ -2982,12 +2982,10 @@ async function envoyerSignalement(){
 
   // ----- Balnéo Spalina (Cetana ou Indra Wave selon appart (marque Spalina))
   // Cetana = 2 places face à face · Indra Wave = 2 personnes (modèle compact)
-  const BALNEO_CETANA = ['balneo','cocon','rotonde','patio','evasion','granderoue']; // granderoue confirmé par Claudine le 23/09/2026
+  const BALNEO_CETANA = ['balneo','cocon','rotonde','patio','evasion','granderoue','escapade']; // granderoue confirmé par Claudine le 23/09/2026 · escapade = mêmes boutons que Grande Roue/Balnéo/Patio/Rotonde (Claudine 23/10/2026)
   const BALNEO_INDRAWAVE = ['apolove','miniloveroom','grandeloveroom'];
-  // Balnéo sans modèle Spalina confirmé : même guide 4 boutons, sans nom de modèle (Escapade ajouté 23/10/2026)
-  const BALNEO_AUTRE = ['escapade'];
   let balneoCard = '';
-  if (BALNEO_CETANA.includes(apKey) || BALNEO_INDRAWAVE.includes(apKey) || BALNEO_AUTRE.includes(apKey)) {
+  if (BALNEO_CETANA.includes(apKey) || BALNEO_INDRAWAVE.includes(apKey)) {
     const modele = BALNEO_CETANA.includes(apKey) ? 'Cetana' : (BALNEO_INDRAWAVE.includes(apKey) ? 'Indra Wave' : '');
     const places = BALNEO_INDRAWAVE.includes(apKey)
       ? '2 personnes face à face (modèle compact)'
