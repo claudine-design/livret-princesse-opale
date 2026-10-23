@@ -2934,7 +2934,7 @@ async function envoyerSignalement(){
   // 1 télécommande  : Le 25 (balneo, cocon) + patio, rotonde, miniloveroom, grandeloveroom
   // Maisonnette : TV par applications (TF1 = chaîne 1, M6 = chaîne 6, Molotov = reste) — carte dédiée ci-dessous
   const MOLOTOV_2 = ['kitesurf','hamac','paddle','famille'];
-  const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom','granderoue'];
+  const MOLOTOV_1 = ['balneo','cocon','patio','rotonde','miniloveroom','grandeloveroom','granderoue','escapade'];
   const hasMolotov = MOLOTOV_2.includes(apKey) || MOLOTOV_1.includes(apKey);
   const twoRemotes = MOLOTOV_2.includes(apKey);
 
@@ -3077,6 +3077,23 @@ async function envoyerSignalement(){
         </div>
   `;
 
+  // Escapade : vidéoprojecteur + Molotov, en plus de la télé — consigne Claudine 23/10/2026
+  const projecteurCard = apKey === 'escapade' ? `
+      <div class="faq-group">
+        <div class="faq-group-title"><span class="em">📽️</span> Vidéoprojecteur — Molotov</div>
+        <div class="card">
+          <div class="name">Comment utiliser le vidéoprojecteur</div>
+          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+            <li>Utilisez la <strong>télécommande blanche</strong> pour <strong>descendre l'écran</strong> du vidéoprojecteur.</li>
+            <li>Allumez le vidéoprojecteur avec la <strong>télécommande noire</strong>, puis allez sur l'application <strong>Molotov</strong>.</li>
+          </ol>
+          <div style="background:#fff4e6;border:1px solid #e8a44a;border-left:4px solid #d4781f;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.5;color:#5c3a0e">
+            <strong style="color:#a85a14">⚠️ Important :</strong> pour utiliser la télécommande, il faut qu'elle soit <strong>orientée vers le vidéoprojecteur</strong>, et non vers l'écran.
+          </div>
+        </div>
+      </div>
+    ` : '';
+
   // TV antenne hertzienne (pas de Molotov) : Jeanne + Évasion
   const TV_ANTENNE = ['jeanne','evasion'];
   let molotovCard = '';
@@ -3142,23 +3159,6 @@ async function envoyerSignalement(){
         ${wifiResetCard}
       </div>
     `;
-  } else if (apKey === 'escapade') {
-    // Vidéoprojecteur + Molotov — consigne Claudine 23/10/2026
-    molotovCard = `
-      <div class="faq-group">
-        <div class="faq-group-title"><span class="em">📽️</span> Vidéoprojecteur — Molotov</div>
-        <div class="card">
-          <div class="name">Comment utiliser le vidéoprojecteur</div>
-          <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
-            <li>Utilisez la <strong>télécommande blanche</strong> pour <strong>descendre l'écran</strong> du vidéoprojecteur.</li>
-            <li>Allumez le vidéoprojecteur avec la <strong>télécommande noire</strong>, puis allez sur l'application <strong>Molotov</strong>.</li>
-          </ol>
-          <div style="background:#fff4e6;border:1px solid #e8a44a;border-left:4px solid #d4781f;border-radius:8px;padding:12px 14px;margin:12px 0;font-size:14px;line-height:1.5;color:#5c3a0e">
-            <strong style="color:#a85a14">⚠️ Important :</strong> pour utiliser la télécommande, il faut qu'elle soit <strong>orientée vers le vidéoprojecteur</strong>, et non vers l'écran.
-          </div>
-        </div>
-      </div>
-    `;
   } else if (hasMolotov) {
     const remoteTxt = twoRemotes
       ? 'Votre appartement dispose de <strong>deux télécommandes</strong> : une grande (pour allumer la télé) et une petite (pour naviguer dans le menu).'
@@ -3191,6 +3191,7 @@ async function envoyerSignalement(){
         </div>
         ${wifiResetCard}
       </div>
+      ${projecteurCard}
     `;
   }
 
