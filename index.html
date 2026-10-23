@@ -3081,6 +3081,7 @@ async function envoyerSignalement(){
         <div class="faq-group-title"><span class="em">📽️</span> Vidéoprojecteur — Molotov</div>
         <div class="card">
           <div class="name">Comment utiliser le vidéoprojecteur</div>
+          <div class="meta">Le logement dispose de <strong>4 télécommandes</strong> : 2 pour la télé (voir ci-dessus), 1 <strong>blanche</strong> pour l'écran du vidéoprojecteur et 1 <strong>noire</strong> pour le vidéoprojecteur.</div>
           <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
             <li>Utilisez la <strong>télécommande blanche</strong> pour <strong>descendre l'écran</strong> du vidéoprojecteur.</li>
             <li>Allumez le vidéoprojecteur avec la <strong>télécommande noire</strong>, puis allez sur l'application <strong>Molotov</strong>.</li>
@@ -3158,11 +3159,22 @@ async function envoyerSignalement(){
       </div>
     `;
   } else if (hasMolotov) {
-    const remoteTxt = twoRemotes
-      ? 'Votre appartement dispose de <strong>deux télécommandes</strong> : une grande (pour allumer la télé) et une petite (pour naviguer dans le menu).'
+    // Escapade : télécommande de la télé + télécommande de la clé Xiaomi (Molotov) — Claudine 23/10/2026
+    const isXiaomi = apKey === 'escapade';
+    const remoteTxt = isXiaomi
+      ? 'Votre télévision fonctionne avec <strong>deux télécommandes</strong> : celle de la <strong>télé</strong> (pour l\'allumer) et celle de la <strong>clé Xiaomi</strong> (pour aller sur Molotov).'
+      : twoRemotes
+      ?'Votre appartement dispose de <strong>deux télécommandes</strong> : une grande (pour allumer la télé) et une petite (pour naviguer dans le menu).'
       : 'Votre appartement dispose d\'<strong>une seule télécommande</strong>.';
-    const steps = twoRemotes
+    const steps = isXiaomi
       ? `<ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Allumez la télé avec la <strong>télécommande de la télé</strong>.</li>
+          <li>Prenez ensuite la <strong>télécommande de la clé Xiaomi</strong> et attendez que l'écran d'accueil apparaisse.</li>
+          <li>Naviguez vers <strong>Molotov</strong>.</li>
+          <li>Cliquez sur l'onglet <strong>« Direct »</strong> pour voir les chaînes en direct.</li>
+        </ol>`
+      : twoRemotes
+      ?`<ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
           <li>Allumez la télé avec la <strong>grande télécommande</strong> (bouton en haut à gauche).</li>
           <li>Attendez que la télé charge — cela peut prendre <strong>plusieurs minutes</strong>.</li>
           <li>Quand l'écran d'accueil apparaît (avec Netflix &amp; diverses icônes), prenez la <strong>petite télécommande</strong>.</li>
@@ -3183,9 +3195,9 @@ async function envoyerSignalement(){
           <div class="meta">${remoteTxt}</div>
           ${steps}
           <div class="meta" style="margin-top:8px;font-style:italic">* Si la télé ne semble pas connectée, voir l'encadré ci-dessous.</div>
-          <div class="actions" style="margin-top:10px">
+          ${isXiaomi ? '' : `<div class="actions" style="margin-top:10px">
             <a href="assets/molotov-2-telecommandes.pdf" target="_blank" rel="noopener">📄 Voir le guide illustré (PDF)</a>
-          </div>
+          </div>`}
         </div>
         ${wifiResetCard}
       </div>
