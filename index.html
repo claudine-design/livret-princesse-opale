@@ -2980,6 +2980,33 @@ async function envoyerSignalement(){
     </div>
   `;
 
+  // ----- Coupure d'électricité — Le 17 (Grande Roue + Escapade) : tableau sur le palier devant la porte — consigne Claudine 26/10/2026
+  const ELEC_PALIER = {
+    granderoue: `
+        <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Sortez sur le <strong>palier, juste devant la porte</strong> de votre appartement : votre compteur est celui de <strong>droite</strong>.</li>
+          <li>Sur le <strong>disjoncteur noir</strong>, appuyez sur le <strong>bouton vert</strong>.</li>
+          <li>Puis, sur le <strong>compteur Linky</strong> (boîtier vert clair) juste en dessous, <strong>laissez le doigt appuyé sur le bouton +</strong> quelques secondes jusqu'au retour du courant. ✅</li>
+        </ol>`,
+    escapade: `
+        <ol style="margin:8px 0;padding-left:20px;font-size:14px;line-height:1.6">
+          <li>Sortez sur le <strong>palier, juste devant la porte</strong> de votre appartement : votre disjoncteur est celui de <strong>gauche</strong>.</li>
+          <li><strong>Relevez vers le haut</strong> la manette du <strong>disjoncteur blanc</strong>.</li>
+          <li>Puis, sur le <strong>compteur Enedis (Linky, boîtier vert clair)</strong>, <strong>laissez le doigt appuyé sur le bouton +</strong> quelques secondes jusqu'au retour du courant. ✅</li>
+        </ol>`
+  };
+  const electriciteCard = ELEC_PALIER[apKey] ? `
+    <div class="faq-group">
+      <div class="faq-group-title"><span class="em">⚡</span> Plus d'électricité ?</div>
+      <div class="card">
+        <div class="name">Si le courant est coupé dans votre logement</div>
+        <div class="meta">Vérifiez d'abord le tableau électrique situé sur le <strong>palier, juste devant la porte</strong> de votre appartement.</div>
+        ${ELEC_PALIER[apKey]}
+        <div class="meta" style="margin-top:8px;font-style:italic">Si le courant ne revient pas, contactez-nous via la rubrique <strong>Problème / Urgence</strong>.</div>
+      </div>
+    </div>
+  ` : '';
+
   // ----- Balnéo Spalina (Cetana ou Indra Wave selon appart (marque Spalina))
   // Cetana = 2 places face à face · Indra Wave = 2 personnes (modèle compact)
   const BALNEO_CETANA = ['balneo','cocon','rotonde','patio','evasion','granderoue','escapade']; // granderoue confirmé par Claudine le 23/09/2026 · escapade = mêmes boutons que Grande Roue/Balnéo/Patio/Rotonde (Claudine 23/10/2026)
@@ -3216,7 +3243,7 @@ async function envoyerSignalement(){
 
   if (!apFaq.length) {
     // Pas de FAQ Trello — on affiche quand même Molotov + Plaque + Radiateur + Balnéo
-    box.innerHTML = molotovCard + plaqueCard + balneoCard + radiateurCard;
+    box.innerHTML = electriciteCard + molotovCard + plaqueCard + balneoCard + radiateurCard;
     return;
   }
 
@@ -3265,7 +3292,7 @@ async function envoyerSignalement(){
   }
 
   /* Rendu : Molotov + Plaque + Balnéo + Radiateur en tête, puis FAQ Trello groupée par thème */
-  let html = molotovCard + plaqueCard + balneoCard + radiateurCard;
+  let html = electriciteCard + molotovCard + plaqueCard + balneoCard + radiateurCard;
   for (const g of GROUPS) {
     if (!groups[g.id].length) continue;
     html += `<div class="faq-group">
@@ -3312,6 +3339,11 @@ async function envoyerSignalement(){
   const hasBabyGear = BABY_GEAR.includes(apKey);
   const hasLitsSepares = !NO_LITS_SEPARES_FAQ.includes(apKey);
 
+  // Le 17 (Grande Roue + Escapade) : coupure d'électricité → tableau sur le palier — consigne Claudine 26/10/2026
+  const ELEC_FAQ = {
+    granderoue: `Vérifiez le tableau électrique sur le <strong>palier, juste devant votre porte</strong> : votre compteur est celui de <strong>droite</strong>. Sur le <strong>disjoncteur noir</strong>, appuyez sur le <strong>bouton vert</strong>, puis sur le <strong>Linky</strong> en dessous, <strong>laissez le doigt appuyé sur le bouton +</strong> jusqu'au retour du courant. Détails dans <strong>Guide équipements</strong>.`,
+    escapade: `Vérifiez le tableau électrique sur le <strong>palier, juste devant votre porte</strong> : votre disjoncteur est celui de <strong>gauche</strong>. <strong>Relevez vers le haut</strong> la manette du <strong>disjoncteur blanc</strong>, puis sur le <strong>compteur Enedis (Linky)</strong>, <strong>laissez le doigt appuyé sur le bouton +</strong> jusqu'au retour du courant. Détails dans <strong>Guide équipements</strong>.`
+  };
   const QR = [
     {
       em:'🛏️', q:'Le linge de lit et les serviettes sont-ils fournis ?',
@@ -3325,6 +3357,10 @@ async function envoyerSignalement(){
         ? `Oui, votre logement bénéficie d'un <strong>parking privatif inclus</strong>. Voir l'item Accès au logement pour les détails et la vidéo.`
         : `Pas de parking privé, mais vous pouvez vous garer dans la rue. ⚠️ <strong>Stationnement payant</strong> du 1<sup>er</sup> mai au 30 septembre + vacances de Toussaint, avec la <strong>1<sup>re</sup> heure gratuite</strong>. En basse saison : gratuit. Astuce : essayez le <strong>parking du stade</strong> à proximité, ou prenez un abonnement <strong>Prestopark</strong> (20 €/semaine).`
     },
+    ...(ELEC_FAQ[apKey] ? [{
+      em:'⚡', q:"Plus d'électricité dans le logement ?",
+      r: ELEC_FAQ[apKey]
+    }] : []),
     {
       em:'🏥', q:'En cas de souci pendant le séjour, qui contacter ?',
       r: AIRBNB ? `Écrivez-nous dans la <strong>messagerie Airbnb</strong>, ou utilisez le formulaire de l'item <strong>Problème / Urgence</strong>. En cas d'urgence vitale, l'item <strong>Contact d'urgence</strong> regroupe tous les numéros : Pompiers <strong>18</strong>, SAMU <strong>15</strong>, Police <strong>17</strong>, numéro européen <strong>112</strong>.` : `Écrivez-nous à <strong>princessedopale@gmail.com</strong> via l'item <strong>Signaler un problème</strong> — votre message arrive directement à notre Conciergerie. En cas d'urgence vitale, l'item <strong>Contact d'urgence</strong> regroupe tous les numéros : Pompiers <strong>18</strong>, SAMU <strong>15</strong>, Police <strong>17</strong>, hôpital de Berck.`
